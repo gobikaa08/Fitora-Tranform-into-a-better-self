@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#202522"/>
+  <text x="200" y="140" font-family="Montserrat, sans-serif" font-size="24" font-weight="700" fill="#C5F36A" text-anchor="middle">PERSONAL</text>
+  <text x="200" y="170" font-family="Montserrat, sans-serif" font-size="24" font-weight="700" fill="#C5F36A" text-anchor="middle">TRAINING</text>
+  <circle cx="170" cy="210" r="25" fill="none" stroke="#C5F36A" stroke-width="3"/>
+  <circle cx="230" cy="210" r="25" fill="none" stroke="#C5F36A" stroke-width="3"/>
+  <line x1="195" y1="210" x2="205" y2="210" stroke="#C5F36A" stroke-width="3"/>
+</svg>

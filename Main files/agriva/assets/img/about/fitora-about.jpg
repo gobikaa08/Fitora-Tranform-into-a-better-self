@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#1C211F"/>
+  <text x="400" y="280" font-family="Montserrat, sans-serif" font-size="32" font-weight="700" fill="#C5F36A" text-anchor="middle">FITORA GYM</text>
+  <text x="400" y="320" font-family="Inter, sans-serif" font-size="18" fill="#A6AAA6" text-anchor="middle">Modern Fitness Environment</text>
+  <circle cx="400" cy="420" r="60" fill="#C5F36A" opacity="0.2"/>
+  <path d="M 370 420 L 390 440 L 430 400" stroke="#C5F36A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

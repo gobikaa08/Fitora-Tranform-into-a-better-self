@@ -1,0 +1,20 @@
+{
+  "name": "agriva-agriculture-organic-farm",
+  "version": "1.0.0",
+  "description": "Agriva Agriculture and Organic Farm Website Template",
+  "main": "serve.js",
+  "scripts": {
+    "start": "node serve.js",
+    "dev": "node serve.js"
+  },
+  "keywords": [
+    "agriculture",
+    "organic-farm",
+    "html5-template"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemailer": "^10.5.0"
+  }
+}
