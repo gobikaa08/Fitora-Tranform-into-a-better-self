@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="FITORA">
+    <meta name="description" content="FITORA Memberships & Pricing - Flexible plans with zero lock-in contracts.">
+    <title>Membership & Pricing - FITORA</title>
+    
+    <link rel="shortcut icon" href="assets/img/favicon.svg">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/meanmenu.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/fitora-custom.css">
+</head>
+<body class="bg-fitora-charcoal">
+
+    <!-- Preloader -->
+    <div id="fitora-preloader">
+        <div class="preloader-content text-center">
+            <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA Logo" class="fitora-loader" style="width: 200px;">
+            <h4>LOADING FITORA...</h4>
+        </div>
+    </div>
+
+    <!-- Back To Top -->
+    <button id="back-top" class="back-to-top">
+        <i class="fa-regular fa-arrow-up"></i>
+    </button>
+
+    <!-- Header Section -->
+    <header id="header-sticky" class="header-1">
+        <div class="container-fluid">
+            <div class="mega-menu-wrapper">
+                <div class="header-main">
+                    <div class="header-left">
+                        <div class="logo">
+                            <a href="index.html" class="header-logo">
+                                <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA Logo" style="width: 140px;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mean__menu-wrapper">
+                        <div class="main-menu">
+                            <nav id="mobile-menu">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="service.html">Programs</a></li>
+                                    <li><a href="schedule.html">Schedule</a></li>
+                                    <li><a href="calculator.html">Calculators</a></li>
+                                    <li><a href="shop-grid.html">Pro Shop</a></li>
+                                    <li class="active"><a href="pricing.html">Pricing</a></li>
+                                    <li><a href="team.html">Coaches</a></li>
+                                    <li><a href="faq.html">FAQ</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div> 
+                    <div class="header-right d-flex justify-content-end align-items-center gap-3">
+                        <a href="shop-cart.html" class="header-cart-link" title="View Cart">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span class="fitora-cart-count">0</span>
+                        </a>
+                        <button onclick="openTrialModal()" class="theme-btn-2 border-btn d-none d-lg-inline-block" style="padding: 12px 22px; font-size: 13px;">
+                            FREE PASS
+                        </button>
+                        <div class="header-button d-none d-sm-inline-block">
+                            <a href="pricing.html" class="theme-btn-2 style-btns" style="padding: 12px 24px; font-size: 13px;">
+                                JOIN NOW
+                            </a>
+                        </div>
+                        <div class="header__hamburger d-xl-none my-auto">
+                            <div class="sidebar__toggle">
+                                <i class="fas fa-bars"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <!-- Breadcrumb -->
+            <div class="breadcrumb-wrapper bg-cover" style="background: linear-gradient(180deg, rgba(17,19,18,0.7) 0%, #111312 100%), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920') center/cover">
+                <div class="container text-center">
+                    <span class="text-lime text-uppercase font-weight-bold letter-spacing-2">Invest in Your Health</span>
+                    <h1 class="text-white mt-2">MEMBERSHIP PLANS & RATES</h1>
+                    <ul class="breadcrumb-items d-flex justify-content-center gap-2 list-unstyled mt-3 text-muted-grey">
+                        <li><a href="index.html" class="text-muted-grey text-decoration-none">Home</a></li>
+                        <li>:</li>
+                        <li class="text-lime">Pricing</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Pricing Cards Section -->
+            <section class="fitora-section section-padding">
+                <div class="container text-center">
+                    <div class="section-title text-center mb-4">
+                        <span>TRANSPARENT VALUE</span>
+                        <h2>CHOOSE YOUR ACCESS TIER</h2>
+                        <p style="color: var(--fitora-muted-grey); max-width: 650px; margin: 15px auto 0;">
+                            Zero initiation fees, zero hidden cancellation penalties. Switch between tiers or freeze membership anytime via the app.
+                        </p>
+                    </div>
+
+                    <!-- Annual vs Monthly Billing Toggle -->
+                    <div class="pricing-switch-wrapper">
+                        <button id="btn-billing-monthly" class="pricing-switch-btn active" onclick="togglePricing('monthly')">
+                            Monthly Billing
+                        </button>
+                        <button id="btn-billing-annual" class="pricing-switch-btn" onclick="togglePricing('annual')">
+                            Annual Billing <span class="save-badge">SAVE 20%</span>
+                        </button>
+                    </div>
+
+                    <div class="row g-4 justify-content-center text-start">
+                        <!-- Basic Card -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="pricing-card">
+                                <div class="pricing-header">
+                                    <h3>BASIC ACCESS</h3>
+                                </div>
+                                <div class="pricing-price">
+                                    <span id="price-basic">$29</span><span class="pricing-period">/month</span>
+                                </div>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> 24/7 Access to Gym Equipment</li>
+                                    <li><i class="fas fa-check"></i> Standard Locker & Shower Suites</li>
+                                    <li><i class="fas fa-check"></i> Free InBody Biometric Body Scan</li>
+                                    <li><i class="fas fa-check"></i> Digital Barcode Entry via App</li>
+                                    <li style="opacity: 0.35;"><i class="fas fa-times"></i> Group Studio Classes</li>
+                                    <li style="opacity: 0.35;"><i class="fas fa-times"></i> Hydrotherapy Spa & Sauna</li>
+                                    <li style="opacity: 0.35;"><i class="fas fa-times"></i> 1-on-1 Personal Coaching</li>
+                                </ul>
+                                <button onclick="openTrialModal('Basic Access Plan')" class="theme-btn-2 w-100 text-center">
+                                    SELECT BASIC
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Premium Card (Featured) -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="pricing-card featured position-relative">
+                                <div style="position: absolute; top: 20px; right: 20px; background: var(--fitora-lime); color: var(--fitora-charcoal); padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">
+                                    POPULAR CHOICE
+                                </div>
+                                <div class="pricing-header">
+                                    <h3>PREMIUM CLUB</h3>
+                                </div>
+                                <div class="pricing-price">
+                                    <span id="price-premium">$59</span><span class="pricing-period">/month</span>
+                                </div>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> All Basic Access Features</li>
+                                    <li><i class="fas fa-check"></i> Unlimited Weekly Group Classes</li>
+                                    <li><i class="fas fa-check"></i> 1 Monthly Personal Coach Session</li>
+                                    <li><i class="fas fa-check"></i> Hydrotherapy Spa, Sauna & Steam</li>
+                                    <li><i class="fas fa-check"></i> Custom Nutrition & Macro Strategy</li>
+                                    <li><i class="fas fa-check"></i> 2 Complimentary Guest Passes/mo</li>
+                                    <li style="opacity: 0.35;"><i class="fas fa-times"></i> Cryotherapy Cold Plunge Suite</li>
+                                </ul>
+                                <button onclick="openTrialModal('Premium Club Plan')" class="theme-btn-2 w-100 text-center">
+                                    SELECT PREMIUM
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Elite Card -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="pricing-card">
+                                <div class="pricing-header">
+                                    <h3>ELITE VIP</h3>
+                                </div>
+                                <div class="pricing-price">
+                                    <span id="price-elite">$99</span><span class="pricing-period">/month</span>
+                                </div>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> Unlimited Worldwide Club Access</li>
+                                    <li><i class="fas fa-check"></i> 4 Monthly 1-on-1 Personal Training</li>
+                                    <li><i class="fas fa-check"></i> Cryotherapy & Hydro Plunges</li>
+                                    <li><i class="fas fa-check"></i> Unlimited Free Guest Passes</li>
+                                    <li><i class="fas fa-check"></i> 15% Lifetime Discount at Pro Shop</li>
+                                    <li><i class="fas fa-check"></i> Dedicated Concierge Coach & App</li>
+                                    <li><i class="fas fa-check"></i> Free Daily Protein Smoothie at Bar</li>
+                                </ul>
+                                <button onclick="openTrialModal('Elite VIP Plan')" class="theme-btn-2 w-100 text-center">
+                                    SELECT ELITE VIP
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Side-by-Side Detailed Comparison Table -->
+                    <div class="mt-5 pt-5 text-start">
+                        <div class="section-title text-center mb-5">
+                            <span>FEATURE BREAKDOWN</span>
+                            <h2>COMPARE MEMBERSHIP BENEFITS</h2>
+                        </div>
+
+                        <div class="table-responsive" style="background: var(--fitora-dark-grey); border-radius: 16px; padding: 20px; border: 1px solid rgba(255,255,255,0.06);">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th style="font-size: 16px; color: #fff;">Benefits & Facilities</th>
+                                        <th style="font-size: 16px; color: #fff;">Basic ($29)</th>
+                                        <th style="font-size: 16px; color: var(--fitora-lime);">Premium ($59)</th>
+                                        <th style="font-size: 16px; color: #38BDF8;">Elite VIP ($99)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>24/7 Gym Floor Access</td>
+                                        <td><i class="fas fa-check text-lime"></i></td>
+                                        <td><i class="fas fa-check text-lime"></i></td>
+                                        <td><i class="fas fa-check text-lime"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Olympic Weightlifting Platforms</td>
+                                        <td><i class="fas fa-check text-lime"></i></td>
+                                        <td><i class="fas fa-check text-lime"></i></td>
+                                        <td><i class="fas fa-check text-lime"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Locker Rooms & Rain Showers</td>
+                                        <td><i class="fas fa-check text-lime"></i></td>
+                                        <td><i class="fas fa-check text-lime"></i></td>
+                                        <td><i class="fas fa-check text-lime"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>InBody Biometric Scan</td>
+                                        <td>Quarterly</td>
+                                        <td>Monthly</td>
+                                        <td>Bi-Weekly</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Group Studio Classes (HIIT, Spin, Yoga)</td>
+                                        <td>$15 / class</td>
+                                        <td><i class="fas fa-check text-lime"></i> Unlimited</td>
+                                        <td><i class="fas fa-check text-lime"></i> Unlimited</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Infrared Sauna & Steam Rooms</td>
+                                        <td><i class="fas fa-times text-muted-grey"></i></td>
+                                        <td><i class="fas fa-check text-lime"></i></td>
+                                        <td><i class="fas fa-check text-lime"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cryo Cold Plunge Immersion</td>
+                                        <td><i class="fas fa-times text-muted-grey"></i></td>
+                                        <td>$10 / session</td>
+                                        <td><i class="fas fa-check text-lime"></i> Unlimited</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1-on-1 Certified Personal Trainer</td>
+                                        <td><i class="fas fa-times text-muted-grey"></i></td>
+                                        <td>1 Session / Month</td>
+                                        <td>4 Sessions / Month</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Guest Passes</td>
+                                        <td><i class="fas fa-times text-muted-grey"></i></td>
+                                        <td>2 / Month</td>
+                                        <td>Unlimited</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pro Shop Gear & Supplement Discount</td>
+                                        <td>0%</td>
+                                        <td>5%</td>
+                                        <td>15%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Flexible Day & Class Packs -->
+                    <div class="row g-4 mt-5 text-start">
+                        <div class="col-md-4">
+                            <div class="feature-card-item" style="padding: 30px;">
+                                <h4 style="font-size: 20px;">1-Day VIP Guest Pass</h4>
+                                <div style="font-size: 26px; font-weight: 800; color: var(--fitora-lime); margin: 10px 0;">$20.00</div>
+                                <p style="font-size: 14px;">Full one-day access to gym floor, locker suites, and any scheduled group class.</p>
+                                <button onclick="openTrialModal('1-Day Pass')" class="theme-btn-2 border-btn w-100 mt-2">Get Pass</button>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-card-item" style="padding: 30px;">
+                                <h4 style="font-size: 20px;">10-Class Studio Bundle</h4>
+                                <div style="font-size: 26px; font-weight: 800; color: var(--fitora-lime); margin: 10px 0;">$160.00</div>
+                                <p style="font-size: 14px;">Valid for 6 months across any HIIT, Yoga, Spin, or Boxing group sessions.</p>
+                                <button onclick="openTrialModal('10-Class Bundle')" class="theme-btn-2 border-btn w-100 mt-2">Purchase Bundle</button>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-card-item" style="padding: 30px;">
+                                <h4 style="font-size: 20px;">Personal Training 5-Pack</h4>
+                                <div style="font-size: 26px; font-weight: 800; color: var(--fitora-lime); margin: 10px 0;">$320.00</div>
+                                <p style="font-size: 14px;">Five 60-minute intensive coaching sessions with your designated head trainer.</p>
+                                <button onclick="openTrialModal('PT 5-Pack')" class="theme-btn-2 border-btn w-100 mt-2">Book Sessions</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Footer Section -->
+            <footer class="footer-section">
+                <div class="container text-center">
+                    <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA Logo" style="width: 140px; margin-bottom: 20px;">
+                    <p style="color: var(--fitora-muted-grey); max-width: 500px; margin: 0 auto 20px;">
+                        All plans come with a 14-day satisfaction guarantee. Questions? Call +1 (800) 555-FITR or email join@fitora.com.
+                    </p>
+                    <p class="m-0" style="font-size: 14px;">&copy; 2026 FITORA. All Rights Reserved.</p>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.meanmenu.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/fitora-app.js"></script>
+
+</body>
+</html>

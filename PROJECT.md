@@ -1,175 +1,96 @@
-# Agriva Agriculture Organic Farm
+# FITORA - Premium Fitness & Wellness Platform
 
 ## 1. Project Overview
 
-A comprehensive HTML template for an organic farm website showcasing agricultural products and services.
+FITORA is a modern, high-performance web platform designed for a premium fitness club, personal training academy, and athletic wellness brand. Built with a bold dark-aesthetic design system (deep charcoal backgrounds with high-contrast electric lime accents), FITORA provides gym enthusiasts and newcomers alike with training programs, class schedules, interactive fitness calculators, coach booking, membership tiers, and an integrated activewear and nutrition pro shop.
 
-## 2. Project Purpose
+## 2. Brand Identity & Design System
 
-To provide a professional, visually appealing website template for organic farms, agricultural businesses, and related services. The template includes features for showcasing farm products, services, team information, news updates, and contact functionality.
+- **Brand Name:** FITORA
+- **Tagline:** "Elevate Your Strength. Transform Your Life."
+- **Brand Colors:**
+  - Primary Background: `#111312` (Deep Charcoal)
+  - Secondary Background: `#1C211F` (Dark Slate)
+  - Accent Color: `#C5F36A` (Electric Lime)
+  - Primary Text: `#F5F5F0` (Off-White)
+  - Secondary Text: `#A6AAA6` (Muted Grey)
+  - Card Background: `#202522` / `#181B19`
+- **Typography:**
+  - Headings: `Montserrat`, sans-serif (700-800 weight)
+  - Body: `Inter`, sans-serif (400-600 weight)
 
-## 3. Key Features
+## 3. Technology Stack
 
-- Multi-page website structure with homepage variations
-- Product showcase and shopping functionality
-- Team and employee profiles
-- News and blog sections
-- Gallery and testimonial sections
-- Contact forms and appointment booking
-- Responsive design with modern animations
-- Social media integration
-- SEO optimization
-- E-commerce capabilities
+- **Frontend:** HTML5, CSS3, JavaScript (ES6+), Bootstrap 5, Font Awesome 6, Swiper.js, GSAP, Nice Select, Magnific Popup
+- **Backend / Server:** Node.js HTTP server (`serve.js`), Nodemailer for SMTP messaging
+- **APIs:**
+  - `/send-message`: Contact form processing with email notification
+  - `/api/book-trial`: Free 1-day VIP gym pass and coach consultation booking
+  - `/api/newsletter`: Inner circle workout & nutrition tips subscription
+  - `/api/checkout`: Pro Shop order processing with unique order ID generation
 
-## 4. Technology Stack
+## 4. Key Application Modules & Pages
 
-### Frontend
+1. **Homepage (`index.html`):**
+   - Hero slider with athletic video/photography backgrounds
+   - Interactive BMI & Calorie Calculator widget
+   - Weekly interactive class schedule with day filters
+   - Featured training programs (Strength, Personal, Yoga, Cardio)
+   - Trainer spotlights and credentials
+   - Membership plans with Monthly / Annual toggle (20% savings)
+   - Real-time client transformation testimonials
+   - Free Trial VIP Pass modal
 
-HTML5, CSS3 (SCSS), JavaScript, jQuery, Bootstrap, Font Awesome, GSAP (GreenSock Animation Platform), CountUp.js, Magnific Popup, Nice Select, Owl Carousel, Parallaxie, ScrollTrigger, SplitText, Swiper.js, Viewport.jquery, WOW.js
+2. **About FITORA (`about.html`):**
+   - Brand philosophy, 10+ years track record, equipment standards
+   - Facility amenities, wellness zones, recovery lounges
+   - Core coaching principles
 
-### Backend
+3. **Programs & Services (`programs.html` / `service.html`):**
+   - Strength & Hypertrophy, High-Intensity HIIT, Functional Mobility, Combat/Boxing, Nutrition Coaching
+   - Difficulty ratings, duration, target muscle groups, and coach assignments
 
-PHP (basic functionality through AJAX-mail.php)
+4. **Weekly Class Timetable (`schedule.html`):**
+   - Filterable schedule by day of week and workout style
+   - Trainer assigned, time slot, studio room, difficulty badge, and 1-click spot reservation
 
-### Database
+5. **Fitness & Nutrition Calculators (`calculator.html`):**
+   - Body Mass Index (BMI) calculator with visual category gauge
+   - Total Daily Energy Expenditure (TDEE) and BMR estimation
+   - Macronutrient split generator (Proteins, Fats, Carbs) based on fitness goal
+   - One-Rep Max (1RM) strength estimator
 
-MySQL (implied through e-commerce functionality)
+6. **Membership & Pricing (`pricing.html`):**
+   - Tiered plans: Basic ($29/mo), Premium ($59/mo), Elite ($99/mo)
+   - Monthly vs Annual switch with discount badge
+   - Feature comparison matrix
+   - Day passes, personal training packs, and FAQ
 
-### Tools & Libraries
+7. **FITORA Pro Shop (`shop.html` / `shop-grid.html`):**
+   - Activewear, performance supplements (Whey isolate, Creatine, Pre-workout), lifting gear
+   - Category filters, product search, ratings, and instant Add to Cart
 
-Git, Gulp/SCSS compilation, various npm packages for UI components and animations
+8. **Cart & Checkout (`shop-cart.html`, `checkout.html`):**
+   - Interactive local cart with quantity adjustment, promo code (`FITORA20`), order breakdown
+   - Checkout flow with order confirmation
 
-## 5. Project Architecture
+9. **Trainers & Coaches (`trainers.html` / `team.html`):**
+   - Elite coaches, certifications, training philosophies, and consultation booking
 
-Single-page application architecture with modular component structure. The template follows a modular design approach with separate SCSS files for each section and reusable components.
+10. **Frequently Asked Questions (`faq.html`):**
+    - Categorized accordion answering common gym, membership, and policy questions
 
-## 6. Folder Structure
+11. **Contact & Location (`contact.html`):**
+    - Direct contact form, gym address, interactive map guide, opening hours, support links
 
+12. **Custom 404 Error (`404.html`):**
+    - Fitness-themed 404 page directing users back to workouts and programs
+
+## 5. Running the Project
+
+```bash
+npm start
+# or
+node serve.js
 ```
-AgrivaAgricultureOrganicFarm/
-├── Main files/
-│   └── agriva/
-│       ├── assets/
-│       │   ├── css/
-│       │   ├── fonts/
-│       │   ├── images/
-│       │   └── js/
-│       ├── scss/
-│       ├── html-files (about.html, blog.html, contact.html, etc.)
-│       └── templates/
-├── Documentation/
-└── Various media assets (images, icons, etc.)
-```
-
-## 7. Application Modules
-
-- **Homepage**: Hero section with carousel/slider
-- **About Us**: Company history and values
-- **Services**: Agricultural services and products
-- **Projects/Gallery**: Portfolio of farm projects
-- **Blog/News**: Articles and updates
-- **Team**: Staff and expert profiles
-- **Shop**: Product catalog and e-commerce
-- **Contact**: Contact forms and location
-- **FAQ**: Frequently asked questions
-
-## 8. Frontend Structure
-
-The frontend is built using HTML5 semantic elements with CSS3 and JavaScript for interactivity. Uses jQuery for DOM manipulation and various plugins for enhanced UI/UX. The template includes comprehensive styling for desktop and mobile devices.
-
-## 9. Backend Structure
-
-PHP-based backend with AJAX functionality for form submissions. Includes sendemail.php for handling email communications.
-
-## 10. Database Structure
-
-MySQL database for storing products, blog posts, user information, and e-commerce data. Database schema includes tables for products, categories, users, orders, and content management.
-
-## 11. API / Routes
-
-Client-side routing using HTML5 history API. Server-side routes handled through PHP files. AJAX requests for dynamic content loading and form submissions.
-
-## 12. Authentication & Authorization
-
-Basic form authentication and client-side validation. No advanced user management or role-based access control implemented.
-
-## 13. Third-Party Integrations
-
-- Font Awesome for icons
-- Google Fonts for typography
-- Various JavaScript libraries for animations and UI components
-- Social media icons and embeds
-
-## 14. Payment Integrations
-
-E-commerce functionality with PHP-based payment processing. Payment gateways like PayPal, Stripe, or local payment methods may be integrated.
-
-## 15. Automation & Workflows
-
-Basic automation through JavaScript for form validation, carousels, and interactive elements. Scheduled content updates and backups not implemented.
-
-## 16. Configuration
-
-Configuration files include SCSS variables, JavaScript settings, and environment-specific configurations. Customizable colors, fonts, and layouts through CSS variables.
-
-## 17. Environment Variables
-
-Basic PHP environment variables for database connection, email settings, and site configuration. No .env file or advanced configuration management.
-
-## 18. Installation & Setup
-
-1. Extract the template files
-2. Upload to web server with PHP support
-3. Configure database credentials in database connection files
-4. Update site information in config files
-5. Install dependencies (npm packages, fonts)
-6. Run build tools if using SCSS compilation
-7. Test all functionality
-
-## 19. Development
-
-Development using Visual Studio Code or similar IDE. Git for version control. SCSS compilation through Gulp or similar build tools. Browser developer tools for debugging.
-
-## 20. Build & Deployment
-
-Static HTML/CSS/JavaScript template. Can be deployed to any web hosting service with PHP support. Manual deployment through FTP or Git deployment.
-
-## 21. Important Files
-
-- index.html: Main homepage
-- about.html: About us page
-- blog.html: Blog/news section
-- contact.html: Contact information
-- shop.html: Product catalog
-- ajax-mail.php: Email handling
-- style.css: Main CSS file
-- main.js: Main JavaScript file
-
-## 22. Dependencies
-
-jQuery, Bootstrap, Font Awesome, GSAP, CountUp.js, Magnific Popup, Nice Select, Owl Carousel, Parallaxie, ScrollTrigger, SplitText, Swiper.js, Viewport.jquery, WOW.js
-
-## 23. Current Functionality
-
-Fully functional website template with all promised features. E-commerce integration, content management, responsive design, and interactive elements all working correctly.
-
-## 24. Known Issues / Missing Components
-
-- No admin panel for content management
-- Limited mobile-specific optimizations
-- Basic SEO implementation
-- Advanced form validation
-- Comprehensive error handling
-
-## 25. Future Improvements
-
-- Implement admin dashboard
-- Add advanced SEO features
-- Include payment gateway integration
-- Enhance mobile responsiveness
-- Add internationalization support
-- Implement caching mechanisms
-
-## 26. Project Status
-
-Completed - Ready for deployment and customization
+The server will start on `http://localhost:3000` (or `PORT` environment variable) and automatically launch your browser.

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="FITORA">
+    <meta name="description" content="FITORA Pro Shop Cart - Review your order and proceed to checkout.">
+    <title>Shopping Cart - FITORA Pro Shop</title>
+    
+    <link rel="shortcut icon" href="assets/img/favicon.svg">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/meanmenu.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/fitora-custom.css">
+</head>
+<body class="bg-fitora-charcoal">
+
+    <!-- Preloader -->
+    <div id="fitora-preloader">
+        <div class="preloader-content text-center">
+            <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA Logo" class="fitora-loader" style="width: 200px;">
+            <h4>LOADING FITORA...</h4>
+        </div>
+    </div>
+
+    <!-- Back To Top -->
+    <button id="back-top" class="back-to-top">
+        <i class="fa-regular fa-arrow-up"></i>
+    </button>
+
+    <!-- Header Section -->
+    <header id="header-sticky" class="header-1">
+        <div class="container-fluid">
+            <div class="mega-menu-wrapper">
+                <div class="header-main">
+                    <div class="header-left">
+                        <div class="logo">
+                            <a href="index.html" class="header-logo">
+                                <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA Logo" style="width: 140px;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mean__menu-wrapper">
+                        <div class="main-menu">
+                            <nav id="mobile-menu">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="service.html">Programs</a></li>
+                                    <li><a href="schedule.html">Schedule</a></li>
+                                    <li><a href="calculator.html">Calculators</a></li>
+                                    <li><a href="shop-grid.html">Pro Shop</a></li>
+                                    <li><a href="pricing.html">Pricing</a></li>
+                                    <li><a href="team.html">Coaches</a></li>
+                                    <li><a href="faq.html">FAQ</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div> 
+                    <div class="header-right d-flex justify-content-end align-items-center gap-3">
+                        <a href="shop-cart.html" class="header-cart-link active" title="View Cart">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span class="fitora-cart-count">0</span>
+                        </a>
+                        <button onclick="openTrialModal()" class="theme-btn-2 border-btn d-none d-lg-inline-block" style="padding: 12px 22px; font-size: 13px;">
+                            FREE PASS
+                        </button>
+                        <div class="header-button d-none d-sm-inline-block">
+                            <a href="pricing.html" class="theme-btn-2 style-btns" style="padding: 12px 24px; font-size: 13px;">
+                                JOIN NOW
+                            </a>
+                        </div>
+                        <div class="header__hamburger d-xl-none my-auto">
+                            <div class="sidebar__toggle">
+                                <i class="fas fa-bars"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <!-- Breadcrumb -->
+            <div class="breadcrumb-wrapper bg-cover" style="background: linear-gradient(180deg, rgba(17,19,18,0.7) 0%, #111312 100%), url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1920') center/cover">
+                <div class="container text-center">
+                    <span class="text-lime text-uppercase font-weight-bold letter-spacing-2">Review Your Order</span>
+                    <h1 class="text-white mt-2">SHOPPING CART</h1>
+                    <ul class="breadcrumb-items d-flex justify-content-center gap-2 list-unstyled mt-3 text-muted-grey">
+                        <li><a href="index.html" class="text-muted-grey text-decoration-none">Home</a></li>
+                        <li>:</li>
+                        <li><a href="shop-grid.html" class="text-muted-grey text-decoration-none">Pro Shop</a></li>
+                        <li>:</li>
+                        <li class="text-lime">Cart</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Cart Section -->
+            <section class="fitora-section section-padding">
+                <div class="container">
+                    <div class="row g-5">
+                        
+                        <!-- Cart Items Table -->
+                        <div class="col-lg-8">
+                            <div id="cart-content-wrapper">
+                                <div class="table-responsive">
+                                    <table class="fitora-table" id="cart-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                                <th>Subtotal</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="cart-items-tbody">
+                                            <!-- Injected by JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- Coupon Code & Actions -->
+                                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mt-4">
+                                    <div class="d-flex gap-2">
+                                        <input type="text" id="coupon-code-input" class="fitora-input" placeholder="Promo code (try FITORA20)" style="max-width: 240px;">
+                                        <button class="theme-btn-2 border-btn" onclick="applyPromoCode()">Apply</button>
+                                    </div>
+                                    <div>
+                                        <a href="shop-grid.html" class="theme-btn-2 border-btn">
+                                            <i class="fas fa-arrow-left me-2"></i> Continue Shopping
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Empty Cart State -->
+                            <div id="cart-empty-state" style="display: none;" class="text-center py-5">
+                                <div class="fitora-icon mx-auto mb-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-shopping-bag" style="font-size: 32px; color: var(--fitora-charcoal);"></i>
+                                </div>
+                                <h3>YOUR CART IS CURRENTLY EMPTY</h3>
+                                <p style="color: var(--fitora-muted-grey); max-width: 450px; margin: 10px auto 25px;">
+                                    Browse our performance supplements, compression activewear, and heavy-duty training gear.
+                                </p>
+                                <a href="shop-grid.html" class="theme-btn-2">
+                                    Explore Pro Shop <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <!-- Order Summary Card -->
+                        <div class="col-lg-4">
+                            <div class="calculator-box" style="padding: 30px;">
+                                <h3 style="font-size: 22px; margin-bottom: 20px;">ORDER SUMMARY</h3>
+                                
+                                <div class="d-flex justify-content-between mb-3 text-muted-grey font-weight-bold" style="font-size: 15px;">
+                                    <span>Subtotal</span>
+                                    <span id="summary-subtotal" style="color: #fff;">$0.00</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-3 text-muted-grey font-weight-bold" style="font-size: 15px;" id="discount-row">
+                                    <span class="text-lime">Discount (20%)</span>
+                                    <span id="summary-discount" class="text-lime">-$0.00</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-3 text-muted-grey font-weight-bold" style="font-size: 15px;">
+                                    <span>Estimated Shipping</span>
+                                    <span id="summary-shipping" style="color: #fff;">Free over $50</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center pt-3 mt-3 mb-4" style="border-top: 1px solid rgba(255,255,255,0.1);">
+                                    <span style="font-size: 18px; font-weight: 700; color: #fff;">Total</span>
+                                    <span id="summary-total" style="font-size: 26px; font-weight: 800; color: var(--fitora-lime);">$0.00</span>
+                                </div>
+
+                                <a href="checkout.html" class="theme-btn-2 w-100 text-center py-3" id="btn-proceed-checkout">
+                                    PROCEED TO CHECKOUT <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+
+                                <div class="mt-4 text-center" style="font-size: 12px; color: var(--fitora-muted-grey);">
+                                    <i class="fas fa-lock me-1 text-lime"></i> 256-Bit SSL Encrypted Checkout
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer Section -->
+            <footer class="footer-section">
+                <div class="container text-center">
+                    <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA Logo" style="width: 140px; margin-bottom: 20px;">
+                    <p class="m-0" style="font-size: 14px;">&copy; 2026 FITORA Pro Shop. All Rights Reserved.</p>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.meanmenu.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/fitora-app.js"></script>
+
+    <script>
+        let discountApplied = false;
+
+        function renderCartPage() {
+            const items = fitoraCart.getItems();
+            const tbody = document.getElementById('cart-items-tbody');
+            const wrapper = document.getElementById('cart-content-wrapper');
+            const emptyState = document.getElementById('cart-empty-state');
+            const btnCheckout = document.getElementById('btn-proceed-checkout');
+
+            if (!tbody || !wrapper || !emptyState) return;
+
+            if (items.length === 0) {
+                wrapper.style.display = 'none';
+                emptyState.style.display = 'block';
+                if (btnCheckout) btnCheckout.style.pointerEvents = 'none';
+                updateSummary(0);
+                return;
+            }
+
+            wrapper.style.display = 'block';
+            emptyState.style.display = 'none';
+            if (btnCheckout) btnCheckout.style.pointerEvents = 'auto';
+
+            tbody.innerHTML = items.map(item => `
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; border-radius: 8px; object-fit: cover;">
+                            <div>
+                                <h5 style="margin: 0; font-size: 15px; color: #fff;">${item.name}</h5>
+                                <span style="font-size: 12px; color: var(--fitora-lime);">${item.category}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="font-weight: 700;">$${item.price.toFixed(2)}</td>
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                            <button class="cart-qty-btn" onclick="fitoraCart.updateQuantity('${item.id}', -1)">-</button>
+                            <span style="font-weight: 700; min-width: 20px; text-align: center;">${item.quantity}</span>
+                            <button class="cart-qty-btn" onclick="fitoraCart.updateQuantity('${item.id}', 1)">+</button>
+                        </div>
+                    </td>
+                    <td style="font-weight: 700; color: var(--fitora-lime);">$${(item.price * item.quantity).toFixed(2)}</td>
+                    <td>
+                        <button style="background: none; border: none; color: #EF4444; font-size: 16px; cursor: pointer;" onclick="fitoraCart.removeItem('${item.id}')" title="Remove Item">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+
+            updateSummary(fitoraCart.getSubtotal());
+        }
+
+        function updateSummary(subtotal) {
+            const elSubtotal = document.getElementById('summary-subtotal');
+            const elDiscount = document.getElementById('summary-discount');
+            const elShipping = document.getElementById('summary-shipping');
+            const elTotal = document.getElementById('summary-total');
+            const discountRow = document.getElementById('discount-row');
+
+            const discount = discountApplied ? (subtotal * 0.20) : 0;
+            const shipping = (subtotal > 50 || subtotal === 0) ? 0 : 9.99;
+            const total = Math.max(0, subtotal - discount + shipping);
+
+            if (elSubtotal) elSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+            if (discountRow) discountRow.style.display = discountApplied ? 'flex' : 'none';
+            if (elDiscount) elDiscount.textContent = `-$${discount.toFixed(2)}`;
+            if (elShipping) elShipping.textContent = shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`;
+            if (elTotal) elTotal.textContent = `$${total.toFixed(2)}`;
+        }
+
+        function applyPromoCode() {
+            const input = document.getElementById('coupon-code-input');
+            if (!input) return;
+            const code = input.value.trim().toUpperCase();
+            if (code === 'FITORA20') {
+                discountApplied = true;
+                fitoraToast('Promo code FITORA20 applied! 20% discount granted.', 'success');
+                renderCartPage();
+            } else {
+                fitoraToast('Invalid coupon code. Try FITORA20', 'error');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', renderCartPage);
+    </script>
+
+</body>
+</html>

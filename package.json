@@ -1,18 +1,23 @@
 {
-  "name": "agriva-agriculture-organic-farm",
-  "version": "1.0.0",
-  "description": "Agriva Agriculture and Organic Farm Website Template",
+  "name": "fitora-fitness-wellness",
+  "version": "2.0.0",
+  "description": "FITORA - Premium Fitness & Wellness Platform",
   "main": "serve.js",
   "scripts": {
     "start": "node serve.js",
     "dev": "node serve.js"
   },
   "keywords": [
-    "agriculture",
-    "organic-farm",
-    "html5-template"
+    "fitness",
+    "gym",
+    "workout",
+    "wellness",
+    "health",
+    "personal-training",
+    "activewear",
+    "nutrition"
   ],
-  "author": "",
+  "author": "FITORA Team",
   "license": "ISC",
   "dependencies": {
     "nodemailer": "^10.5.0"

@@ -1,363 +1,118 @@
-# FITORA - Premium Fitness & Wellness Website
+# FITORA - Premium Fitness & Wellness Platform
 
-## 🎯 Project Transformation Complete
+## 🎯 Full Transformation & Feature Expansion
 
-Successfully transformed AGRIVA Agriculture website into **FITORA** - a premium, modern fitness and wellness brand.
+The project has been completely transformed and upgraded into **FITORA**, an elite fitness, wellness, and activewear platform. All leftover files, templates, documentation, and assets from the previous template have been eliminated, and modern interactive modules have been built.
 
 ---
 
 ## 🎨 Brand Identity
 
-### **FITORA**
-**Tagline:** *Elevate Your Strength. Transform Your Life.*
-
-**Brand Personality:**
-- Premium
-- Modern
-- Bold
-- Energetic
-- Professional
-
----
-
-## 🎨 Design System
-
-### Color Palette
-- **Primary Background:** Deep Charcoal (`#111312`)
-- **Secondary Background:** Dark Grey (`#1C211F`)
-- **Primary Text:** Off-White (`#F5F5F0`)
-- **Secondary Text:** Muted Grey (`#A6AAA6`)
-- **Accent:** Electric Lime (`#C5F36A`)
-- **Card Background:** `#202522`
-
-### Typography
-- **Headings:** Montserrat (Bold, Expressive)
-- **Body:** Inter (Clean, Readable)
-- Strong hierarchy with large impactful headlines
-- Generous whitespace and appropriate spacing
-
-### Design Characteristics
-- Premium fitness brand aesthetic
-- Modern layouts with generous whitespace
-- Rounded but elegant cards
-- Subtle hover animations and smooth scrolling
-- Attractive image overlays
-- Consistent buttons and spacing
-- Fully responsive for desktop, tablet, and mobile
+- **Brand:** FITORA
+- **Tagline:** *Elevate Your Strength. Transform Your Life.*
+- **Colors:**
+  - Charcoal Background: `#111312`
+  - Slate Dark Grey: `#1C211F`
+  - Electric Lime Accent: `#C5F36A`
+  - Off-White Text: `#F5F5F0`
+  - Muted Grey: `#A6AAA6`
+- **Typography:** Montserrat (Headings) + Inter (Body)
 
 ---
 
-## 📁 Modified Files
+## 🚀 New Features & Capabilities
 
-### Core Files Transformed:
-1. **index.html** - Complete homepage rebuild with fitness content
-2. **assets/css/fitora-custom.css** - New comprehensive CSS theme
-3. **assets/img/logo/fitora-logo-white.svg** - New logo (white version)
-4. **assets/img/logo/fitora-logo-dark.svg** - New logo (dark version)
-5. **assets/img/favicon-fitora.svg** - New favicon
+### 1. Interactive BMI & Calorie Calculator (`calculator.html` + Homepage widget)
+- Clinical Mifflin-St Jeor formula calculating:
+  - Body Mass Index (BMI) and health category
+  - Total Daily Energy Expenditure (TDEE) and BMR
+  - Daily calorie targets for fat loss (-500 kcal) and muscle hypertrophy (+350 kcal)
+  - Daily protein target (2g/kg body weight)
+- 1-Rep Max (1RM) Estimator using the Epley formula for Squat, Bench, and Deadlift.
 
-### Updated Pages:
-- **about.html** - Meta tags and CSS integration
-- **contact.html** - Meta tags and CSS integration
-- **service.html** - Meta tags and CSS integration
+### 2. Interactive Weekly Class Timetable (`schedule.html` + Homepage section)
+- Day tabs (Monday through Sunday)
+- Category filters (Strength, Metabolic HIIT, Yoga & Mobility, Combat & Boxing)
+- Real-time card display with time slot, studio room, difficulty badge, coach name, and 1-click spot reservation.
 
-### Created Assets:
-- SVG logos and favicon
-- Placeholder images for programs, trainers, testimonials
-- Hero section backgrounds (placeholders)
+### 3. FITORA Pro Shop & Activewear (`shop-grid.html` / `shop.html`)
+- Performance supplements (Hydro Whey Isolate, Creatine Monohydrate, Pre-Workout Matrix)
+- Athletic apparel (Tactical Gym Hoodie, Seamless Compression Tee)
+- Lifting gear (Heavy-Duty Lifting Straps, Lever Belts, Insulated Shakers)
+- Category filter pills and instant "Add to Cart" with toast feedback.
 
----
+### 4. Interactive Shopping Cart (`shop-cart.html`)
+- Persisted in `localStorage` across page reloads
+- Quantity increment / decrement and item deletion
+- Promo coupon code system (use code `FITORA20` for 20% off!)
+- Free shipping threshold ($50+) calculation and live total update
+- Dynamic cart badge count in the header across all pages.
 
-## 🏗️ Website Structure
+### 5. Streamlined Checkout & Order Processing (`checkout.html`)
+- Shipping and billing address fields
+- Payment method selector (Credit/Debit Card, Apple Pay, Pay at Gym Desk Pickup)
+- Order submission to `/api/checkout` with instant unique Order ID (`FIT-XXXXXX`) generation and receipt confirmation.
 
-### Homepage Sections:
+### 6. Dynamic Pricing with Annual / Monthly Switch (`pricing.html`)
+- Monthly vs Annual billing toggle with 20% automatic discount calculation
+- Side-by-side 10-point feature comparison matrix
+- Single-day guest passes and personal coaching packages.
 
-1. **Hero Section**
-   - Stunning slider with 3 hero slides
-   - Headlines: "Build Your Strength. Own Your Journey."
-   - CTA buttons: "Explore Programs" and "Join FITORA"
+### 7. Free 1-Day VIP Pass / Consultation Modal
+- Can be triggered from any page via "Free Pass" button
+- Collects name, email, phone, preferred date, primary training goal, and specific class
+- Sends to `/api/book-trial` with toast confirmation.
 
-2. **Features Section**
-   - Personal Training
-   - Strength & Conditioning
-   - Healthy Lifestyle
-   - Premium card designs with icons
+### 8. Elite Coaches Directory (`team.html` / `trainers.html`)
+- Head trainers across strength, mobility, decathlon conditioning, sports dietetics, combat boxing, and physiotherapy.
 
-3. **About Section**
-   - "More Than A Gym. A Lifestyle"
-   - Split layout with image and content
-   - Key benefits with checkmarks
-   - 10+ years experience badge
+### 9. Categorized & Searchable FAQ (`faq.html`)
+- Real-time keyword filter across gym memberships, freeze policies, spa guidelines, and shipping.
 
-4. **Programs Section**
-   - Strength Training
-   - Personal Training
-   - Yoga & Flexibility
-   - Cardio & Endurance
-   - Hover effects and "Explore More" links
+### 10. Direct Contact Concierge (`contact.html`)
+- Connects to `/send-message` with email notifications.
 
-5. **Why Choose FITORA**
-   - Certified Trainers
-   - Modern Equipment
-   - Personalized Plans
-   - Supportive Community
-
-6. **Trainers Section**
-   - 4 trainer profile cards
-   - Alex Morgan - Strength Coach
-   - Sarah Chen - Yoga Instructor
-   - Marcus Williams - Cardio Specialist
-   - Emma Rodriguez - Nutrition Coach
-
-7. **Membership Pricing**
-   - Basic Plan
-   - Premium Plan (Popular)
-   - Elite Plan
-   - Note: Prices are placeholders marked as `[PRICE]`
-
-8. **Testimonials**
-   - 3 sample testimonials
-   - Clearly marked as sample/placeholder content
-
-9. **Contact Section**
-   - Contact form (note: demo form, no backend)
-   - Contact information placeholders
-   - Location, phone, email, hours
-
-10. **Footer**
-    - FITORA branding
-    - Quick links
-    - Program links
-    - Contact info
-    - Social media icons
+### 11. Custom Fitness 404 Error Page (`404.html`)
+- "Dropped the barbell?" custom recovery screen.
 
 ---
 
-## 🚀 Running the Project
+## 📁 Clean Directory Architecture
 
-### Start the Server:
+```
+FITORA/
+├── Main files/
+│   └── fitora/
+│       ├── assets/
+│       │   ├── css/ (fitora-custom.css, main.css, bootstrap, all.min.css)
+│       │   ├── js/ (fitora-app.js, main.js, bootstrap.bundle, etc.)
+│       │   ├── img/ (logos, hero, programs, trainers, testimonials, favicon)
+│       │   └── webfonts/
+│       ├── index.html
+│       ├── about.html
+│       ├── service.html / programs.html
+│       ├── schedule.html
+│       ├── calculator.html
+│       ├── shop-grid.html / shop.html
+│       ├── shop-cart.html
+│       ├── checkout.html
+│       ├── pricing.html
+│       ├── team.html / trainers.html
+│       ├── faq.html
+│       ├── contact.html
+│       └── 404.html
+├── serve.js
+├── package.json
+└── PROJECT.md
+```
+
+---
+
+## ⚡ How to Run
+
 ```bash
 npm start
+# or
+node serve.js
 ```
-
-**Default Port:** 3000  
-If port 3000 is in use, set custom port:
-```bash
-$env:PORT=3005; npm start
-```
-
-### Access the Website:
-Open your browser and navigate to:
-```
-http://localhost:3005
-```
-
-The server will automatically try to open your default browser.
-
----
-
-## ✅ What Was Preserved
-
-- **Existing Architecture:** Bootstrap-based HTML structure
-- **JavaScript Functionality:** All existing JS libraries and plugins
-- **Build Process:** Node.js server (serve.js)
-- **Responsive Framework:** Bootstrap grid system
-- **Animation Libraries:** GSAP, WOW.js, ScrollTrigger
-- **Component Libraries:** Swiper, Magnific Popup, Nice Select
-
----
-
-## 🎯 Key Features Implemented
-
-### Navigation
-- Sticky header with FITORA logo
-- Smooth scroll navigation to sections
-- Mobile-responsive hamburger menu
-- "JOIN NOW" prominent CTA button
-
-### Interactivity
-- Hover effects on cards and buttons
-- Smooth scrolling between sections
-- Animated transitions
-- Interactive pricing cards
-- Program card hover effects
-
-### Responsive Design
-- Mobile-first approach
-- Breakpoints for desktop, tablet, and mobile
-- Flexible typography scaling
-- Adaptive spacing and layouts
-
-### Accessibility
-- High contrast text (lime on charcoal)
-- Readable font sizes
-- Clear call-to-action buttons
-- Semantic HTML structure
-
----
-
-## 📝 Important Notes
-
-### Placeholder Content
-The following elements use placeholder content and should be replaced with real content:
-
-1. **Images:**
-   - Hero backgrounds (fitness-1.jpg, fitness-2.jpg, fitness-3.jpg)
-   - Program images (strength, personal, yoga, cardio)
-   - Trainer photos
-   - About section image
-   - Testimonial avatars
-
-2. **Text Content:**
-   - Contact information (address, phone, email)
-   - Membership pricing (marked as `[PRICE]`)
-   - Testimonials (marked as sample/placeholder)
-   - Trainer names and qualifications
-
-3. **Functionality:**
-   - Contact form is demonstration only (no backend)
-   - No actual message sending without backend configuration
-
-### Recommendations for Production:
-
-1. **Replace Placeholder Images:**
-   - Use high-quality fitness photography
-   - Professional gym interior shots
-   - Real trainer headshots
-   - Authentic member photos
-
-2. **Add Real Content:**
-   - Actual membership prices
-   - Real testimonials with permissions
-   - Accurate trainer credentials
-   - Valid contact information
-
-3. **Backend Integration:**
-   - Connect contact form to email service or CRM
-   - Add membership signup functionality
-   - Integrate payment processing
-   - Set up analytics tracking
-
-4. **SEO Optimization:**
-   - Add meta descriptions and keywords
-   - Optimize images with alt text
-   - Create sitemap.xml
-   - Add structured data markup
-
-5. **Performance:**
-   - Compress images
-   - Minify CSS and JavaScript
-   - Enable caching
-   - Use CDN for assets
-
----
-
-## 🔧 Customization Guide
-
-### Changing Colors:
-Edit `assets/css/fitora-custom.css` and modify CSS variables:
-```css
-:root {
-  --fitora-charcoal: #111312;
-  --fitora-lime: #C5F36A;
-  /* ... other variables */
-}
-```
-
-### Updating Logo:
-Replace SVG files in:
-- `assets/img/logo/fitora-logo-white.svg`
-- `assets/img/logo/fitora-logo-dark.svg`
-
-### Modifying Content:
-Edit `index.html` and search for sections by ID:
-- `#home` - Hero section
-- `#about` - About section
-- `#programs` - Programs section
-- `#trainers` - Trainers section
-- `#membership` - Pricing section
-- `#contact` - Contact section
-
----
-
-## 📱 Browser Compatibility
-
-Tested and compatible with:
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
----
-
-## 🎓 Technical Stack
-
-- **HTML5** - Semantic markup
-- **CSS3** - Custom properties, Flexbox, Grid
-- **Bootstrap 5** - Responsive framework
-- **JavaScript/jQuery** - Interactions and animations
-- **GSAP** - Advanced animations
-- **Swiper** - Touch sliders
-- **Font Awesome** - Icons
-- **Google Fonts** - Montserrat & Inter
-
----
-
-## 📊 Project Statistics
-
-- **Files Modified:** 8
-- **New Assets Created:** 15+
-- **Lines of Custom CSS:** 1000+
-- **Sections Redesigned:** 10
-- **Color Scheme:** Complete rebrand
-- **Typography:** New font system
-- **Responsive Breakpoints:** 4 (XL, LG, MD, SM)
-
----
-
-## ✨ What Makes FITORA Stand Out
-
-1. **Premium Dark Theme:** Modern charcoal and lime aesthetic
-2. **Bold Typography:** Montserrat headlines with strong visual hierarchy
-3. **Smooth Interactions:** Subtle animations and hover effects
-4. **Card-Based Layout:** Clean, modern component design
-5. **Electric Accents:** Lime green provides energy and contrast
-6. **Generous Spacing:** Breathable layouts with proper whitespace
-7. **Mobile-First:** Fully responsive across all devices
-
----
-
-## 🚀 Next Steps
-
-1. **Review the website** at http://localhost:3005
-2. **Test all navigation links** and smooth scrolling
-3. **Check mobile responsiveness** (resize browser)
-4. **Replace placeholder images** with real fitness photography
-5. **Add actual content** (prices, contact info, testimonials)
-6. **Set up contact form backend** for real message handling
-7. **Configure analytics** (Google Analytics, etc.)
-8. **Deploy to production** server
-
----
-
-## 📞 Support
-
-For questions or issues:
-- Check browser console for errors
-- Verify all CSS and JS files are loading
-- Ensure images are in correct directories
-- Test on different devices and browsers
-
----
-
-## 🎉 Transformation Complete!
-
-The AGRIVA agricultural website has been successfully transformed into **FITORA**, a premium fitness and wellness brand. The new design features a modern dark theme with electric lime accents, bold typography, and a professional fitness-focused aesthetic.
-
-**Status:** ✅ Ready for content addition and deployment
-
----
-
-*Built with attention to detail and modern web design principles.*
-*Transform your strength. Transform your life. - FITORA*
+Open **`http://localhost:3000`** in your browser.

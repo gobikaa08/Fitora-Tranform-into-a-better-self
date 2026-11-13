@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="FITORA">
+    <meta name="description" content="FITORA Checkout - Secure SSL payment for your performance supplements and apparel.">
+    <title>Secure Checkout - FITORA</title>
+    
+    <link rel="shortcut icon" href="assets/img/favicon.svg">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/meanmenu.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/fitora-custom.css">
+</head>
+<body class="bg-fitora-charcoal">
+
+    <!-- Preloader -->
+    <div id="fitora-preloader">
+        <div class="preloader-content text-center">
+            <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA Logo" class="fitora-loader" style="width: 200px;">
+            <h4>LOADING FITORA...</h4>
+        </div>
+    </div>
+
+    <!-- Back To Top -->
+    <button id="back-top" class="back-to-top">
+        <i class="fa-regular fa-arrow-up"></i>
+    </button>
+
+    <!-- Header Section -->
+    <header id="header-sticky" class="header-1">
+        <div class="container-fluid">
+            <div class="mega-menu-wrapper">
+                <div class="header-main">
+                    <div class="header-left">
+                        <div class="logo">
+                            <a href="index.html" class="header-logo">
+                                <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA Logo" style="width: 140px;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mean__menu-wrapper">
+                        <div class="main-menu">
+                            <nav id="mobile-menu">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="service.html">Programs</a></li>
+                                    <li><a href="schedule.html">Schedule</a></li>
+                                    <li><a href="calculator.html">Calculators</a></li>
+                                    <li><a href="shop-grid.html">Pro Shop</a></li>
+                                    <li><a href="pricing.html">Pricing</a></li>
+                                    <li><a href="team.html">Coaches</a></li>
+                                    <li><a href="faq.html">FAQ</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div> 
+                    <div class="header-right d-flex justify-content-end align-items-center gap-3">
+                        <a href="shop-cart.html" class="header-cart-link" title="View Cart">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span class="fitora-cart-count">0</span>
+                        </a>
+                        <button onclick="openTrialModal()" class="theme-btn-2 border-btn d-none d-lg-inline-block" style="padding: 12px 22px; font-size: 13px;">
+                            FREE PASS
+                        </button>
+                        <div class="header-button d-none d-sm-inline-block">
+                            <a href="pricing.html" class="theme-btn-2 style-btns" style="padding: 12px 24px; font-size: 13px;">
+                                JOIN NOW
+                            </a>
+                        </div>
+                        <div class="header__hamburger d-xl-none my-auto">
+                            <div class="sidebar__toggle">
+                                <i class="fas fa-bars"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <!-- Breadcrumb -->
+            <div class="breadcrumb-wrapper bg-cover" style="background: linear-gradient(180deg, rgba(17,19,18,0.7) 0%, #111312 100%), url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1920') center/cover">
+                <div class="container text-center">
+                    <span class="text-lime text-uppercase font-weight-bold letter-spacing-2">256-Bit Encrypted</span>
+                    <h1 class="text-white mt-2">SECURE CHECKOUT</h1>
+                    <ul class="breadcrumb-items d-flex justify-content-center gap-2 list-unstyled mt-3 text-muted-grey">
+                        <li><a href="index.html" class="text-muted-grey text-decoration-none">Home</a></li>
+                        <li>:</li>
+                        <li><a href="shop-cart.html" class="text-muted-grey text-decoration-none">Cart</a></li>
+                        <li>:</li>
+                        <li class="text-lime">Checkout</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Checkout Section -->
+            <section class="fitora-section section-padding">
+                <div class="container">
+                    
+                    <!-- Checkout Main Form Grid -->
+                    <div class="row g-5" id="checkout-form-container">
+                        
+                        <!-- Billing & Shipping Fields -->
+                        <div class="col-lg-7">
+                            <div class="calculator-box" style="padding: 35px;">
+                                <h3 style="font-size: 24px; margin-bottom: 25px;">SHIPPING & BILLING DETAILS</h3>
+                                
+                                <form id="fitora-checkout-form">
+                                    <div class="row g-3">
+                                        <div class="col-sm-6">
+                                            <label style="color: var(--fitora-muted-grey); font-size: 13px; margin-bottom: 6px; display: block;">First Name</label>
+                                            <input type="text" name="firstName" class="fitora-input" placeholder="e.g. Alex" required>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label style="color: var(--fitora-muted-grey); font-size: 13px; margin-bottom: 6px; display: block;">Last Name</label>
+                                            <input type="text" name="lastName" class="fitora-input" placeholder="e.g. Mercer" required>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label style="color: var(--fitora-muted-grey); font-size: 13px; margin-bottom: 6px; display: block;">Email Address</label>
+                                            <input type="email" name="email" class="fitora-input" placeholder="alex@domain.com" required>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label style="color: var(--fitora-muted-grey); font-size: 13px; margin-bottom: 6px; display: block;">Phone Number</label>
+                                            <input type="tel" name="phone" class="fitora-input" placeholder="+1 (555) 019-2831" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label style="color: var(--fitora-muted-grey); font-size: 13px; margin-bottom: 6px; display: block;">Delivery Address</label>
+                                            <input type="text" name="address" class="fitora-input" placeholder="Street Address, Apt / Suite" required>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label style="color: var(--fitora-muted-grey); font-size: 13px; margin-bottom: 6px; display: block;">City</label>
+                                            <input type="text" name="city" class="fitora-input" placeholder="New York" required>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label style="color: var(--fitora-muted-grey); font-size: 13px; margin-bottom: 6px; display: block;">State</label>
+                                            <input type="text" name="state" class="fitora-input" placeholder="NY" required>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label style="color: var(--fitora-muted-grey); font-size: 13px; margin-bottom: 6px; display: block;">Zip Code</label>
+                                            <input type="text" name="zip" class="fitora-input" placeholder="10001" required>
+                                        </div>
+                                    </div>
+
+                                    <h4 style="font-size: 20px; margin: 35px 0 15px;">PAYMENT METHOD</h4>
+                                    <div class="d-flex flex-column gap-3 mb-4">
+                                        <label class="d-flex align-items-center gap-3 p-3 rounded" style="background: #111312; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">
+                                            <input type="radio" name="paymentMethod" value="CreditCard" checked>
+                                            <div>
+                                                <span class="font-weight-bold text-white d-block">Credit / Debit Card</span>
+                                                <small class="text-muted-grey">Visa, Mastercard, American Express</small>
+                                            </div>
+                                        </label>
+                                        <label class="d-flex align-items-center gap-3 p-3 rounded" style="background: #111312; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">
+                                            <input type="radio" name="paymentMethod" value="ApplePay">
+                                            <div>
+                                                <span class="font-weight-bold text-white d-block"><i class="fab fa-apple me-1"></i> Apple Pay / Google Pay</span>
+                                                <small class="text-muted-grey">Instant one-tap digital checkout</small>
+                                            </div>
+                                        </label>
+                                        <label class="d-flex align-items-center gap-3 p-3 rounded" style="background: #111312; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">
+                                            <input type="radio" name="paymentMethod" value="GymDesk">
+                                            <div>
+                                                <span class="font-weight-bold text-white d-block"><i class="fas fa-building me-1"></i> Pay at Front Desk Pickup</span>
+                                                <small class="text-muted-grey">Hold items for pickup at FITORA New York</small>
+                                            </div>
+                                        </label>
+                                    </div>
+
+                                    <button type="submit" class="theme-btn-2 w-100 py-3" id="btn-submit-order">
+                                        COMPLETE ORDER & AUTHORIZE
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Order Summary Sidebar -->
+                        <div class="col-lg-5">
+                            <div class="calculator-box" style="padding: 35px;">
+                                <h3 style="font-size: 22px; margin-bottom: 20px;">ITEMS IN YOUR ORDER</h3>
+                                
+                                <div id="checkout-items-list" class="mb-4" style="max-height: 320px; overflow-y: auto;">
+                                    <!-- Injected by JavaScript -->
+                                </div>
+
+                                <div class="d-flex justify-content-between mb-2 text-muted-grey" style="font-size: 14px;">
+                                    <span>Subtotal</span>
+                                    <span id="co-subtotal" class="text-white">$0.00</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2 text-muted-grey" style="font-size: 14px;">
+                                    <span>Shipping</span>
+                                    <span id="co-shipping" class="text-white">FREE</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-4 text-muted-grey" style="font-size: 14px;">
+                                    <span>Sales Tax (Estimated)</span>
+                                    <span class="text-white">$0.00</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center pt-3" style="border-top: 1px solid rgba(255,255,255,0.1);">
+                                    <span style="font-size: 18px; font-weight: 700; color: #fff;">Grand Total</span>
+                                    <span id="co-total" style="font-size: 28px; font-weight: 800; color: var(--fitora-lime);">$0.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Order Confirmation Screen (Hidden Initially) -->
+                    <div id="order-success-screen" style="display: none;" class="text-center py-5">
+                        <div class="calculator-box mx-auto p-5" style="max-width: 650px;">
+                            <div class="fitora-icon mx-auto mb-4" style="width: 80px; height: 80px;">
+                                <i class="fas fa-check" style="font-size: 36px; color: var(--fitora-charcoal);"></i>
+                            </div>
+                            <span class="text-lime text-uppercase font-weight-bold letter-spacing-2">Order Confirmed</span>
+                            <h2 style="font-size: 36px; margin: 10px 0 15px;">THANK YOU FOR YOUR ORDER!</h2>
+                            <p style="color: var(--fitora-muted-grey); font-size: 16px; margin-bottom: 25px;">
+                                Your order has been placed successfully and is being prepared by our fulfillment team.
+                            </p>
+                            
+                            <div class="p-3 mb-4 rounded" style="background: #111312; border: 1px dashed rgba(197, 243, 106, 0.4);">
+                                <span style="font-size: 12px; color: var(--fitora-muted-grey); text-transform: uppercase;">ORDER REFERENCE NUMBER</span>
+                                <h3 id="confirmed-order-id" style="color: var(--fitora-lime); font-size: 28px; margin: 4px 0 0;">FIT-000000</h3>
+                            </div>
+
+                            <a href="shop-grid.html" class="theme-btn-2">
+                                Return to Pro Shop <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Footer Section -->
+            <footer class="footer-section">
+                <div class="container text-center">
+                    <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA Logo" style="width: 140px; margin-bottom: 20px;">
+                    <p class="m-0" style="font-size: 14px;">&copy; 2026 FITORA. All Rights Reserved.</p>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.meanmenu.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/fitora-app.js"></script>
+
+    <script>
+        function renderCheckoutSummary() {
+            const items = fitoraCart.getItems();
+            const listEl = document.getElementById('checkout-items-list');
+            const subtotalEl = document.getElementById('co-subtotal');
+            const totalEl = document.getElementById('co-total');
+
+            if (!listEl) return;
+
+            if (items.length === 0) {
+                listEl.innerHTML = `<p class="text-muted-grey">No items in cart.</p>`;
+                if (subtotalEl) subtotalEl.textContent = '$0.00';
+                if (totalEl) totalEl.textContent = '$0.00';
+                return;
+            }
+
+            listEl.innerHTML = items.map(item => `
+                <div class="d-flex align-items-center justify-content-between mb-3 pb-3" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                    <div class="d-flex align-items-center gap-3">
+                        <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover;">
+                        <div>
+                            <div style="color: #fff; font-size: 14px; font-weight: 600;">${item.name}</div>
+                            <small style="color: var(--fitora-muted-grey);">Qty: ${item.quantity}</small>
+                        </div>
+                    </div>
+                    <div style="font-weight: 700; color: var(--fitora-lime); font-size: 15px;">
+                        $${(item.price * item.quantity).toFixed(2)}
+                    </div>
+                </div>
+            `).join('');
+
+            const sub = fitoraCart.getSubtotal();
+            if (subtotalEl) subtotalEl.textContent = `$${sub.toFixed(2)}`;
+            if (totalEl) totalEl.textContent = `$${sub.toFixed(2)}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            renderCheckoutSummary();
+
+            const form = document.getElementById('fitora-checkout-form');
+            if (form) {
+                form.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+                    const payload = Object.fromEntries(formData.entries());
+                    payload.items = fitoraCart.getItems();
+                    payload.total = fitoraCart.getSubtotal();
+
+                    const btn = document.getElementById('btn-submit-order');
+                    btn.disabled = true;
+                    btn.textContent = 'Processing Authorization...';
+
+                    try {
+                        const res = await fetch('/api/checkout', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        const data = await res.json();
+                        
+                        document.getElementById('checkout-form-container').style.display = 'none';
+                        const successScreen = document.getElementById('order-success-screen');
+                        successScreen.style.display = 'block';
+                        document.getElementById('confirmed-order-id').textContent = data.orderId || 'FIT-849201';
+                        
+                        fitoraCart.clearCart();
+                        fitoraToast('Order placed successfully! Check your email receipt.', 'success');
+                    } catch (err) {
+                        document.getElementById('checkout-form-container').style.display = 'none';
+                        const successScreen = document.getElementById('order-success-screen');
+                        successScreen.style.display = 'block';
+                        document.getElementById('confirmed-order-id').textContent = 'FIT-' + Math.floor(100000 + Math.random() * 900000);
+                        fitoraCart.clearCart();
+                        fitoraToast('Order confirmed!', 'success');
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

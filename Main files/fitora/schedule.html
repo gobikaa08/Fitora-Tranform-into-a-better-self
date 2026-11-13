@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="FITORA">
+    <meta name="description" content="FITORA Class Schedule - Book strength, HIIT, yoga, and combat sessions.">
+    <title>Class Schedule - FITORA Premium Fitness</title>
+    
+    <link rel="shortcut icon" href="assets/img/favicon.svg">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/meanmenu.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/fitora-custom.css">
+</head>
+<body class="bg-fitora-charcoal">
+
+    <!-- Preloader -->
+    <div id="fitora-preloader">
+        <div class="preloader-content text-center">
+            <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA Logo" class="fitora-loader" style="width: 200px;">
+            <h4>LOADING FITORA...</h4>
+        </div>
+    </div>
+
+    <!-- Back To Top -->
+    <button id="back-top" class="back-to-top">
+        <i class="fa-regular fa-arrow-up"></i>
+    </button>
+
+    <!-- Header Section -->
+    <header id="header-sticky" class="header-1">
+        <div class="container-fluid">
+            <div class="mega-menu-wrapper">
+                <div class="header-main">
+                    <div class="header-left">
+                        <div class="logo">
+                            <a href="index.html" class="header-logo">
+                                <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA Logo" style="width: 140px;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mean__menu-wrapper">
+                        <div class="main-menu">
+                            <nav id="mobile-menu">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="service.html">Programs</a></li>
+                                    <li class="active"><a href="schedule.html">Schedule</a></li>
+                                    <li><a href="calculator.html">Calculators</a></li>
+                                    <li><a href="shop-grid.html">Pro Shop</a></li>
+                                    <li><a href="pricing.html">Pricing</a></li>
+                                    <li><a href="team.html">Coaches</a></li>
+                                    <li><a href="faq.html">FAQ</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div> 
+                    <div class="header-right d-flex justify-content-end align-items-center gap-3">
+                        <a href="shop-cart.html" class="header-cart-link" title="View Cart">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span class="fitora-cart-count">0</span>
+                        </a>
+                        <button onclick="openTrialModal()" class="theme-btn-2 border-btn d-none d-lg-inline-block" style="padding: 12px 22px; font-size: 13px;">
+                            FREE PASS
+                        </button>
+                        <div class="header-button d-none d-sm-inline-block">
+                            <a href="pricing.html" class="theme-btn-2 style-btns" style="padding: 12px 24px; font-size: 13px;">
+                                JOIN NOW
+                            </a>
+                        </div>
+                        <div class="header__hamburger d-xl-none my-auto">
+                            <div class="sidebar__toggle">
+                                <i class="fas fa-bars"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <!-- Breadcrumb Section -->
+            <div class="breadcrumb-wrapper bg-cover" style="background: linear-gradient(180deg, rgba(17,19,18,0.7) 0%, #111312 100%), url('https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1920') center/cover;">
+                <div class="container text-center">
+                    <span class="text-lime text-uppercase font-weight-bold letter-spacing-2">Live Studio Timetable</span>
+                    <h1 class="text-white mt-2">CLASS TIMETABLE</h1>
+                    <ul class="breadcrumb-items d-flex justify-content-center gap-2 list-unstyled mt-3 text-muted-grey">
+                        <li><a href="index.html" class="text-muted-grey text-decoration-none">Home</a></li>
+                        <li>:</li>
+                        <li class="text-lime">Weekly Schedule</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Schedule Timetable Section -->
+            <section class="fitora-section section-padding">
+                <div class="container">
+                    <div class="section-title text-center mb-5">
+                        <span>RESERVE YOUR MAT & RACK</span>
+                        <h2>45+ WEEKLY COACH-LED SESSIONS</h2>
+                        <p style="color: var(--fitora-muted-grey); max-width: 650px; margin: 15px auto 0;">
+                            Filter by day of the week or training category to see scheduled classes. Complimentary for Premium & Elite VIP members.
+                        </p>
+                    </div>
+
+                    <!-- Day Selection Buttons -->
+                    <div class="schedule-nav-tabs">
+                        <button class="schedule-day-btn active" data-day="monday">Monday</button>
+                        <button class="schedule-day-btn" data-day="tuesday">Tuesday</button>
+                        <button class="schedule-day-btn" data-day="wednesday">Wednesday</button>
+                        <button class="schedule-day-btn" data-day="thursday">Thursday</button>
+                        <button class="schedule-day-btn" data-day="friday">Friday</button>
+                        <button class="schedule-day-btn" data-day="saturday">Saturday</button>
+                        <button class="schedule-day-btn" data-day="sunday">Sunday</button>
+                    </div>
+
+                    <!-- Category Filter Pills -->
+                    <div class="schedule-filter-pills">
+                        <button class="schedule-filter-btn active" data-filter="all">All Disciplines</button>
+                        <button class="schedule-filter-btn" data-filter="strength">Strength & Hypertrophy</button>
+                        <button class="schedule-filter-btn" data-filter="hiit">Metabolic HIIT & Spin</button>
+                        <button class="schedule-filter-btn" data-filter="yoga">Yoga & Recovery</button>
+                        <button class="schedule-filter-btn" data-filter="combat">Combat & Boxing</button>
+                    </div>
+
+                    <!-- Rendered Schedule Container -->
+                    <div class="row" id="schedule-cards-container">
+                        <!-- Populated by fitora-app.js -->
+                    </div>
+
+                    <!-- Policy & Booking Information Card -->
+                    <div class="row g-4 mt-5">
+                        <div class="col-md-4">
+                            <div class="feature-card-item" style="padding: 30px;">
+                                <div class="fitora-icon mb-3">
+                                    <i class="fas fa-clock" style="font-size: 26px; color: var(--fitora-charcoal);"></i>
+                                </div>
+                                <h4 style="font-size: 18px;">Arrive 10 Mins Early</h4>
+                                <p style="font-size: 14px; margin: 0;">Warmups start promptly on schedule. Lockers and hydration stations are available outside each studio.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-card-item" style="padding: 30px;">
+                                <div class="fitora-icon mb-3">
+                                    <i class="fas fa-mobile-alt" style="font-size: 26px; color: var(--fitora-charcoal);"></i>
+                                </div>
+                                <h4 style="font-size: 18px;">App Reservation</h4>
+                                <p style="font-size: 14px; margin: 0;">Book spots up to 7 days in advance via the FITORA mobile app or online portal with zero cancellation fees up to 2 hours before.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-card-item" style="padding: 30px;">
+                                <div class="fitora-icon mb-3">
+                                    <i class="fas fa-shower" style="font-size: 26px; color: var(--fitora-charcoal);"></i>
+                                </div>
+                                <h4 style="font-size: 18px;">Full Spa Recovery</h4>
+                                <p style="font-size: 14px; margin: 0;">Every class booking includes access to our post-workout eucalyptus steam rooms and cold immersion plunges.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Footer Section -->
+            <footer class="footer-section">
+                <div class="container">
+                    <div class="row g-5">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="footer-widget">
+                                <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA Logo" style="width: 150px; margin-bottom: 25px;">
+                                <p>Elevate your strength. Transform your life. Join FITORA and become part of a community dedicated to athletic excellence.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <div class="footer-widget">
+                                <h4>QUICK LINKS</h4>
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About Us</a></li>
+                                    <li><a href="service.html">Programs</a></li>
+                                    <li><a href="schedule.html">Schedule</a></li>
+                                    <li><a href="calculator.html">Calculators</a></li>
+                                    <li><a href="shop-grid.html">Pro Shop</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="footer-widget">
+                                <h4>STUDIOS</h4>
+                                <ul>
+                                    <li><a href="schedule.html">Studio 1 - Heavy Iron Ground</a></li>
+                                    <li><a href="schedule.html">Studio 2 - Turf & Sprint Arena</a></li>
+                                    <li><a href="schedule.html">Studio 3 - Zen Sanctuary</a></li>
+                                    <li><a href="schedule.html">Studio 4 - Combat & Ring Zone</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="footer-widget">
+                                <h4>VISIT US</h4>
+                                <p style="color: var(--fitora-muted-grey);">123 Fitness Avenue, New York, NY 10001<br>Phone: +1 (800) 555-FITR<br>Email: join@fitora.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="container text-center">
+                        <p class="m-0">&copy; 2026 FITORA. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.meanmenu.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/fitora-app.js"></script>
+
+</body>
+</html>
+

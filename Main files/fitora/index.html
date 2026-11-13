@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="FITORA">
+    <meta name="description" content="FITORA - Premium Fitness & Wellness. Build your strength, transform your life with expert coaching, personalized fitness programs, interactive schedules, and pro gear.">
+    
+    <!-- Page Title -->
+    <title>FITORA - Elevate Your Strength. Transform Your Life.</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon.svg">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/meanmenu.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- FITORA Custom CSS - Must be loaded last -->
+    <link rel="stylesheet" href="assets/css/fitora-custom.css">
+</head>
+<body>
+
+    <!-- Preloader Start -->
+    <div id="fitora-preloader">
+        <div class="preloader-content text-center">
+            <img src="assets/img/logo/fitora-logo-white.svg" 
+                alt="FITORA Logo" 
+                class="fitora-loader"
+                style="width: 220px; margin-bottom: 15px;">
+            <h4>LOADING FITORA...</h4>
+        </div>
+    </div>
+
+    <!-- Back To Top -->
+    <button id="back-top" class="back-to-top">
+        <i class="fa-regular fa-arrow-up"></i>
+    </button>
+
+    <!-- Mouse Cursor -->
+    <div class="mouseCursor cursor-outer"></div>
+    <div class="mouseCursor cursor-inner"></div>
+
+    <!-- Offcanvas Menu -->
+    <div class="fix-area">
+        <div class="offcanvas__info">
+            <div class="offcanvas__wrapper">
+                <div class="offcanvas__content">
+                    <div class="offcanvas__top mb-4 d-flex justify-content-between align-items-center">
+                        <div class="offcanvas__logo">
+                            <a href="index.html">
+                                <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA Logo" style="width: 150px;">
+                            </a>
+                        </div>
+                        <div class="offcanvas__close">
+                            <button>
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text" style="color: var(--fitora-muted-grey); font-size: 14px;">
+                        Transform your body and mind with elite coaching, personalized workout programs, cutting-edge recovery spas, and a vibrant community.
+                    </p>
+                    <div class="mobile-menu fix mb-4"></div>
+                    
+                    <div class="d-grid gap-2 mb-4">
+                        <button class="theme-btn-2" onclick="openTrialModal()">
+                            <i class="fas fa-ticket-alt me-2"></i> Claim Free 1-Day Pass
+                        </button>
+                        <a href="shop-cart.html" class="theme-btn-2 border-btn text-center">
+                            <i class="fas fa-shopping-bag me-2"></i> View Cart (<span class="fitora-cart-count">0</span>)
+                        </a>
+                    </div>
+
+                    <div class="offcanvas__contact">
+                        <h4>Contact Info</h4>
+                        <ul>
+                            <li class="d-flex align-items-center mb-3">
+                                <div class="fitora-icon-small me-3">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="offcanvas__contact-text">
+                                    <a href="#">123 Fitness Avenue, New York, NY 10001</a>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <div class="fitora-icon-small me-3">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="offcanvas__contact-text">
+                                    <a href="mailto:join@fitora.com">join@fitora.com</a>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <div class="fitora-icon-small me-3">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="offcanvas__contact-text">
+                                    <a href="#">Mon-Fri: 5am - 11pm | Sat-Sun: 7am - 9pm</a>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <div class="fitora-icon-small me-3">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="offcanvas__contact-text">
+                                    <a href="tel:+18005553487">+1 (800) 555-FITR</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="social-icon d-flex align-items-center mt-4">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas__overlay"></div>
+
+    <!-- Header Section -->
+    <header id="header-sticky" class="header-1">
+        <div class="container-fluid">
+            <div class="mega-menu-wrapper">
+                <div class="header-main">
+                    <div class="header-left">
+                        <div class="logo">
+                            <a href="index.html" class="header-logo">
+                                <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA Logo" style="width: 140px;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mean__menu-wrapper">
+                        <div class="main-menu">
+                            <nav id="mobile-menu">
+                                <ul>
+                                    <li class="active"><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="service.html">Programs</a></li>
+                                    <li><a href="schedule.html">Schedule</a></li>
+                                    <li><a href="calculator.html">Calculators</a></li>
+                                    <li><a href="shop-grid.html">Pro Shop</a></li>
+                                    <li><a href="pricing.html">Pricing</a></li>
+                                    <li><a href="team.html">Coaches</a></li>
+                                    <li><a href="faq.html">FAQ</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div> 
+                    <div class="header-right d-flex justify-content-end align-items-center gap-3">
+                        <!-- Shopping Cart Link -->
+                        <a href="shop-cart.html" class="header-cart-link" title="View Cart">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span class="fitora-cart-count">0</span>
+                        </a>
+
+                        <!-- Free Trial Pass Button -->
+                        <button onclick="openTrialModal()" class="theme-btn-2 border-btn d-none d-lg-inline-block" style="padding: 12px 22px; font-size: 13px;">
+                            FREE PASS
+                        </button>
+
+                        <div class="header-button d-none d-sm-inline-block">
+                            <a href="pricing.html" class="theme-btn-2 style-btns" style="padding: 12px 24px; font-size: 13px;">
+                                JOIN NOW
+                            </a>
+                        </div>
+                        <div class="header__hamburger d-xl-none my-auto">
+                            <div class="sidebar__toggle">
+                                <i class="fas fa-bars"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <!-- Hero Section -->
+            <section id="home" class="hero-section hero-2 fix" style="min-height: 100vh; display: flex; align-items: center;">
+                <div class="hero-portfolio-revealing-slider">
+                    <div class="hero-portfolio-revealing-slider-slides">
+                        <!-- Slide 1 -->
+                        <div class="hero-portfolio-revealing-slide s-active">
+                            <div class="hero-portfolio-revealing-slide-inner bg-cover" style="background: linear-gradient(135deg, rgba(17, 19, 18, 0.88) 0%, rgba(28, 33, 31, 0.78) 100%), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920') center/cover; min-height: 100vh; display: flex; align-items: center;">
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-10">
+                                            <div class="hero-portfolio-revealing-slide-content text-center">
+                                                <span style="color: var(--fitora-lime); font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; font-size: 14px; display: block; margin-bottom: 20px;">
+                                                    <i class="fas fa-bolt me-2"></i>PREMIUM FITNESS & WELLNESS CLUB
+                                                </span>
+                                                <h1 class="hero-portfolio-revealing-slide-heading" style="color: var(--fitora-off-white); font-size: 72px; font-weight: 800; line-height: 1.1; margin-bottom: 25px; text-transform: uppercase; letter-spacing: -1px;">
+                                                    BUILD YOUR STRENGTH.<br>OWN YOUR JOURNEY.
+                                                </h1>
+                                                <p style="color: var(--fitora-muted-grey); font-size: 19px; line-height: 1.6; margin-bottom: 40px; max-width: 750px; margin-left: auto; margin-right: auto;">
+                                                    Transform your physical capacity and mental resilience with world-class coaches, Olympic-tier equipment, personalized nutrition, and recovery suites.
+                                                </p>
+                                                <div class="hero-button d-flex justify-content-center gap-3 flex-wrap">
+                                                    <button onclick="openTrialModal()" class="theme-btn-2">
+                                                        Claim 1-Day Free Pass
+                                                    </button>
+                                                    <a href="service.html" class="theme-btn-2 border-btn">Explore Programs</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 2 -->
+                        <div class="hero-portfolio-revealing-slide">
+                            <div class="hero-portfolio-revealing-slide-inner bg-cover" style="background: linear-gradient(135deg, rgba(17, 19, 18, 0.88) 0%, rgba(28, 33, 31, 0.78) 100%), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1920') center/cover; min-height: 100vh; display: flex; align-items: center;">
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-10">
+                                            <div class="hero-portfolio-revealing-slide-content text-center">
+                                                <span style="color: var(--fitora-lime); font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; font-size: 14px; display: block; margin-bottom: 20px;">
+                                                    <i class="fas fa-fire me-2"></i>HIGH-PERFORMANCE ATHLETIC CULTURE
+                                                </span>
+                                                <h1 class="hero-portfolio-revealing-slide-heading" style="color: var(--fitora-off-white); font-size: 72px; font-weight: 800; line-height: 1.1; margin-bottom: 25px; text-transform: uppercase; letter-spacing: -1px;">
+                                                    ELEVATE YOUR<br>FITNESS GAME
+                                                </h1>
+                                                <p style="color: var(--fitora-muted-grey); font-size: 19px; line-height: 1.6; margin-bottom: 40px; max-width: 750px; margin-left: auto; margin-right: auto;">
+                                                    From high-intensity metabolic conditioning to functional powerlifting, discover fitness built on science and community energy.
+                                                </p>
+                                                <div class="hero-button d-flex justify-content-center gap-3 flex-wrap">
+                                                    <a href="schedule.html" class="theme-btn-2">View Class Schedule</a>
+                                                    <a href="pricing.html" class="theme-btn-2 border-btn">Membership Options</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="hero-portfolio-revealing-slide">
+                            <div class="hero-portfolio-revealing-slide-inner bg-cover" style="background: linear-gradient(135deg, rgba(17, 19, 18, 0.88) 0%, rgba(28, 33, 31, 0.78) 100%), url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1920') center/cover; min-height: 100vh; display: flex; align-items: center;">
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-10">
+                                            <div class="hero-portfolio-revealing-slide-content text-center">
+                                                <span style="color: var(--fitora-lime); font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; font-size: 14px; display: block; margin-bottom: 20px;">
+                                                    <i class="fas fa-heartbeat me-2"></i>CUSTOM NUTRITION & RECOVERY
+                                                </span>
+                                                <h1 class="hero-portfolio-revealing-slide-heading" style="color: var(--fitora-off-white); font-size: 72px; font-weight: 800; line-height: 1.1; margin-bottom: 25px; text-transform: uppercase; letter-spacing: -1px;">
+                                                    STRENGTH.<br>ENDURANCE. RESULTS.
+                                                </h1>
+                                                <p style="color: var(--fitora-muted-grey); font-size: 19px; line-height: 1.6; margin-bottom: 40px; max-width: 750px; margin-left: auto; margin-right: auto;">
+                                                    Calculate your precise caloric needs with our interactive tools and fuel your journey with verified performance supplements.
+                                                </p>
+                                                <div class="hero-button d-flex justify-content-center gap-3 flex-wrap">
+                                                    <a href="calculator.html" class="theme-btn-2">Try Fitness Calculators</a>
+                                                    <a href="shop-grid.html" class="theme-btn-2 border-btn">Visit Pro Shop</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slider Controls with SVG icons -->
+                    <div class="hero-portfolio-revealing-slider-control" style="display: flex; align-items: center; justify-content: center; color: #fff; font-size: 22px;">
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                    <div class="hero-portfolio-revealing-slider-control hero-portfolio-revealing-slider-control-right m-right" style="display: flex; align-items: center; justify-content: center; color: #fff; font-size: 22px;">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Metrics / Key Statistics -->
+            <section style="background: #161A18; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 40px 0;">
+                <div class="container">
+                    <div class="row g-4 text-center">
+                        <div class="col-6 col-md-3">
+                            <h2 style="color: var(--fitora-lime); font-size: 46px; margin: 0; font-weight: 800;">10,000+</h2>
+                            <p style="color: var(--fitora-muted-grey); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin: 5px 0 0;">Active Athletes</p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <h2 style="color: var(--fitora-lime); font-size: 46px; margin: 0; font-weight: 800;">45+</h2>
+                            <p style="color: var(--fitora-muted-grey); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin: 5px 0 0;">Weekly Classes</p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <h2 style="color: var(--fitora-lime); font-size: 46px; margin: 0; font-weight: 800;">28</h2>
+                            <p style="color: var(--fitora-muted-grey); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin: 5px 0 0;">Certified Coaches</p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <h2 style="color: var(--fitora-lime); font-size: 46px; margin: 0; font-weight: 800;">99.4%</h2>
+                            <p style="color: var(--fitora-muted-grey); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin: 5px 0 0;">Satisfaction Rate</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="fitora-section" style="padding: 100px 0;">
+                <div class="container">
+                    <div class="section-title text-center" style="margin-bottom: 60px;">
+                        <span>WHAT WE OFFER</span>
+                        <h2>PREMIUM FITNESS FEATURES</h2>
+                        <p style="color: var(--fitora-muted-grey); max-width: 650px; margin: 15px auto 0;">
+                            Experience a holistic training ecosystem designed for physical breakthroughs and longevity.
+                        </p>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-xl-4 col-lg-6 col-md-6">
+                            <div class="feature-card-item">
+                                <div class="icon">
+                                    <div class="fitora-icon">
+                                        <i class="fas fa-dumbbell" style="font-size: 32px; color: var(--fitora-charcoal);"></i>
+                                    </div>
+                                </div>
+                                <h3 style="text-transform: uppercase; font-size: 22px; margin-bottom: 16px;">PERSONAL COACHING</h3>
+                                <p>One-on-one progressive programming tailored to your biometric assessment, posture alignment, and targets.</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-md-6">
+                            <div class="feature-card-item">
+                                <div class="icon">
+                                    <div class="fitora-icon">
+                                        <i class="fas fa-heartbeat" style="font-size: 32px; color: var(--fitora-charcoal);"></i>
+                                    </div>
+                                </div>
+                                <h3 style="text-transform: uppercase; font-size: 22px; margin-bottom: 16px;">STRENGTH & CONDITIONING</h3>
+                                <p>Build explosive power, lean functional muscle, and cardiac stamina with our structured Olympic platforms.</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-md-6">
+                            <div class="feature-card-item">
+                                <div class="icon">
+                                    <div class="fitora-icon">
+                                        <i class="fas fa-spa" style="font-size: 32px; color: var(--fitora-charcoal);"></i>
+                                    </div>
+                                </div>
+                                <h3 style="text-transform: uppercase; font-size: 22px; margin-bottom: 16px;">HYDRO SPA & RECOVERY</h3>
+                                <p>Infrared saunas, cold contrast plunge tubs, and guided mobility zones to supercharge muscle repair.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Programs Showcase Section -->
+            <section id="programs" class="fitora-section dark" style="padding: 100px 0;">
+                <div class="container">
+                    <div class="d-flex justify-content-between align-items-end flex-wrap gap-3" style="margin-bottom: 50px;">
+                        <div class="section-title text-start mb-0">
+                            <span>SIGNATURE DISCIPLINES</span>
+                            <h2>TRANSFORM YOUR BODY</h2>
+                        </div>
+                        <div>
+                            <a href="service.html" class="theme-btn-2 border-btn">
+                                View All Programs <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-xl-3 col-lg-6 col-md-6">
+                            <div class="program-card">
+                                <div class="program-card-img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=800" alt="Strength Training" style="width: 100%; height: 280px; object-fit: cover;">
+                                </div>
+                                <div class="program-card-content">
+                                    <h4>STRENGTH TRAINING</h4>
+                                    <p>Build muscle, increase power, and boost your metabolism with our structured strength programs.</p>
+                                    <a href="service.html">EXPLORE MORE <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6">
+                            <div class="program-card">
+                                <div class="program-card-img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?q=80&w=800" alt="Personal Training" style="width: 100%; height: 280px; object-fit: cover;">
+                                </div>
+                                <div class="program-card-content">
+                                    <h4>PERSONAL TRAINING</h4>
+                                    <p>One-on-one coaching tailored to your specific goals, fitness level, and schedule.</p>
+                                    <a href="service.html">EXPLORE MORE <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6">
+                            <div class="program-card">
+                                <div class="program-card-img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800" alt="Yoga & Flexibility" style="width: 100%; height: 280px; object-fit: cover;">
+                                </div>
+                                <div class="program-card-content">
+                                    <h4>YOGA & MOBILITY</h4>
+                                    <p>Improve flexibility, reduce injury risk, and enhance recovery with mindful flow classes.</p>
+                                    <a href="service.html">EXPLORE MORE <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6">
+                            <div class="program-card">
+                                <div class="program-card-img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?q=80&w=800" alt="Cardio & Endurance" style="width: 100%; height: 280px; object-fit: cover;">
+                                </div>
+                                <div class="program-card-content">
+                                    <h4>METABOLIC HIIT</h4>
+                                    <p>High-energy circuit intervals designed to accelerate stamina and calorie burn in record time.</p>
+                                    <a href="service.html">EXPLORE MORE <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- INTERACTIVE FEATURE: Weekly Class Timetable -->
+            <section class="fitora-section" style="padding: 100px 0;">
+                <div class="container">
+                    <div class="section-title text-center" style="margin-bottom: 40px;">
+                        <span>TIMETABLE & RESERVATIONS</span>
+                        <h2>WEEKLY CLASS SCHEDULE</h2>
+                        <p style="color: var(--fitora-muted-grey); max-width: 680px; margin: 15px auto 0;">
+                            Filter by day of the week or workout category to find your next session and book your spot instantly.
+                        </p>
+                    </div>
+
+                    <!-- Day Tabs -->
+                    <div class="schedule-nav-tabs">
+                        <button class="schedule-day-btn active" data-day="monday">Monday</button>
+                        <button class="schedule-day-btn" data-day="tuesday">Tuesday</button>
+                        <button class="schedule-day-btn" data-day="wednesday">Wednesday</button>
+                        <button class="schedule-day-btn" data-day="thursday">Thursday</button>
+                        <button class="schedule-day-btn" data-day="friday">Friday</button>
+                        <button class="schedule-day-btn" data-day="saturday">Saturday</button>
+                        <button class="schedule-day-btn" data-day="sunday">Sunday</button>
+                    </div>
+
+                    <!-- Category Filter Pills -->
+                    <div class="schedule-filter-pills">
+                        <button class="schedule-filter-btn active" data-filter="all">All Styles</button>
+                        <button class="schedule-filter-btn" data-filter="strength">Strength & Iron</button>
+                        <button class="schedule-filter-btn" data-filter="hiit">Metabolic HIIT</button>
+                        <button class="schedule-filter-btn" data-filter="yoga">Yoga & Mobility</button>
+                        <button class="schedule-filter-btn" data-filter="combat">Combat & Boxing</button>
+                    </div>
+
+                    <!-- Rendered Schedule Container -->
+                    <div class="row" id="schedule-cards-container">
+                        <!-- Populated dynamically via fitora-app.js -->
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <a href="schedule.html" class="theme-btn-2 border-btn">
+                            View Full Interactive Timetable <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- INTERACTIVE FEATURE: Interactive BMI & Calorie Calculator -->
+            <section class="fitora-section dark" style="padding: 100px 0;">
+                <div class="container">
+                    <div class="row g-5 align-items-center">
+                        <div class="col-lg-6">
+                            <div class="section-title text-start mb-4">
+                                <span>BIOMETRIC ASSESSMENT</span>
+                                <h2>CALCULATE YOUR BMI & DAILY CALORIES</h2>
+                            </div>
+                            <p style="color: var(--fitora-muted-grey); font-size: 17px; line-height: 1.8; margin-bottom: 25px;">
+                                Precision is key to real physique transformations. Enter your measurements below to calculate your Body Mass Index (BMI), Total Daily Energy Expenditure (TDEE), and optimal caloric targets for fat loss or muscle hypertrophy.
+                            </p>
+                            <div class="d-flex flex-column gap-3 mb-4">
+                                <div class="d-flex align-items-center gap-3">
+                                    <i class="fas fa-check-circle text-lime" style="font-size: 20px;"></i>
+                                    <span style="color: var(--fitora-off-white);">Mifflin-St Jeor validated metabolic formulas</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <i class="fas fa-check-circle text-lime" style="font-size: 20px;"></i>
+                                    <span style="color: var(--fitora-off-white);">Targeted macronutrient protein breakdown (2g/kg baseline)</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <i class="fas fa-check-circle text-lime" style="font-size: 20px;"></i>
+                                    <span style="color: var(--fitora-off-white);">Instant personalized guidance from certified nutrition coaches</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="calculator-box">
+                                <h3 style="font-size: 24px; margin-bottom: 25px;">FITNESS METRICS CALCULATOR</h3>
+                                
+                                <div class="row g-3">
+                                    <div class="col-sm-6">
+                                        <label style="color: var(--fitora-muted-grey); font-size: 13px; margin-bottom: 6px; display: block;">Height (cm)</label>
+                                        <input type="number" id="bmi-height" class="fitora-input" placeholder="e.g. 178" value="175">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label style="color: var(--fitora-muted-grey); font-size: 13px; margin-bottom: 6px; display: block;">Weight (kg)</label>
+                                        <input type="number" id="bmi-weight" class="fitora-input" placeholder="e.g. 74" value="72">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label style="color: var(--fitora-muted-grey); font-size: 13px; margin-bottom: 6px; display: block;">Age (Years)</label>
+                                        <input type="number" id="bmi-age" class="fitora-input" placeholder="e.g. 28" value="26">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label style="color: var(--fitora-muted-grey); font-size: 13px; margin-bottom: 6px; display: block;">Activity Level</label>
+                                        <select id="bmi-activity" class="fitora-input" style="height: 52px;">
+                                            <option value="1.2">Sedentary (desk job)</option>
+                                            <option value="1.375">Light (1-2 workouts/wk)</option>
+                                            <option value="1.55" selected>Moderate (3-5 workouts/wk)</option>
+                                            <option value="1.725">Very Active (6+ workouts/wk)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label style="color: var(--fitora-muted-grey); font-size: 13px; margin-bottom: 8px; display: block;">Gender</label>
+                                        <div class="d-flex gap-4">
+                                            <label style="color: var(--fitora-off-white); cursor: pointer;">
+                                                <input type="radio" name="bmi-gender" value="male" checked class="me-2"> Male
+                                            </label>
+                                            <label style="color: var(--fitora-off-white); cursor: pointer;">
+                                                <input type="radio" name="bmi-gender" value="female" class="me-2"> Female
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <button type="button" id="btn-calc-bmi" class="theme-btn-2 w-100 py-3">
+                                            CALCULATE MY RESULTS
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Dynamic Results Card -->
+                                <div id="bmi-result-card" class="calculator-result-card" style="display: none;">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <span style="color: var(--fitora-muted-grey); font-size: 12px; text-transform: uppercase;">YOUR BMI</span>
+                                            <h2 id="bmi-val" style="margin: 0; font-size: 38px; color: var(--fitora-lime);">23.5</h2>
+                                        </div>
+                                        <div class="text-end">
+                                            <span style="color: var(--fitora-muted-grey); font-size: 12px; text-transform: uppercase;">CLASSIFICATION</span>
+                                            <h4 id="bmi-cat" style="margin: 0; font-size: 20px; color: var(--fitora-lime);">Optimal</h4>
+                                        </div>
+                                    </div>
+
+                                    <p id="bmi-adv" style="color: var(--fitora-off-white); font-size: 14px; line-height: 1.6; margin-bottom: 20px;"></p>
+
+                                    <div class="row g-2 text-center" style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 15px;">
+                                        <div class="col-4">
+                                            <span style="font-size: 11px; color: var(--fitora-muted-grey);">MAINTENANCE</span>
+                                            <h5 id="tdee-val" style="margin: 4px 0 0; font-size: 15px; color: #fff;">--</h5>
+                                        </div>
+                                        <div class="col-4">
+                                            <span style="font-size: 11px; color: var(--fitora-muted-grey);">FAT LOSS (-500)</span>
+                                            <h5 id="fatloss-val" style="margin: 4px 0 0; font-size: 15px; color: var(--fitora-lime);">--</h5>
+                                        </div>
+                                        <div class="col-4">
+                                            <span style="font-size: 11px; color: var(--fitora-muted-grey);">DAILY PROTEIN</span>
+                                            <h5 id="macro-protein" style="margin: 4px 0 0; font-size: 15px; color: #38BDF8;">--</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coaches / Trainers Section -->
+            <section id="trainers" class="fitora-section" style="padding: 100px 0;">
+                <div class="container">
+                    <div class="d-flex justify-content-between align-items-end flex-wrap gap-3" style="margin-bottom: 50px;">
+                        <div class="section-title text-start mb-0">
+                            <span>ELITE COACHES</span>
+                            <h2>MEET OUR HEAD TRAINERS</h2>
+                        </div>
+                        <div>
+                            <a href="team.html" class="theme-btn-2 border-btn">
+                                Meet All Coaches <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="trainer-card">
+                                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600" alt="Trainer" style="width: 100%; height: 350px; object-fit: cover;">
+                                <div class="trainer-info">
+                                    <h4>ALEX MORGAN</h4>
+                                    <span class="specialty">HEAD STRENGTH COACH</span>
+                                    <p>10+ years in powerlifting and competitive athletic development.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="trainer-card">
+                                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=600" alt="Trainer" style="width: 100%; height: 350px; object-fit: cover;">
+                                <div class="trainer-info">
+                                    <h4>SARAH CHEN</h4>
+                                    <span class="specialty">YOGA & MOBILITY DIRECTOR</span>
+                                    <p>500-hr RYT specializing in myofascial release and spinal alignment.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="trainer-card">
+                                <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=600" alt="Trainer" style="width: 100%; height: 350px; object-fit: cover;">
+                                <div class="trainer-info">
+                                    <h4>MARCUS WILLIAMS</h4>
+                                    <span class="specialty">METABOLIC CONDITIONING</span>
+                                    <p>Former decathlete specializing in high-intensity cardiovascular conditioning.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="trainer-card">
+                                <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=600" alt="Trainer" style="width: 100%; height: 350px; object-fit: cover;">
+                                <div class="trainer-info">
+                                    <h4>EMMA RODRIGUEZ</h4>
+                                    <span class="specialty">SPORTS NUTRITIONIST</span>
+                                    <p>Registered dietitian crafting metabolic optimization and macronutrient protocols.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Membership Pricing Section with Annual/Monthly Switch -->
+            <section id="membership" class="fitora-section dark" style="padding: 100px 0;">
+                <div class="container text-center">
+                    <div class="section-title text-center" style="margin-bottom: 30px;">
+                        <span>MEMBERSHIP TIERS</span>
+                        <h2>CHOOSE YOUR PATH TO PEAK PERFORMANCE</h2>
+                        <p style="color: var(--fitora-muted-grey); max-width: 680px; margin: 15px auto 0;">
+                            Flexible plans without lock-in contracts. Upgrade or pause anytime with our digital member portal.
+                        </p>
+                    </div>
+
+                    <!-- Annual vs Monthly Switch -->
+                    <div class="pricing-switch-wrapper">
+                        <button id="btn-billing-monthly" class="pricing-switch-btn active" onclick="togglePricing('monthly')">
+                            Monthly Billing
+                        </button>
+                        <button id="btn-billing-annual" class="pricing-switch-btn" onclick="togglePricing('annual')">
+                            Annual Billing <span class="save-badge">SAVE 20%</span>
+                        </button>
+                    </div>
+
+                    <div class="row g-4 justify-content-center text-start">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="pricing-card">
+                                <div class="pricing-header">
+                                    <h3>BASIC</h3>
+                                </div>
+                                <div class="pricing-price">
+                                    <span id="price-basic">$29</span><span class="pricing-period">/month</span>
+                                </div>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> 24/7 Access to Gym Floor</li>
+                                    <li><i class="fas fa-check"></i> Standard Locker & Shower Access</li>
+                                    <li><i class="fas fa-check"></i> Comprehensive Biometric Assessment</li>
+                                    <li><i class="fas fa-check"></i> Mobile Access Key on FITORA App</li>
+                                    <li style="opacity: 0.4;"><i class="fas fa-times"></i> Group Studio Classes</li>
+                                    <li style="opacity: 0.4;"><i class="fas fa-times"></i> Spa & Infrared Sauna</li>
+                                </ul>
+                                <button onclick="openTrialModal('Basic Membership')" class="theme-btn-2 w-100 text-center">
+                                    CHOOSE BASIC
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="pricing-card featured position-relative">
+                                <div style="position: absolute; top: 20px; right: 20px; background: var(--fitora-lime); color: var(--fitora-charcoal); padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">
+                                    MOST POPULAR
+                                </div>
+                                <div class="pricing-header">
+                                    <h3>PREMIUM</h3>
+                                </div>
+                                <div class="pricing-price">
+                                    <span id="price-premium">$59</span><span class="pricing-period">/month</span>
+                                </div>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> All Basic Privileges</li>
+                                    <li><i class="fas fa-check"></i> Unlimited Group Fitness Classes</li>
+                                    <li><i class="fas fa-check"></i> 1 Monthly 1-on-1 Trainer Session</li>
+                                    <li><i class="fas fa-check"></i> Hydrotherapy Spa & Sauna</li>
+                                    <li><i class="fas fa-check"></i> Personalized Monthly Macro Plan</li>
+                                    <li><i class="fas fa-check"></i> 2 Free Guest Passes / Month</li>
+                                </ul>
+                                <button onclick="openTrialModal('Premium Membership')" class="theme-btn-2 w-100 text-center">
+                                    CHOOSE PREMIUM
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="pricing-card">
+                                <div class="pricing-header">
+                                    <h3>ELITE VIP</h3>
+                                </div>
+                                <div class="pricing-price">
+                                    <span id="price-elite">$99</span><span class="pricing-period">/month</span>
+                                </div>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> Complete VIP Facility Access</li>
+                                    <li><i class="fas fa-check"></i> 4 Monthly 1-on-1 Personal Training</li>
+                                    <li><i class="fas fa-check"></i> Cryotherapy & Hydro Plunge Access</li>
+                                    <li><i class="fas fa-check"></i> Unlimited Guest Privileges</li>
+                                    <li><i class="fas fa-check"></i> 15% Discount at FITORA Pro Shop</li>
+                                    <li><i class="fas fa-check"></i> Dedicated Concierge Coach</li>
+                                </ul>
+                                <button onclick="openTrialModal('Elite VIP Membership')" class="theme-btn-2 w-100 text-center">
+                                    CHOOSE ELITE VIP
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5">
+                        <a href="pricing.html" class="text-lime text-decoration-none font-weight-bold">
+                            View Full Plan Comparison Table & Corporate Rates <i class="fas fa-chevron-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PRO SHOP SPOTLIGHT SECTION -->
+            <section class="fitora-section" style="padding: 100px 0;">
+                <div class="container">
+                    <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-5">
+                        <div class="section-title text-start mb-0">
+                            <span>ATHLETIC APPAREL & SUPPLEMENTS</span>
+                            <h2>FITORA PRO SHOP SPOTLIGHT</h2>
+                        </div>
+                        <div>
+                            <a href="shop-grid.html" class="theme-btn-2 border-btn">
+                                Explore Full Shop <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <!-- Product 1 -->
+                        <div class="col-xl-3 col-lg-6 col-md-6">
+                            <div class="fitora-product-card">
+                                <div class="fitora-product-img">
+                                    <img src="https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?q=80&w=600" alt="Hydro Whey Isolate">
+                                </div>
+                                <div class="fitora-product-body">
+                                    <div>
+                                        <div class="fitora-product-cat">Supplements</div>
+                                        <h4 class="fitora-product-title">Hydro Whey Isolate 2kg</h4>
+                                        <p style="color: var(--fitora-muted-grey); font-size: 13px; margin-bottom: 15px;">27g ultra-pure hydrolyzed protein with 6.2g BCAAs per scoop.</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div class="fitora-product-price">$64.99</div>
+                                        <button class="theme-btn-2" style="padding: 8px 16px; font-size: 12px;" onclick="fitoraCart.addItem({id:'prod-1', name:'Hydro Whey Isolate 2kg', price:64.99, image:'https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?q=80&w=400', category:'Supplements'})">
+                                            <i class="fas fa-cart-plus me-1"></i> Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 2 -->
+                        <div class="col-xl-3 col-lg-6 col-md-6">
+                            <div class="fitora-product-card">
+                                <div class="fitora-product-img">
+                                    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=600" alt="Lifting Straps">
+                                </div>
+                                <div class="fitora-product-body">
+                                    <div>
+                                        <div class="fitora-product-cat">Gear</div>
+                                        <h4 class="fitora-product-title">Heavy-Duty Lifting Straps</h4>
+                                        <p style="color: var(--fitora-muted-grey); font-size: 13px; margin-bottom: 15px;">Reinforced neoprene padding for deadlifts and pull exercises.</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div class="fitora-product-price">$24.99</div>
+                                        <button class="theme-btn-2" style="padding: 8px 16px; font-size: 12px;" onclick="fitoraCart.addItem({id:'prod-2', name:'Heavy-Duty Lifting Straps', price:24.99, image:'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=400', category:'Gear'})">
+                                            <i class="fas fa-cart-plus me-1"></i> Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 3 -->
+                        <div class="col-xl-3 col-lg-6 col-md-6">
+                            <div class="fitora-product-card">
+                                <div class="fitora-product-img">
+                                    <img src="https://images.unsplash.com/photo-1556906781-9a412961c28c?q=80&w=600" alt="Pre-Workout">
+                                </div>
+                                <div class="fitora-product-body">
+                                    <div>
+                                        <div class="fitora-product-cat">Supplements</div>
+                                        <h4 class="fitora-product-title">Ignite Pre-Workout Matrix</h4>
+                                        <p style="color: var(--fitora-muted-grey); font-size: 13px; margin-bottom: 15px;">Explosive pump, laser mental focus, and sustained training stamina.</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div class="fitora-product-price">$42.00</div>
+                                        <button class="theme-btn-2" style="padding: 8px 16px; font-size: 12px;" onclick="fitoraCart.addItem({id:'prod-3', name:'Ignite Pre-Workout Matrix', price:42.00, image:'https://images.unsplash.com/photo-1556906781-9a412961c28c?q=80&w=400', category:'Supplements'})">
+                                            <i class="fas fa-cart-plus me-1"></i> Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 4 -->
+                        <div class="col-xl-3 col-lg-6 col-md-6">
+                            <div class="fitora-product-card">
+                                <div class="fitora-product-img">
+                                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=600" alt="Activewear Hoodie">
+                                </div>
+                                <div class="fitora-product-body">
+                                    <div>
+                                        <div class="fitora-product-cat">Apparel</div>
+                                        <h4 class="fitora-product-title">FITORA Tactical Gym Hoodie</h4>
+                                        <p style="color: var(--fitora-muted-grey); font-size: 13px; margin-bottom: 15px;">Moisture-wicking 4-way stretch fabric for warmups and street style.</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div class="fitora-product-price">$54.50</div>
+                                        <button class="theme-btn-2" style="padding: 8px 16px; font-size: 12px;" onclick="fitoraCart.addItem({id:'prod-4', name:'FITORA Tactical Gym Hoodie', price:54.50, image:'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=400', category:'Apparel'})">
+                                            <i class="fas fa-cart-plus me-1"></i> Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section class="fitora-section dark" style="padding: 100px 0;">
+                <div class="container">
+                    <div class="section-title text-center" style="margin-bottom: 60px;">
+                        <span>REAL ATHLETE TRANSFORMATIONS</span>
+                        <h2>WHAT OUR MEMBERS SAY</h2>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="testimonial-card">
+                                <div class="d-flex text-lime mb-3">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="testimonial-text">
+                                    "FITORA transformed not just my bench and deadlift numbers, but my entire energy levels throughout the workday. The coaching attention is genuinely elite."
+                                </p>
+                                <div class="testimonial-author">
+                                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200" alt="Client">
+                                    <div class="testimonial-author-info">
+                                        <h5>David Miller</h5>
+                                        <span>Powerlifting Athlete (2 Years Member)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="testimonial-card">
+                                <div class="d-flex text-lime mb-3">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="testimonial-text">
+                                    "The combination of intense conditioning classes and the cold plunge spa makes recovery effortless. Lost 14kg of body fat in 6 months."
+                                </p>
+                                <div class="testimonial-author">
+                                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200" alt="Client">
+                                    <div class="testimonial-author-info">
+                                        <h5>Jessica Lee</h5>
+                                        <span>HIIT & Mobility Enthusiast</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="testimonial-card">
+                                <div class="d-flex text-lime mb-3">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <p class="testimonial-text">
+                                    "State-of-the-art equipment, respectful members, and trainers who know biomechanics inside and out. Without question the premier club in the city."
+                                </p>
+                                <div class="testimonial-author">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200" alt="Client">
+                                    <div class="testimonial-author-info">
+                                        <h5>Michael Vance</h5>
+                                        <span>Executive VIP Member</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Newsletter Signup Banner -->
+            <section style="background: linear-gradient(135deg, #1C211F 0%, #111312 100%); border-top: 1px solid rgba(197, 243, 106, 0.2); border-bottom: 1px solid rgba(197, 243, 106, 0.2); padding: 70px 0;">
+                <div class="container text-center">
+                    <span style="color: var(--fitora-lime); font-weight: 700; letter-spacing: 2px; font-size: 13px; text-transform: uppercase;">FITORA INNER CIRCLE</span>
+                    <h2 style="font-size: 38px; margin-top: 10px; margin-bottom: 15px;">JOIN 25,000+ ATHLETES GETTING WEEKLY PROTOCOLS</h2>
+                    <p style="color: var(--fitora-muted-grey); max-width: 600px; margin: 0 auto 30px;">
+                        Receive exclusive training guides, nutrition breakdown templates, early access to Pro Shop releases, and VIP guest passes.
+                    </p>
+                    <form class="fitora-newsletter-form d-flex justify-content-center gap-2 flex-wrap" style="max-width: 520px; margin: 0 auto;">
+                        <input type="email" placeholder="Enter your email address" required class="fitora-input" style="flex: 1; min-width: 260px;">
+                        <button type="submit" class="theme-btn-2" style="white-space: nowrap;">SUBSCRIBE</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="fitora-section dark" style="padding: 100px 0;">
+                <div class="container">
+                    <div class="row g-5 align-items-center">
+                        <div class="col-lg-6">
+                            <div class="section-title text-start mb-4">
+                                <span>GET IN TOUCH</span>
+                                <h2>START YOUR FITNESS JOURNEY TODAY</h2>
+                            </div>
+                            <p style="color: var(--fitora-muted-grey); font-size: 17px; line-height: 1.8; margin-bottom: 35px;">
+                                Have questions regarding our club memberships, corporate wellness programs, or personal training packages? Our team is available 7 days a week.
+                            </p>
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="d-flex gap-3 align-items-start">
+                                        <div class="fitora-icon-small">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                        </div>
+                                        <div>
+                                            <h5 style="margin-bottom: 6px;">Location</h5>
+                                            <p style="color: var(--fitora-muted-grey); margin: 0; font-size: 14px;">123 Fitness Avenue, New York, NY 10001</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex gap-3 align-items-start">
+                                        <div class="fitora-icon-small">
+                                            <i class="fas fa-phone"></i>
+                                        </div>
+                                        <div>
+                                            <h5 style="margin-bottom: 6px;">Phone</h5>
+                                            <p style="color: var(--fitora-muted-grey); margin: 0; font-size: 14px;">+1 (800) 555-FITR</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex gap-3 align-items-start">
+                                        <div class="fitora-icon-small">
+                                            <i class="fas fa-envelope"></i>
+                                        </div>
+                                        <div>
+                                            <h5 style="margin-bottom: 6px;">Email</h5>
+                                            <p style="color: var(--fitora-muted-grey); margin: 0; font-size: 14px;">join@fitora.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex gap-3 align-items-start">
+                                        <div class="fitora-icon-small">
+                                            <i class="fas fa-clock"></i>
+                                        </div>
+                                        <div>
+                                            <h5 style="margin-bottom: 6px;">Club Hours</h5>
+                                            <p style="color: var(--fitora-muted-grey); margin: 0; font-size: 14px;">Mon-Fri: 5am - 11pm | Sat-Sun: 7am - 9pm</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="contact-form">
+                                <form id="contact-form" action="/send-message" method="post">
+                                    <input type="text" name="name" placeholder="Your Full Name" required>
+                                    <input type="email" name="email" placeholder="Your Email Address" required>
+                                    <input type="tel" name="phone" placeholder="Your Phone Number">
+                                    <textarea name="message" placeholder="How can we help your fitness journey?" required></textarea>
+                                    <button type="submit" class="theme-btn-2 w-100">SEND MESSAGE</button>
+                                    <div id="form-response" style="margin-top: 15px; text-align: center; display: none;"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer Section -->
+            <footer class="footer-section">
+                <div class="container">
+                    <div class="row g-5">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="footer-widget">
+                                <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA Logo" style="width: 150px; margin-bottom: 25px;">
+                                <p style="margin-bottom: 25px;">
+                                    Elevate your strength. Transform your life. Join FITORA and become part of a community dedicated to athletic excellence and longevity.
+                                </p>
+                                <div class="social-icon d-flex align-items-center">
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                    <a href="#"><i class="fab fa-youtube"></i></a>
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <div class="footer-widget">
+                                <h4>QUICK LINKS</h4>
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About Us</a></li>
+                                    <li><a href="service.html">Programs</a></li>
+                                    <li><a href="schedule.html">Class Schedule</a></li>
+                                    <li><a href="calculator.html">Calculators</a></li>
+                                    <li><a href="shop-grid.html">Pro Shop</a></li>
+                                    <li><a href="pricing.html">Memberships</a></li>
+                                    <li><a href="faq.html">FAQ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="footer-widget">
+                                <h4>SIGNATURE PROGRAMS</h4>
+                                <ul>
+                                    <li><a href="service.html">Olympic Strength & Hypertrophy</a></li>
+                                    <li><a href="service.html">1-on-1 Personalized Coaching</a></li>
+                                    <li><a href="service.html">Mobility & Restorative Yoga</a></li>
+                                    <li><a href="service.html">Metabolic HIIT Conditioning</a></li>
+                                    <li><a href="service.html">Sports Nutrition Consulting</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="footer-widget">
+                                <h4>CONTACT INFO</h4>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="margin-bottom: 15px; display: flex; align-items: start;">
+                                        <i class="fas fa-map-marker-alt" style="color: var(--fitora-lime); margin-right: 15px; margin-top: 5px;"></i>
+                                        <span>123 Fitness Avenue, New York, NY 10001</span>
+                                    </li>
+                                    <li style="margin-bottom: 15px; display: flex; align-items: center;">
+                                        <i class="fas fa-phone" style="color: var(--fitora-lime); margin-right: 15px;"></i>
+                                        <a href="tel:+18005553487">+1 (800) 555-FITR</a>
+                                    </li>
+                                    <li style="margin-bottom: 15px; display: flex; align-items: center;">
+                                        <i class="fas fa-envelope" style="color: var(--fitora-lime); margin-right: 15px;"></i>
+                                        <a href="mailto:join@fitora.com">join@fitora.com</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <p class="m-0">&copy; 2026 FITORA. All Rights Reserved. | Elevate Your Strength. Transform Your Life.</p>
+                        <div style="font-size: 13px; color: var(--fitora-muted-grey);">
+                            <a href="faq.html" style="color: var(--fitora-muted-grey); margin-right: 15px;">Privacy Policy</a>
+                            <a href="faq.html" style="color: var(--fitora-muted-grey);">Terms of Service</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.meanmenu.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/jquery.nice-select.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <script src="assets/js/ScrollToPlugin.min.js"></script>
+    <script src="assets/js/SplitText.min.js"></script>
+    <script src="assets/js/ScrollSmoother.min.js"></script>
+    <script src="assets/js/jquery.waypoints.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    
+    <!-- FITORA Core App Script (Cart, Calculators, Schedule, VIP Modal, Toasts) -->
+    <script src="assets/js/fitora-app.js"></script>
+
+    <!-- Contact Form Handler -->
+    <script>
+        const contactForm = document.getElementById('contact-form');
+        const formResponse = document.getElementById('form-response');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData.entries());
+                
+                formResponse.style.display = 'block';
+                formResponse.style.color = 'var(--fitora-lime)';
+                formResponse.textContent = 'Sending message...';
+
+                try {
+                    const response = await fetch('/send-message', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data),
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        formResponse.style.color = 'var(--fitora-lime)';
+                        formResponse.textContent = result.message;
+                        fitoraToast('Message sent successfully!', 'success');
+                        contactForm.reset();
+                    } else {
+                        throw new Error('Failed to send');
+                    }
+                } catch (error) {
+                    formResponse.style.color = '#ff4d4d';
+                    formResponse.textContent = 'Error sending message. Please try again.';
+                    fitoraToast('Error sending message.', 'error');
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

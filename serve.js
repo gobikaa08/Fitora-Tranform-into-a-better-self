@@ -5,15 +5,15 @@ const { exec } = require('child_process');
 const nodemailer = require('nodemailer');
 
 const PORT = process.env.PORT || 3000;
-const PUBLIC_DIR = path.join(__dirname, 'Main files', 'agriva');
+const PUBLIC_DIR = path.join(__dirname, 'Main files', 'fitora');
 
 // SMTP Configuration Placeholder
 // Update these with your actual SMTP credentials (e.g., Gmail, Outlook, etc.)
 const transporter = nodemailer.createTransport({
-    service: 'gmail', // or your SMTP host
+    service: 'gmail',
     auth: {
-        user: 'YOUR_EMAIL@gmail.com', // Replace with your email
-        pass: 'YOUR_APP_PASSWORD'     // Replace with your app-specific password
+        user: 'YOUR_EMAIL@gmail.com',
+        pass: 'YOUR_APP_PASSWORD'
     }
 });
 
@@ -37,57 +37,112 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-    // Handle form submission (POST request)
-    if (req.method === 'POST' && req.url === '/send-message') {
+    // Helper to send JSON responses
+    const sendJson = (status, payload) => {
+        res.writeHead(status, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify(payload));
+    };
+
+    // Helper to parse JSON body
+    const parseBody = (cb) => {
         let body = '';
-        req.on('data', chunk => {
-            body += chunk.toString();
-        });
-        req.on('end', async () => {
+        req.on('data', chunk => { body += chunk.toString(); });
+        req.on('end', () => {
             try {
-                const data = JSON.parse(body);
-                console.log('Received message request:', data);
+                const data = JSON.parse(body || '{}');
+                cb(null, data);
+            } catch (err) {
+                cb(err);
+            }
+        });
+    };
+
+    // API: Contact Form Submission
+    if (req.method === 'POST' && req.url === '/send-message') {
+        parseBody(async (err, data) => {
+            if (err) return sendJson(400, { success: false, message: 'Invalid JSON request.' });
+            try {
+                console.log('Received FITORA contact form:', data);
 
                 const mailOptions = {
                     from: `FITORA Contact Form <${data.email}>`,
                     to: 'gobikaa08@gmail.com',
-                    subject: `New Message from ${data.name} via FITORA`,
+                    subject: `New FITORA Inquiry from ${data.name || 'Visitor'}`,
                     text: `
                         Name: ${data.name}
                         Email: ${data.email}
                         Phone: ${data.phone || 'N/A'}
+                        Subject / Goal: ${data.subject || 'General Inquiry'}
                         
                         Message:
-                        ${data.message}
+                        ${data.message || 'No message provided.'}
                     `
                 };
 
-                // In this environment, we simulate the send if credentials aren't set
-                if (transporter.transporter.options.auth.user === 'YOUR_EMAIL@gmail.com') {
-                    console.log('--- SIMULATED EMAIL SEND ---');
+                // Demo mode fallback
+                if (!transporter.transporter.options.auth.user || transporter.transporter.options.auth.user === 'YOUR_EMAIL@gmail.com') {
+                    console.log('--- SIMULATED FITORA EMAIL SEND ---');
                     console.log('To: gobikaa08@gmail.com');
                     console.log('Subject:', mailOptions.subject);
                     console.log('Body:', mailOptions.text);
-                    console.log('----------------------------');
+                    console.log('-----------------------------------');
                     
-                    res.writeHead(200, { 'Content-Type': 'application/json' });
-                    res.end(JSON.stringify({ 
+                    return sendJson(200, { 
                         success: true, 
-                        message: 'Demo Mode: Message captured and logged! (Configure SMTP in serve.js for real delivery)' 
-                    }));
-                } else {
-                    await transporter.sendMail(mailOptions);
-                    res.writeHead(200, { 'Content-Type': 'application/json' });
-                    res.end(JSON.stringify({ 
-                        success: true, 
-                        message: 'Message sent successfully to gobikaa08@gmail.com!' 
-                    }));
+                        message: `Thank you ${data.name || ''}! Your message has been received. Our team will contact you shortly!` 
+                    });
                 }
+
+                await transporter.sendMail(mailOptions);
+                return sendJson(200, { 
+                    success: true, 
+                    message: 'Your message has been sent successfully! We will get back to you within 24 hours.' 
+                });
             } catch (error) {
                 console.error('Email error:', error);
-                res.writeHead(500, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify({ success: false, message: 'Failed to send message.' }));
+                return sendJson(500, { success: false, message: 'Failed to process inquiry. Please try again.' });
             }
+        });
+        return;
+    }
+
+    // API: Free Trial Pass / Trainer Consultation
+    if (req.method === 'POST' && req.url === '/api/book-trial') {
+        parseBody((err, data) => {
+            if (err) return sendJson(400, { success: false, message: 'Invalid data.' });
+            console.log('🎉 Free Trial Booking Received:', data);
+            return sendJson(200, {
+                success: true,
+                message: `Congratulations ${data.name || 'Champion'}! Your Free 1-Day VIP Pass for ${data.preferredDate || 'your selected date'} is confirmed. Check your email (${data.email}) for access details!`
+            });
+        });
+        return;
+    }
+
+    // API: Newsletter Subscription
+    if (req.method === 'POST' && req.url === '/api/newsletter') {
+        parseBody((err, data) => {
+            if (err || !data.email) return sendJson(400, { success: false, message: 'Email required.' });
+            console.log('📬 Newsletter Subscription:', data.email);
+            return sendJson(200, {
+                success: true,
+                message: 'Welcome to the FITORA Inner Circle! You will receive our latest workout routines and nutrition guides.'
+            });
+        });
+        return;
+    }
+
+    // API: Simulated Checkout
+    if (req.method === 'POST' && req.url === '/api/checkout') {
+        parseBody((err, data) => {
+            if (err) return sendJson(400, { success: false, message: 'Invalid checkout request.' });
+            const orderId = 'FIT-' + Math.floor(100000 + Math.random() * 900000);
+            console.log(`🛍️ FITORA Order Placed [${orderId}]:`, data);
+            return sendJson(200, {
+                success: true,
+                orderId: orderId,
+                message: `Order #${orderId} confirmed! Thank you for choosing FITORA. A confirmation has been sent to ${data.email || 'your email'}.`
+            });
         });
         return;
     }
@@ -176,18 +231,20 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
     const url = `http://localhost:${PORT}`;
     console.log(`====================================================`);
-    console.log(`  🌾 Agriva Agriculture & Organic Farm Website 🌾 `);
+    console.log(`  ⚡ FITORA Premium Fitness & Wellness Platform ⚡ `);
     console.log(`  Server running at: ${url}`);
     console.log(`  Serving files from: ${PUBLIC_DIR}`);
     console.log(`====================================================`);
 
-    // Auto open in user's default browser
-    const startCmd = process.platform === 'win32' ? `start ${url}` : process.platform === 'darwin' ? `open ${url}` : `xdg-open ${url}`;
-    exec(startCmd, (error) => {
-        if (error) {
-            console.log(`Open in your browser: ${url}`);
-        } else {
-            console.log(`Successfully opened browser to ${url}`);
-        }
-    });
+    // Auto open in user's default browser if not headless
+    if (process.env.AUTO_OPEN !== 'false') {
+        const startCmd = process.platform === 'win32' ? `start ${url}` : process.platform === 'darwin' ? `open ${url}` : `xdg-open ${url}`;
+        exec(startCmd, (error) => {
+            if (error) {
+                console.log(`Open in your browser: ${url}`);
+            } else {
+                console.log(`Successfully opened browser to ${url}`);
+            }
+        });
+    }
 });
