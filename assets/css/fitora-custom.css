@@ -1732,14 +1732,14 @@ body, html {
    FITORA PREMIUM MOBILE DRAWER & NAVIGATION
    ============================================================== */
 .fix-area {
-  position: relative;
-  z-index: 9999990;
+  position: relative !important;
+  z-index: 9999995 !important;
 }
 
 #fitora-mobile-drawer,
 .offcanvas__info {
-  background: #141716 !important;
-  background: linear-gradient(180deg, #181D1A 0%, #111312 100%) !important;
+  background: #111312 !important;
+  background: linear-gradient(180deg, #181D1A 0%, #0E100F 100%) !important;
   border-left: 2px solid var(--fitora-lime) !important;
   position: fixed !important;
   right: 0 !important;
@@ -1751,11 +1751,11 @@ body, html {
   -webkit-transform: translateX(105%) !important;
   transform: translateX(105%) !important;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, visibility 0.35s ease !important;
-  z-index: 9999999 !important;
+  z-index: 10000000 !important;
   overflow-y: auto !important;
   -webkit-overflow-scrolling: touch !important;
   overscroll-behavior-y: contain !important;
-  box-shadow: -10px 0 50px rgba(0, 0, 0, 0.85) !important;
+  box-shadow: -15px 0 50px rgba(0, 0, 0, 0.9) !important;
   opacity: 0 !important;
   visibility: hidden !important;
 }
@@ -1775,18 +1775,20 @@ body, html {
   width: 100% !important;
   height: 100% !important;
   height: 100dvh !important;
-  background: rgba(0, 0, 0, 0.78) !important;
-  backdrop-filter: blur(5px) !important;
-  -webkit-backdrop-filter: blur(5px) !important;
-  z-index: 9999990 !important;
+  background: rgba(0, 0, 0, 0.75) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  z-index: 9999900 !important;
   opacity: 0 !important;
   visibility: hidden !important;
+  pointer-events: none !important;
   transition: opacity 0.3s ease, visibility 0.3s ease !important;
 }
 
 .offcanvas__overlay.overlay-open {
   opacity: 1 !important;
   visibility: visible !important;
+  pointer-events: auto !important;
 }
 
 body.fitora-menu-open,
@@ -1809,6 +1811,13 @@ html.fitora-menu-open {
   flex-direction: column;
 }
 
+.offcanvas__content .text,
+.offcanvas__wrapper .offcanvas__content .text {
+  color: #B5BAB5 !important;
+  font-size: 13.5px !important;
+  line-height: 1.6 !important;
+}
+
 .offcanvas__top {
   padding-bottom: 15px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -1817,6 +1826,17 @@ html.fitora-menu-open {
 .offcanvas__logo img {
   max-width: 135px !important;
   height: auto !important;
+}
+
+.offcanvas__wrapper .offcanvas__content .offcanvas__close,
+.offcanvas__close {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  line-height: normal !important;
+  opacity: 1 !important;
 }
 
 .offcanvas__close button,
@@ -1836,16 +1856,17 @@ html.fitora-menu-open {
 }
 
 .offcanvas__close button:hover,
-#fitora-drawer-close-btn:hover {
+#fitora-drawer-close-btn:hover,
+#fitora-drawer-close-btn:active {
   background: var(--fitora-lime) !important;
   color: var(--fitora-charcoal) !important;
   border-color: var(--fitora-lime) !important;
   transform: rotate(90deg) !important;
 }
 
-/* FITORA Semantic Mobile Navigation Links */
+/* FITORA Semantic Mobile Navigation Links - 100% High Visibility */
 .fitora-mobile-nav {
-  margin: 15px 0 20px !important;
+  margin: 16px 0 24px !important;
 }
 
 .fitora-mobile-nav ul {
@@ -1854,7 +1875,7 @@ html.fitora-menu-open {
   margin: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 4px !important;
+  gap: 8px !important;
 }
 
 .fitora-mobile-nav ul li {
@@ -1866,35 +1887,40 @@ html.fitora-menu-open {
 .fitora-mobile-nav ul li a {
   display: flex !important;
   align-items: center !important;
-  gap: 12px !important;
-  padding: 10px 14px !important;
+  gap: 14px !important;
+  padding: 12px 16px !important;
   font-family: 'Montserrat', sans-serif !important;
   font-weight: 700 !important;
-  font-size: 13.5px !important;
+  font-size: 14px !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
-  color: var(--fitora-off-white) !important;
-  border-radius: 8px !important;
+  letter-spacing: 0.8px !important;
+  color: #FFFFFF !important;
+  background: #1C211F !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-left: 3px solid transparent !important;
+  border-radius: 10px !important;
   text-decoration: none !important;
-  transition: all 0.25s ease !important;
-  min-height: 44px !important; /* Mobile accessibility tap target */
-  border-left: 3px solid transparent;
+  transition: all 0.2s ease !important;
+  min-height: 48px !important; /* Mobile accessibility tap target */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
 }
 
 .fitora-mobile-nav ul li a i {
-  width: 20px !important;
+  width: 22px !important;
   text-align: center !important;
-  color: var(--fitora-lime) !important;
-  font-size: 15px !important;
+  color: #C5F36A !important;
+  font-size: 16px !important;
+  flex-shrink: 0 !important;
 }
 
 .fitora-mobile-nav ul li a:hover,
 .fitora-mobile-nav ul li a.active,
 .fitora-mobile-nav ul li a:active {
-  background: rgba(197, 243, 106, 0.12) !important;
-  color: var(--fitora-lime) !important;
-  border-left-color: var(--fitora-lime) !important;
-  transform: translateX(4px);
+  background: rgba(197, 243, 106, 0.16) !important;
+  color: #C5F36A !important;
+  border-color: #C5F36A !important;
+  border-left-color: #C5F36A !important;
+  transform: translateX(4px) !important;
 }
 
 /* Offcanvas Contact Details */

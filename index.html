@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <!-- FITORA Custom CSS - Must be loaded last -->
-    <link rel="stylesheet" href="assets/css/fitora-custom.css?v=2.5">
+    <link rel="stylesheet" href="assets/css/fitora-custom.css?v=3.0">
 
     <!-- FITORA Mobile Menu Engine (Instant First-Paint Readiness) -->
     <script>
@@ -44,6 +44,7 @@
                     overlay.classList.remove('overlay-open');
                     overlay.style.setProperty('opacity', '0', 'important');
                     overlay.style.setProperty('visibility', 'hidden', 'important');
+                    overlay.style.setProperty('pointer-events', 'none', 'important');
                 }
                 toggles.forEach(t => { t.classList.remove('menu-open'); t.setAttribute('aria-expanded', 'false'); });
                 document.documentElement.classList.remove('fitora-menu-open');
@@ -57,6 +58,7 @@
                     overlay.classList.add('overlay-open');
                     overlay.style.setProperty('opacity', '1', 'important');
                     overlay.style.setProperty('visibility', 'visible', 'important');
+                    overlay.style.setProperty('pointer-events', 'auto', 'important');
                 }
                 toggles.forEach(t => { t.classList.add('menu-open'); t.setAttribute('aria-expanded', 'true'); });
                 document.documentElement.classList.add('fitora-menu-open');
@@ -86,6 +88,9 @@
     <!-- Mouse Cursor -->
     <div class="mouseCursor cursor-outer"></div>
     <div class="mouseCursor cursor-inner"></div>
+
+    <!-- FITORA Mobile Navigation Backdrop Overlay -->
+    <div class="offcanvas__overlay" onclick="window.toggleFitoraMobileMenu(true, event)"></div>
 
     <!-- FITORA Mobile Navigation Drawer -->
     <div class="fix-area">
@@ -182,7 +187,6 @@
             </div>
         </div>
     </div>
-    <div class="offcanvas__overlay" onclick="window.toggleFitoraMobileMenu(true, event)"></div>
 
     <!-- Header Section -->
     <header id="header-sticky" class="header-1">
@@ -520,7 +524,7 @@
 
                     <!-- Rendered Schedule Container -->
                     <div class="row" id="schedule-cards-container">
-                        <!-- Populated dynamically via fitora-app.js?v=2.5 -->
+                        <!-- Populated dynamically via fitora-app.js?v=3.0 -->
                     </div>
 
                     <div class="text-center mt-4">
@@ -1154,10 +1158,10 @@
     <script src="assets/js/ScrollSmoother.min.js"></script>
     <script src="assets/js/jquery.waypoints.js"></script>
     <script src="assets/js/jquery.counterup.min.js"></script>
-    <script src="assets/js/main.js?v=2.5"></script>
+    <script src="assets/js/main.js?v=3.0"></script>
     
     <!-- FITORA Core App Script (Cart, Calculators, Schedule, VIP Modal, Toasts) -->
-    <script src="assets/js/fitora-app.js?v=2.5"></script>
+    <script src="assets/js/fitora-app.js?v=3.0"></script>
 
     <!-- Contact Form Handler -->
     <script>

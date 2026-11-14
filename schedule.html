@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/fitora-custom.css?v=2.5">
+    <link rel="stylesheet" href="assets/css/fitora-custom.css?v=3.0">
 
     <!-- FITORA Mobile Menu Engine (Instant First-Paint Readiness) -->
     <script>
@@ -37,6 +37,7 @@
                     overlay.classList.remove('overlay-open');
                     overlay.style.setProperty('opacity', '0', 'important');
                     overlay.style.setProperty('visibility', 'hidden', 'important');
+                    overlay.style.setProperty('pointer-events', 'none', 'important');
                 }
                 toggles.forEach(t => { t.classList.remove('menu-open'); t.setAttribute('aria-expanded', 'false'); });
                 document.documentElement.classList.remove('fitora-menu-open');
@@ -50,6 +51,7 @@
                     overlay.classList.add('overlay-open');
                     overlay.style.setProperty('opacity', '1', 'important');
                     overlay.style.setProperty('visibility', 'visible', 'important');
+                    overlay.style.setProperty('pointer-events', 'auto', 'important');
                 }
                 toggles.forEach(t => { t.classList.add('menu-open'); t.setAttribute('aria-expanded', 'true'); });
                 document.documentElement.classList.add('fitora-menu-open');
@@ -72,6 +74,9 @@
     <button id="back-top" class="back-to-top">
         <i class="fa-regular fa-arrow-up"></i>
     </button>
+
+    <!-- FITORA Mobile Navigation Backdrop Overlay -->
+    <div class="offcanvas__overlay" onclick="window.toggleFitoraMobileMenu(true, event)"></div>
 
     <!-- FITORA Mobile Navigation Drawer -->
     <div class="fix-area">
@@ -168,7 +173,6 @@
             </div>
         </div>
     </div>
-    <div class="offcanvas__overlay" onclick="window.toggleFitoraMobileMenu(true, event)"></div>
 
     <!-- Header Section -->
     <header id="header-sticky" class="header-1">
@@ -277,7 +281,7 @@
 
                     <!-- Rendered Schedule Container -->
                     <div class="row" id="schedule-cards-container">
-                        <!-- Populated by fitora-app.js?v=2.5 -->
+                        <!-- Populated by fitora-app.js?v=3.0 -->
                     </div>
 
                     <!-- Policy & Booking Information Card -->
@@ -370,8 +374,8 @@
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/jquery.meanmenu.min.js"></script>
-    <script src="assets/js/main.js?v=2.5"></script>
-    <script src="assets/js/fitora-app.js?v=2.5"></script>
+    <script src="assets/js/main.js?v=3.0"></script>
+    <script src="assets/js/fitora-app.js?v=3.0"></script>
 
 </body>
 </html>

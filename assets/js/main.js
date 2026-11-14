@@ -46,6 +46,7 @@
                 overlay.classList.remove("overlay-open");
                 overlay.style.setProperty("opacity", "0", "important");
                 overlay.style.setProperty("visibility", "hidden", "important");
+                overlay.style.setProperty("pointer-events", "none", "important");
             }
 
             toggles.forEach(t => {
@@ -67,6 +68,7 @@
                 overlay.classList.add("overlay-open");
                 overlay.style.setProperty("opacity", "1", "important");
                 overlay.style.setProperty("visibility", "visible", "important");
+                overlay.style.setProperty("pointer-events", "auto", "important");
             }
 
             toggles.forEach(t => {
