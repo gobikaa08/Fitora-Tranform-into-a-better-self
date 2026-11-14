@@ -678,6 +678,33 @@
         fitoraCart.updateBadges();
         initNewsletter();
 
+        // Vanilla JS delegation for instant, reliable mobile drawer toggle
+        document.addEventListener('click', function (e) {
+            const toggle = e.target.closest('.sidebar__toggle, .fitora-hamburger-btn');
+            if (toggle) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (typeof window.toggleFitoraMobileMenu === 'function') {
+                    window.toggleFitoraMobileMenu();
+                }
+            }
+
+            const closeBtn = e.target.closest('.offcanvas__close, #fitora-drawer-close-btn, .offcanvas__overlay');
+            if (closeBtn) {
+                e.preventDefault();
+                if (typeof window.toggleFitoraMobileMenu === 'function') {
+                    window.toggleFitoraMobileMenu(true);
+                }
+            }
+
+            const navLink = e.target.closest('.fitora-mobile-nav a');
+            if (navLink) {
+                if (typeof window.toggleFitoraMobileMenu === 'function') {
+                    window.toggleFitoraMobileMenu(true);
+                }
+            }
+        });
+
         // Render schedule on schedule.html or index.html if container present
         if (document.getElementById('schedule-cards-container')) {
             renderScheduleDay('monday', 'all');

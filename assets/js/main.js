@@ -10,35 +10,13 @@
        Mobile Menu Js Start
     ================================ */
     
-      $('#mobile-menu').meanmenu({
-        meanMenuContainer: '.mobile-menu',
-        meanScreenWidth: "1199",
-        meanExpand: ['<i class="far fa-plus"></i>'],
-    });
-
-       $('#mobile-menus').meanmenu({
-        meanMenuContainer: '.mobile-menus',
-        meanScreenWidth: "19920",
-        meanExpand: ['<i class="far fa-plus"></i>'],
-    });
-
-     $documentOn.on("click", ".mean-expand", function () {
-        let icon = $(this).find("i");
-
-        if (icon.hasClass("fa-plus")) {
-            icon.removeClass("fa-plus").addClass("fa-minus"); 
-        } else {
-            icon.removeClass("fa-minus").addClass("fa-plus"); 
-        }
-    });
-
     /* ==============================================================
-       FITORA Mobile Navigation Controller (Open, Close, Toggle, Icon, ESC)
+       FITORA Mobile Navigation Controller (Open, Close, Toggle, Morph, ESC)
        ============================================================== */
     window.toggleFitoraMobileMenu = function(forceClose = false) {
-        const $drawer = $(".offcanvas__info");
+        const $drawer = $("#fitora-mobile-drawer, .offcanvas__info");
         const $overlay = $(".offcanvas__overlay");
-        const $toggle = $(".sidebar__toggle");
+        const $toggle = $(".sidebar__toggle, .fitora-hamburger-btn");
         const $toggleIcon = $toggle.find("i");
         const isOpen = $drawer.hasClass("info-open");
 
@@ -61,8 +39,8 @@
         }
     };
 
-    // Toggle on hamburger button click (open if closed, close if open)
-    $documentOn.on("click", ".sidebar__toggle", function (e) {
+    // Toggle on hamburger button click / tap
+    $documentOn.on("click", ".sidebar__toggle, .fitora-hamburger-btn", function (e) {
         e.preventDefault();
         e.stopPropagation();
         window.toggleFitoraMobileMenu();
