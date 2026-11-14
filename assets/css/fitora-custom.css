@@ -1903,6 +1903,16 @@ html.fitora-menu-open {
   transition: all 0.2s ease !important;
   min-height: 48px !important; /* Mobile accessibility tap target */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+  position: relative !important;
+  z-index: 10000005 !important;
+  -webkit-tap-highlight-color: rgba(197, 243, 106, 0.3) !important;
+}
+
+.fitora-mobile-nav ul li a * {
+  pointer-events: none !important;
 }
 
 .fitora-mobile-nav ul li a i {

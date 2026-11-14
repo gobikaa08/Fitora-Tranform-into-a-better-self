@@ -16,9 +16,13 @@
     let _fitoraMenuDebounce = 0;
 
     window.toggleFitoraMobileMenu = function(forceClose = false, event = null) {
-        if (event && typeof event.preventDefault === "function") {
-            event.preventDefault();
-            event.stopPropagation();
+        if (event) {
+            // NEVER preventDefault or stopPropagation on navigation links!
+            const isLink = event.target && event.target.closest && event.target.closest('a');
+            if (!isLink && typeof event.preventDefault === "function") {
+                event.preventDefault();
+                event.stopPropagation();
+            }
         }
 
         const now = Date.now();

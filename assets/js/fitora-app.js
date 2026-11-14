@@ -11,9 +11,13 @@
     // -------------------------------------------------------------
     let _fitoraMenuDebounce = 0;
     window.toggleFitoraMobileMenu = function (forceClose = false, event = null) {
-        if (event && typeof event.preventDefault === 'function') {
-            event.preventDefault();
-            event.stopPropagation();
+        if (event) {
+            // NEVER preventDefault or stopPropagation on navigation links!
+            const isLink = event.target && event.target.closest && event.target.closest('a');
+            if (!isLink && typeof event.preventDefault === 'function') {
+                event.preventDefault();
+                event.stopPropagation();
+            }
         }
 
         const now = Date.now();
@@ -747,9 +751,33 @@
         fitoraCart.updateBadges();
         initNewsletter();
 
-        // Global delegation for mobile drawer close triggers (backdrop, close btn, links)
+        // Global delegation for mobile drawer navigation links & close triggers
         document.addEventListener('click', function (e) {
-            const closeTarget = e.target.closest('.offcanvas__close, #fitora-drawer-close-btn, .offcanvas__overlay, .fitora-mobile-nav a');
+            const navLink = e.target.closest('.fitora-mobile-nav a, .offcanvas__wrapper a');
+            if (navLink) {
+                const href = navLink.getAttribute('href');
+                if (href) {
+                    if (href.startsWith('tel:') || href.startsWith('mailto:')) {
+                        return; // Let native dialer / mail client handle
+                    }
+                    if (href.startsWith('#')) {
+                        // In-page hash link
+                        window.toggleFitoraMobileMenu(true);
+                        const targetEl = document.querySelector(href);
+                        if (targetEl) {
+                            targetEl.scrollIntoView({ behavior: 'smooth' });
+                        }
+                        return;
+                    }
+                    // Multi-page navigation: close drawer and navigate immediately
+                    window.toggleFitoraMobileMenu(true);
+                    window.location.href = href;
+                    return;
+                }
+            }
+
+            // Backdrop overlay and close button triggers
+            const closeTarget = e.target.closest('.offcanvas__close, #fitora-drawer-close-btn, .offcanvas__overlay');
             if (closeTarget) {
                 window.toggleFitoraMobileMenu(true, e);
             }

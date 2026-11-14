@@ -17,12 +17,18 @@
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/fitora-custom.css?v=3.0">
+    <link rel="stylesheet" href="assets/css/fitora-custom.css?v=3.5">
 
-    <!-- FITORA Mobile Menu Engine (Instant First-Paint Readiness) -->
+        <!-- FITORA Mobile Menu Engine (Instant First-Paint Readiness & Navigation Guarantee) -->
     <script>
         window.toggleFitoraMobileMenu = window.toggleFitoraMobileMenu || function(forceClose, event) {
-            if (event && event.preventDefault) { event.preventDefault(); event.stopPropagation(); }
+            if (event) {
+                var isLink = event.target && event.target.closest && event.target.closest('a');
+                if (!isLink && typeof event.preventDefault === 'function') {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+            }
             const drawer = document.getElementById('fitora-mobile-drawer') || document.querySelector('.offcanvas__info');
             const overlay = document.querySelector('.offcanvas__overlay');
             const toggles = document.querySelectorAll('.sidebar__toggle, .fitora-hamburger-btn');
@@ -58,6 +64,28 @@
                 document.body.classList.add('fitora-menu-open');
             }
         };
+
+        // Capture-phase link navigation handler: guarantees tap on any menu item navigates immediately
+        document.addEventListener('click', function(e) {
+            var navLink = e.target.closest('.fitora-mobile-nav a, .offcanvas__wrapper a');
+            if (navLink) {
+                var href = navLink.getAttribute('href');
+                if (href && !href.startsWith('javascript:')) {
+                    if (href.startsWith('tel:') || href.startsWith('mailto:')) {
+                        return; // Native dialer / mail client
+                    }
+                    if (href.startsWith('#')) {
+                        window.toggleFitoraMobileMenu(true);
+                        var targetEl = document.querySelector(href);
+                        if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
+                        return;
+                    }
+                    // Multi-page navigation
+                    window.toggleFitoraMobileMenu(true);
+                    window.location.href = href;
+                }
+            }
+        }, true);
     </script>
 </head>
 <body class="bg-fitora-charcoal">
@@ -357,8 +385,8 @@
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/jquery.meanmenu.min.js"></script>
-    <script src="assets/js/main.js?v=3.0"></script>
-    <script src="assets/js/fitora-app.js?v=3.0"></script>
+    <script src="assets/js/main.js?v=3.5"></script>
+    <script src="assets/js/fitora-app.js?v=3.5"></script>
 
     <script>
         let discountApplied = false;
