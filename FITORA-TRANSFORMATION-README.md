@@ -77,30 +77,30 @@ The project has been completely transformed and upgraded into **FITORA**, an eli
 
 ---
 
-## 📁 Clean Directory Architecture
+## 📁 Clean Directory Architecture (GitHub Pages Ready)
 
 ```
 FITORA/
-├── Main files/
-│   └── fitora/
-│       ├── assets/
-│       │   ├── css/ (fitora-custom.css, main.css, bootstrap, all.min.css)
-│       │   ├── js/ (fitora-app.js, main.js, bootstrap.bundle, etc.)
-│       │   ├── img/ (logos, hero, programs, trainers, testimonials, favicon)
-│       │   └── webfonts/
-│       ├── index.html
-│       ├── about.html
-│       ├── service.html / programs.html
-│       ├── schedule.html
-│       ├── calculator.html
-│       ├── shop-grid.html / shop.html
-│       ├── shop-cart.html
-│       ├── checkout.html
-│       ├── pricing.html
-│       ├── team.html / trainers.html
-│       ├── faq.html
-│       ├── contact.html
-│       └── 404.html
+├── assets/
+│   ├── css/ (fitora-custom.css, main.css, bootstrap, all.min.css)
+│   ├── js/ (fitora-app.js, main.js, bootstrap.bundle, etc.)
+│   ├── img/ (logos, hero, programs, trainers, testimonials, favicon)
+│   ├── scss/
+│   └── webfonts/
+├── index.html
+├── about.html
+├── service.html / programs.html
+├── schedule.html
+├── calculator.html
+├── shop-grid.html / shop.html
+├── shop-cart.html
+├── checkout.html
+├── pricing.html
+├── team.html / trainers.html
+├── faq.html
+├── contact.html
+├── 404.html
+├── .nojekyll
 ├── serve.js
 ├── package.json
 └── PROJECT.md

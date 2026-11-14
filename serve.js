@@ -5,7 +5,7 @@ const { exec } = require('child_process');
 const nodemailer = require('nodemailer');
 
 const PORT = process.env.PORT || 3000;
-const PUBLIC_DIR = path.join(__dirname, 'Main files', 'fitora');
+const PUBLIC_DIR = __dirname;
 
 // SMTP Configuration Placeholder
 // Update these with your actual SMTP credentials (e.g., Gmail, Outlook, etc.)
