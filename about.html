@@ -17,7 +17,46 @@
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/fitora-custom.css">
+    <link rel="stylesheet" href="assets/css/fitora-custom.css?v=2.5">
+
+    <!-- FITORA Mobile Menu Engine (Instant First-Paint Readiness) -->
+    <script>
+        window.toggleFitoraMobileMenu = window.toggleFitoraMobileMenu || function(forceClose, event) {
+            if (event && event.preventDefault) { event.preventDefault(); event.stopPropagation(); }
+            const drawer = document.getElementById('fitora-mobile-drawer') || document.querySelector('.offcanvas__info');
+            const overlay = document.querySelector('.offcanvas__overlay');
+            const toggles = document.querySelectorAll('.sidebar__toggle, .fitora-hamburger-btn');
+            if (!drawer) return;
+            const isOpen = drawer.classList.contains('info-open') || drawer.style.visibility === 'visible';
+            if (isOpen || forceClose === true) {
+                drawer.classList.remove('info-open');
+                drawer.style.setProperty('transform', 'translateX(105%)', 'important');
+                drawer.style.setProperty('opacity', '0', 'important');
+                drawer.style.setProperty('visibility', 'hidden', 'important');
+                if (overlay) {
+                    overlay.classList.remove('overlay-open');
+                    overlay.style.setProperty('opacity', '0', 'important');
+                    overlay.style.setProperty('visibility', 'hidden', 'important');
+                }
+                toggles.forEach(t => { t.classList.remove('menu-open'); t.setAttribute('aria-expanded', 'false'); });
+                document.documentElement.classList.remove('fitora-menu-open');
+                document.body.classList.remove('fitora-menu-open');
+            } else {
+                drawer.classList.add('info-open');
+                drawer.style.setProperty('transform', 'translateX(0)', 'important');
+                drawer.style.setProperty('opacity', '1', 'important');
+                drawer.style.setProperty('visibility', 'visible', 'important');
+                if (overlay) {
+                    overlay.classList.add('overlay-open');
+                    overlay.style.setProperty('opacity', '1', 'important');
+                    overlay.style.setProperty('visibility', 'visible', 'important');
+                }
+                toggles.forEach(t => { t.classList.add('menu-open'); t.setAttribute('aria-expanded', 'true'); });
+                document.documentElement.classList.add('fitora-menu-open');
+                document.body.classList.add('fitora-menu-open');
+            }
+        };
+    </script>
 </head>
 <body class="bg-fitora-charcoal">
 
@@ -46,7 +85,7 @@
                             </a>
                         </div>
                         <div class="offcanvas__close">
-                            <button id="fitora-drawer-close-btn" aria-label="Close Mobile Menu">
+                            <button id="fitora-drawer-close-btn" type="button" onclick="window.toggleFitoraMobileMenu(true, event)" aria-label="Close Mobile Menu">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -129,7 +168,7 @@
             </div>
         </div>
     </div>
-    <div class="offcanvas__overlay"></div>
+    <div class="offcanvas__overlay" onclick="window.toggleFitoraMobileMenu(true, event)"></div>
 
     <!-- Header Section -->
     <header id="header-sticky" class="header-1">
@@ -175,7 +214,7 @@
                             </a>
                         </div>
                         <div class="header__hamburger d-xl-none my-auto">
-                            <button class="sidebar__toggle fitora-hamburger-btn" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+                            <button class="sidebar__toggle fitora-hamburger-btn" type="button" onclick="window.toggleFitoraMobileMenu(false, event)" aria-label="Toggle navigation menu" aria-expanded="false">
                                 <span class="hamburger-bars">
                                     <span class="bar bar-1"></span>
                                     <span class="bar bar-2"></span>
@@ -345,8 +384,8 @@
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/jquery.meanmenu.min.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/fitora-app.js"></script>
+    <script src="assets/js/main.js?v=2.5"></script>
+    <script src="assets/js/fitora-app.js?v=2.5"></script>
 
 </body>
 </html>

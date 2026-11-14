@@ -7,6 +7,73 @@
     'use strict';
 
     // -------------------------------------------------------------
+    // 0. Universal Mobile Menu Controller (with 250ms Debounce)
+    // -------------------------------------------------------------
+    let _fitoraMenuDebounce = 0;
+    window.toggleFitoraMobileMenu = function (forceClose = false, event = null) {
+        if (event && typeof event.preventDefault === 'function') {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        const now = Date.now();
+        if (now - _fitoraMenuDebounce < 250) {
+            return;
+        }
+        _fitoraMenuDebounce = now;
+
+        const drawer = document.getElementById('fitora-mobile-drawer') || document.querySelector('.offcanvas__info');
+        const overlay = document.querySelector('.offcanvas__overlay');
+        const toggles = document.querySelectorAll('.sidebar__toggle, .fitora-hamburger-btn');
+
+        if (!drawer) return;
+
+        const isCurrentlyOpen = drawer.classList.contains('info-open') || drawer.style.visibility === 'visible';
+
+        if (isCurrentlyOpen || forceClose === true) {
+            // Close Drawer
+            drawer.classList.remove('info-open');
+            drawer.style.setProperty('transform', 'translateX(105%)', 'important');
+            drawer.style.setProperty('opacity', '0', 'important');
+            drawer.style.setProperty('visibility', 'hidden', 'important');
+
+            if (overlay) {
+                overlay.classList.remove('overlay-open');
+                overlay.style.setProperty('opacity', '0', 'important');
+                overlay.style.setProperty('visibility', 'hidden', 'important');
+            }
+
+            toggles.forEach(t => {
+                t.classList.remove('menu-open');
+                t.setAttribute('aria-expanded', 'false');
+            });
+
+            document.documentElement.classList.remove('fitora-menu-open');
+            document.body.classList.remove('fitora-menu-open');
+        } else {
+            // Open Drawer
+            drawer.classList.add('info-open');
+            drawer.style.setProperty('transform', 'translateX(0)', 'important');
+            drawer.style.setProperty('opacity', '1', 'important');
+            drawer.style.setProperty('visibility', 'visible', 'important');
+
+            if (overlay) {
+                overlay.classList.add('overlay-open');
+                overlay.style.setProperty('opacity', '1', 'important');
+                overlay.style.setProperty('visibility', 'visible', 'important');
+            }
+
+            toggles.forEach(t => {
+                t.classList.add('menu-open');
+                t.setAttribute('aria-expanded', 'true');
+            });
+
+            document.documentElement.classList.add('fitora-menu-open');
+            document.body.classList.add('fitora-menu-open');
+        }
+    };
+
+    // -------------------------------------------------------------
     // 1. Toast Notification System
     // -------------------------------------------------------------
     window.fitoraToast = function (message, type = 'success') {
@@ -678,30 +745,11 @@
         fitoraCart.updateBadges();
         initNewsletter();
 
-        // Vanilla JS delegation for instant, reliable mobile drawer toggle
+        // Global delegation for mobile drawer close triggers (backdrop, close btn, links)
         document.addEventListener('click', function (e) {
-            const toggle = e.target.closest('.sidebar__toggle, .fitora-hamburger-btn');
-            if (toggle) {
-                e.preventDefault();
-                e.stopPropagation();
-                if (typeof window.toggleFitoraMobileMenu === 'function') {
-                    window.toggleFitoraMobileMenu();
-                }
-            }
-
-            const closeBtn = e.target.closest('.offcanvas__close, #fitora-drawer-close-btn, .offcanvas__overlay');
-            if (closeBtn) {
-                e.preventDefault();
-                if (typeof window.toggleFitoraMobileMenu === 'function') {
-                    window.toggleFitoraMobileMenu(true);
-                }
-            }
-
-            const navLink = e.target.closest('.fitora-mobile-nav a');
-            if (navLink) {
-                if (typeof window.toggleFitoraMobileMenu === 'function') {
-                    window.toggleFitoraMobileMenu(true);
-                }
+            const closeTarget = e.target.closest('.offcanvas__close, #fitora-drawer-close-btn, .offcanvas__overlay, .fitora-mobile-nav a');
+            if (closeTarget) {
+                window.toggleFitoraMobileMenu(true, e);
             }
         });
 

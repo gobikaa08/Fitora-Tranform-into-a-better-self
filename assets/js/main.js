@@ -13,49 +13,72 @@
     /* ==============================================================
        FITORA Mobile Navigation Controller (Open, Close, Toggle, Morph, ESC)
        ============================================================== */
-    window.toggleFitoraMobileMenu = function(forceClose = false) {
-        const $drawer = $("#fitora-mobile-drawer, .offcanvas__info");
-        const $overlay = $(".offcanvas__overlay");
-        const $toggle = $(".sidebar__toggle, .fitora-hamburger-btn");
-        const $toggleIcon = $toggle.find("i");
-        const isOpen = $drawer.hasClass("info-open");
+    let _fitoraMenuDebounce = 0;
 
-        if (isOpen || forceClose) {
-            $drawer.removeClass("info-open");
-            $overlay.removeClass("overlay-open");
-            $toggle.removeClass("menu-open");
-            $toggleIcon.removeClass("fa-times").addClass("fa-bars");
-            $("body, html").removeClass("fitora-menu-open");
-            $toggle.attr("aria-expanded", "false");
+    window.toggleFitoraMobileMenu = function(forceClose = false, event = null) {
+        if (event && typeof event.preventDefault === "function") {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        const now = Date.now();
+        if (now - _fitoraMenuDebounce < 250) {
+            return;
+        }
+        _fitoraMenuDebounce = now;
+
+        const drawer = document.getElementById("fitora-mobile-drawer") || document.querySelector(".offcanvas__info");
+        const overlay = document.querySelector(".offcanvas__overlay");
+        const toggles = document.querySelectorAll(".sidebar__toggle, .fitora-hamburger-btn");
+
+        if (!drawer) return;
+
+        const isCurrentlyOpen = drawer.classList.contains("info-open") || drawer.style.visibility === "visible";
+
+        if (isCurrentlyOpen || forceClose === true) {
+            // Close Drawer
+            drawer.classList.remove("info-open");
+            drawer.style.setProperty("transform", "translateX(105%)", "important");
+            drawer.style.setProperty("opacity", "0", "important");
+            drawer.style.setProperty("visibility", "hidden", "important");
+
+            if (overlay) {
+                overlay.classList.remove("overlay-open");
+                overlay.style.setProperty("opacity", "0", "important");
+                overlay.style.setProperty("visibility", "hidden", "important");
+            }
+
+            toggles.forEach(t => {
+                t.classList.remove("menu-open");
+                t.setAttribute("aria-expanded", "false");
+            });
+
+            document.documentElement.classList.remove("fitora-menu-open");
+            document.body.classList.remove("fitora-menu-open");
             $(".sidebar-sticky-item").fadeIn().addClass("active");
         } else {
-            $drawer.addClass("info-open");
-            $overlay.addClass("overlay-open");
-            $toggle.addClass("menu-open");
-            $toggleIcon.removeClass("fa-bars").addClass("fa-times");
-            $("body, html").addClass("fitora-menu-open");
-            $toggle.attr("aria-expanded", "true");
+            // Open Drawer
+            drawer.classList.add("info-open");
+            drawer.style.setProperty("transform", "translateX(0)", "important");
+            drawer.style.setProperty("opacity", "1", "important");
+            drawer.style.setProperty("visibility", "visible", "important");
+
+            if (overlay) {
+                overlay.classList.add("overlay-open");
+                overlay.style.setProperty("opacity", "1", "important");
+                overlay.style.setProperty("visibility", "visible", "important");
+            }
+
+            toggles.forEach(t => {
+                t.classList.add("menu-open");
+                t.setAttribute("aria-expanded", "true");
+            });
+
+            document.documentElement.classList.add("fitora-menu-open");
+            document.body.classList.add("fitora-menu-open");
             $(".sidebar-sticky-item").fadeOut().removeClass("active");
         }
     };
-
-    // Toggle on hamburger button click / tap
-    $documentOn.on("click", ".sidebar__toggle, .fitora-hamburger-btn", function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        window.toggleFitoraMobileMenu();
-    });
-
-    // Close on drawer close button or dark backdrop overlay click
-    $documentOn.on("click", ".offcanvas__close, .offcanvas__overlay, #fitora-drawer-close-btn", function (e) {
-        e.preventDefault();
-        window.toggleFitoraMobileMenu(true);
-    });
-
-    // Auto-close menu when clicking any link inside the mobile drawer
-    $documentOn.on("click", ".offcanvas__info a, .fitora-mobile-nav a", function () {
-        window.toggleFitoraMobileMenu(true);
-    });
 
     // Close on Escape keyboard key
     $documentOn.on("keydown", function (e) {
