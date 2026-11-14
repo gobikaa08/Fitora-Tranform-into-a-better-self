@@ -32,27 +32,66 @@
         }
     });
 
-    /* ================================
-        Sidebar Toggle & Sticky Item Logic
-        ================================ */
+    /* ==============================================================
+       FITORA Mobile Navigation Controller (Open, Close, Toggle, Icon, ESC)
+       ============================================================== */
+    window.toggleFitoraMobileMenu = function(forceClose = false) {
+        const $drawer = $(".offcanvas__info");
+        const $overlay = $(".offcanvas__overlay");
+        const $toggle = $(".sidebar__toggle");
+        const $toggleIcon = $toggle.find("i");
+        const isOpen = $drawer.hasClass("info-open");
 
-        // Open offcanvas
-        $(".sidebar__toggle").on("click", function () {
-        $(".offcanvas__info").addClass("info-open");
-        $(".offcanvas__overlay").addClass("overlay-open");
+        if (isOpen || forceClose) {
+            $drawer.removeClass("info-open");
+            $overlay.removeClass("overlay-open");
+            $toggle.removeClass("menu-open");
+            $toggleIcon.removeClass("fa-times").addClass("fa-bars");
+            $("body, html").removeClass("fitora-menu-open");
+            $toggle.attr("aria-expanded", "false");
+            $(".sidebar-sticky-item").fadeIn().addClass("active");
+        } else {
+            $drawer.addClass("info-open");
+            $overlay.addClass("overlay-open");
+            $toggle.addClass("menu-open");
+            $toggleIcon.removeClass("fa-bars").addClass("fa-times");
+            $("body, html").addClass("fitora-menu-open");
+            $toggle.attr("aria-expanded", "true");
+            $(".sidebar-sticky-item").fadeOut().removeClass("active");
+        }
+    };
 
-        // Hide sticky item
-        $(".sidebar-sticky-item").fadeOut().removeClass("active");
-        });
+    // Toggle on hamburger button click (open if closed, close if open)
+    $documentOn.on("click", ".sidebar__toggle", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.toggleFitoraMobileMenu();
+    });
 
-        // Close offcanvas
-        $(".offcanvas__close, .offcanvas__overlay").on("click", function () {
-        $(".offcanvas__info").removeClass("info-open");
-        $(".offcanvas__overlay").removeClass("overlay-open");
+    // Close on drawer close button or dark backdrop overlay click
+    $documentOn.on("click", ".offcanvas__close, .offcanvas__overlay, #fitora-drawer-close-btn", function (e) {
+        e.preventDefault();
+        window.toggleFitoraMobileMenu(true);
+    });
 
-        // Show sticky item
-        $(".sidebar-sticky-item").fadeIn().addClass("active");
-        });
+    // Auto-close menu when clicking any link inside the mobile drawer
+    $documentOn.on("click", ".offcanvas__info a, .fitora-mobile-nav a", function () {
+        window.toggleFitoraMobileMenu(true);
+    });
+
+    // Close on Escape keyboard key
+    $documentOn.on("keydown", function (e) {
+        if (e.key === "Escape" || e.keyCode === 27) {
+            window.toggleFitoraMobileMenu(true);
+        }
+    });
+
+    // Auto-close on resize to desktop (>= 1200px)
+    $windowOn.on("resize", function () {
+        if ($(this).width() >= 1200) {
+            window.toggleFitoraMobileMenu(true);
+        }
+    });
 
         /* ================================
         Body Overlay Js Start

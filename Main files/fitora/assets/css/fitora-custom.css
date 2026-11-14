@@ -1733,26 +1733,733 @@ body, html {
   }
 }
 
-/* Offcanvas Menu Alignments */
-.offcanvas__logo img {
-  max-width: 150px;
-  height: auto;
+/* ==============================================================
+   FITORA PREMIUM MOBILE DRAWER & NAVIGATION
+   ============================================================== */
+.fix-area {
+  position: relative;
+  z-index: 9999990;
 }
 
-.offcanvas__close button {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: var(--fitora-off-white);
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
+#fitora-mobile-drawer,
+.offcanvas__info {
+  background: #141716 !important;
+  background: linear-gradient(180deg, #181D1A 0%, #111312 100%) !important;
+  border-left: 2px solid var(--fitora-lime) !important;
+  position: fixed !important;
+  right: 0 !important;
+  top: 0 !important;
+  width: min(380px, 86vw) !important;
+  max-width: 100vw !important;
+  height: 100% !important;
+  height: 100dvh !important;
+  -webkit-transform: translateX(105%) !important;
+  transform: translateX(105%) !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, visibility 0.35s ease !important;
+  z-index: 9999999 !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior-y: contain !important;
+  box-shadow: -10px 0 50px rgba(0, 0, 0, 0.85) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+#fitora-mobile-drawer.info-open,
+.offcanvas__info.info-open {
+  -webkit-transform: translateX(0) !important;
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.offcanvas__overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  height: 100dvh !important;
+  background: rgba(0, 0, 0, 0.78) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  z-index: 9999990 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: opacity 0.3s ease, visibility 0.3s ease !important;
+}
+
+.offcanvas__overlay.overlay-open {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+body.fitora-menu-open,
+html.fitora-menu-open {
+  overflow: hidden !important;
+  touch-action: none !important;
+}
+
+.offcanvas__wrapper {
+  padding: 24px 20px !important;
+  position: relative;
+  min-height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.25s ease;
+  flex-direction: column;
 }
 
-.offcanvas__close button:hover {
-  background: var(--fitora-lime);
-  color: var(--fitora-charcoal);
+.offcanvas__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.offcanvas__top {
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.offcanvas__logo img {
+  max-width: 135px !important;
+  height: auto !important;
+}
+
+.offcanvas__close button,
+#fitora-drawer-close-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: var(--fitora-off-white) !important;
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  font-size: 16px !important;
+  transition: all 0.25s ease !important;
+}
+
+.offcanvas__close button:hover,
+#fitora-drawer-close-btn:hover {
+  background: var(--fitora-lime) !important;
+  color: var(--fitora-charcoal) !important;
+  border-color: var(--fitora-lime) !important;
+}
+
+/* FITORA Semantic Mobile Navigation Links */
+.fitora-mobile-nav {
+  margin: 15px 0 20px !important;
+}
+
+.fitora-mobile-nav ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+
+.fitora-mobile-nav ul li {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.fitora-mobile-nav ul li a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 10px 14px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 13.5px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  color: var(--fitora-off-white) !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  transition: all 0.25s ease !important;
+  min-height: 44px !important; /* Mobile accessibility tap target */
+  border-left: 3px solid transparent;
+}
+
+.fitora-mobile-nav ul li a i {
+  width: 20px !important;
+  text-align: center !important;
+  color: var(--fitora-lime) !important;
+  font-size: 15px !important;
+}
+
+.fitora-mobile-nav ul li a:hover,
+.fitora-mobile-nav ul li a.active,
+.fitora-mobile-nav ul li a:active {
+  background: rgba(197, 243, 106, 0.12) !important;
+  color: var(--fitora-lime) !important;
+  border-left-color: var(--fitora-lime) !important;
+  transform: translateX(4px);
+}
+
+/* Offcanvas Contact Details */
+.offcanvas__contact h4 {
+  font-size: 18px !important;
+  color: var(--fitora-off-white) !important;
+  margin-bottom: 14px !important;
+  text-transform: uppercase !important;
+}
+
+.offcanvas__contact ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.offcanvas__contact ul li {
+  font-size: 13.5px !important;
+  color: var(--fitora-muted-grey) !important;
+}
+
+.offcanvas__contact ul li a {
+  color: var(--fitora-muted-grey) !important;
+  text-decoration: none !important;
+  transition: color 0.25s ease !important;
+}
+
+.offcanvas__contact ul li a:hover {
+  color: var(--fitora-lime) !important;
+}
+
+.offcanvas__contact .social-icon a {
+  width: 38px !important;
+  height: 38px !important;
+  line-height: 38px !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: var(--fitora-off-white) !important;
+  transition: all 0.25s ease !important;
+}
+
+.offcanvas__contact .social-icon a:hover {
+  background: var(--fitora-lime) !important;
+  color: var(--fitora-charcoal) !important;
+  border-color: var(--fitora-lime) !important;
+}
+
+/* Hamburger Toggle Button in Header */
+.sidebar__toggle {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 8px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: var(--fitora-lime) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  font-size: 18px !important;
+  transition: all 0.25s ease !important;
+  user-select: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.sidebar__toggle:hover,
+.sidebar__toggle.menu-open {
+  background: var(--fitora-lime) !important;
+  color: var(--fitora-charcoal) !important;
+  border-color: var(--fitora-lime) !important;
+}
+
+.sidebar__toggle i {
+  transition: transform 0.25s ease, color 0.25s ease !important;
+}
+
+.sidebar__toggle.menu-open i {
+  transform: rotate(90deg) !important;
+}
+
+/* ==============================================================
+   COMPREHENSIVE RESPONSIVENESS OVERRIDES (ALL SECTIONS)
+   ============================================================== */
+
+/* Tablet & Mobile Layout Refinements (<= 991px) */
+@media (max-width: 991px) {
+  .hero-2 .hero-portfolio-revealing-slider-control {
+    display: none !important;
+  }
+
+  .section-title {
+    margin-bottom: 40px !important;
+  }
+
+  .section-title h2 {
+    font-size: 32px !important;
+  }
+
+  .fitora-section {
+    padding: 75px 0 !important;
+  }
+
+  .comparison-table th, 
+  .comparison-table td {
+    padding: 14px 16px !important;
+    font-size: 14px !important;
+  }
+}
+
+/* Mobile Devices (<= 767px) */
+@media (max-width: 767px) {
+  /* Global Container & Typography */
+  .container {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  .fitora-section {
+    padding: 60px 0 !important;
+  }
+
+  .section-title {
+    margin-bottom: 30px !important;
+    text-align: center !important;
+  }
+
+  .section-title.text-start {
+    text-align: center !important;
+  }
+
+  .section-title h2 {
+    font-size: 26px !important;
+    line-height: 1.25 !important;
+  }
+
+  .section-title span {
+    font-size: 12px !important;
+    letter-spacing: 1.5px !important;
+  }
+
+  .section-title p {
+    font-size: 14px !important;
+    margin-top: 10px !important;
+  }
+
+  /* Header */
+  .header-1 {
+    padding: 10px 0 !important;
+  }
+
+  .header-1 .container-fluid {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .header-left .logo img,
+  .header-logo img {
+    width: 120px !important;
+  }
+
+  .header-right {
+    gap: 8px !important;
+  }
+
+  .header-cart-link {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .sidebar__toggle {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 17px !important;
+  }
+
+  /* Hero Section */
+  .hero-portfolio-revealing-slide-content {
+    padding: 60px 0 !important;
+  }
+
+  .hero-portfolio-revealing-slide-heading,
+  .hero-section h1 {
+    font-size: 30px !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.5px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .hero-portfolio-revealing-slide-content span {
+    font-size: 12px !important;
+    letter-spacing: 2px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .hero-portfolio-revealing-slide-content p {
+    font-size: 14.5px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 25px !important;
+    padding: 0 5px !important;
+  }
+
+  .hero-button {
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 280px !important;
+    margin: 0 auto !important;
+    gap: 12px !important;
+  }
+
+  .hero-button .theme-btn-2 {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 13px 20px !important;
+    font-size: 13px !important;
+  }
+
+  /* Quick Metrics Section */
+  section[style*="background: #161A18"] {
+    padding: 25px 0 !important;
+  }
+
+  section[style*="background: #161A18"] h2,
+  .quick-metrics h2 {
+    font-size: 28px !important;
+  }
+
+  section[style*="background: #161A18"] p,
+  .quick-metrics p {
+    font-size: 11px !important;
+    letter-spacing: 0.5px !important;
+  }
+
+  /* Feature Cards */
+  .feature-card-item {
+    padding: 28px 18px !important;
+    border-radius: 14px !important;
+  }
+
+  .feature-card-item .icon {
+    margin-bottom: 18px !important;
+  }
+
+  .feature-card-item .fitora-icon {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 10px !important;
+    margin: 0 auto 16px !important;
+  }
+
+  .feature-card-item h3 {
+    font-size: 18px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .feature-card-item p {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Program Cards */
+  .program-card-img-wrapper,
+  .program-card img {
+    height: 220px !important;
+  }
+
+  .program-card-content {
+    padding: 22px 18px !important;
+  }
+
+  .program-card-content h4 {
+    font-size: 19px !important;
+  }
+
+  .program-card-content p {
+    font-size: 13.5px !important;
+    margin-bottom: 15px !important;
+  }
+
+  /* Weekly Class Schedule */
+  .schedule-nav-tabs {
+    gap: 6px !important;
+    margin-bottom: 18px !important;
+  }
+
+  .schedule-day-btn {
+    padding: 8px 14px !important;
+    font-size: 12px !important;
+  }
+
+  .schedule-filter-pills {
+    gap: 6px !important;
+    margin-bottom: 25px !important;
+  }
+
+  .schedule-filter-btn {
+    padding: 6px 12px !important;
+    font-size: 11.5px !important;
+  }
+
+  /* BMI & Calorie Calculator */
+  .calculator-box {
+    padding: 24px 18px !important;
+    border-radius: 16px !important;
+  }
+
+  .calculator-box h3 {
+    font-size: 20px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .fitora-input {
+    font-size: 16px !important; /* Prevents auto-zoom on mobile safari */
+    height: 48px !important;
+  }
+
+  .calculator-result-card {
+    padding: 18px 16px !important;
+    margin-top: 20px !important;
+  }
+
+  #bmi-val {
+    font-size: 30px !important;
+  }
+
+  #bmi-cat {
+    font-size: 16px !important;
+  }
+
+  /* Trainer Cards */
+  .trainer-card img {
+    height: 300px !important;
+  }
+
+  .trainer-info {
+    padding: 22px 18px !important;
+  }
+
+  .trainer-info h4 {
+    font-size: 18px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .trainer-info .specialty {
+    font-size: 12px !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* Membership Pricing */
+  .pricing-switch-wrapper {
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto 30px !important;
+    padding: 4px !important;
+    display: flex !important;
+  }
+
+  .pricing-switch-btn {
+    flex: 1 1 50% !important;
+    padding: 8px 6px !important;
+    font-size: 11.5px !important;
+    white-space: nowrap !important;
+  }
+
+  .save-badge {
+    font-size: 9px !important;
+    padding: 2px 5px !important;
+  }
+
+  .pricing-card {
+    padding: 30px 20px !important;
+  }
+
+  .pricing-header h3 {
+    font-size: 22px !important;
+  }
+
+  .pricing-price {
+    font-size: 38px !important;
+    margin: 20px 0 !important;
+  }
+
+  .pricing-features li {
+    font-size: 13.5px !important;
+    padding: 8px 0 !important;
+  }
+
+  /* Pro Shop Products & Cart */
+  .fitora-product-img {
+    height: 220px !important;
+  }
+
+  .fitora-product-body {
+    padding: 18px 16px !important;
+  }
+
+  .fitora-product-title {
+    font-size: 16px !important;
+  }
+
+  .fitora-product-price {
+    font-size: 19px !important;
+  }
+
+  .table-responsive {
+    border-radius: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .fitora-table th, 
+  .fitora-table td {
+    padding: 12px 10px !important;
+    font-size: 13px !important;
+  }
+
+  /* Testimonials */
+  .testimonial-card {
+    padding: 24px 18px !important;
+  }
+
+  .testimonial-text {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Newsletter & Contact Section */
+  .fitora-newsletter-form {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 10px !important;
+  }
+
+  .fitora-newsletter-form input {
+    min-width: 100% !important;
+  }
+
+  .fitora-newsletter-form button {
+    width: 100% !important;
+    padding: 13px !important;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 16px !important;
+    padding: 14px 16px !important;
+  }
+
+  .contact-form button {
+    padding: 14px !important;
+    font-size: 14px !important;
+  }
+
+  /* Footer */
+  .footer-section {
+    padding-top: 50px !important;
+  }
+
+  .footer-widget {
+    margin-bottom: 25px !important;
+  }
+
+  .footer-bottom {
+    padding: 20px 0 !important;
+    text-align: center !important;
+  }
+
+  .footer-bottom .container {
+    justify-content: center !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  /* Breadcrumb Header */
+  .breadcrumb-wrapper {
+    padding: 105px 0 38px !important;
+  }
+
+  .breadcrumb-wrapper h1,
+  .breadcrumb-wrapper .page-heading h1 {
+    font-size: 28px !important;
+  }
+}
+
+/* Ultra-Compact Screens & Smartphones (<= 575px) */
+@media (max-width: 575px) {
+  /* Hero Slide Typography */
+  .hero-portfolio-revealing-slide-heading,
+  .hero-section h1 {
+    font-size: 26px !important;
+    line-height: 1.18 !important;
+  }
+
+  /* Schedule Cards Stack Vertically */
+  .schedule-card {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 18px 16px !important;
+    gap: 14px !important;
+  }
+
+  .schedule-card > div:last-child {
+    width: 100% !important;
+  }
+
+  .schedule-card .theme-btn-2 {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 12px !important;
+  }
+
+  /* Metric Split in Calculator Result Card */
+  .calculator-result-card .row.g-2 {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .calculator-result-card .row.g-2 > .col-4 {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: 8px !important;
+  }
+
+  .calculator-result-card .row.g-2 > .col-4:last-child {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Cart Action Controls */
+  #cart-content-wrapper .d-flex.justify-content-between {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+  }
+
+  #cart-content-wrapper .d-flex.gap-2 {
+    width: 100% !important;
+  }
+
+  #coupon-code-input {
+    flex: 1 !important;
+    max-width: 100% !important;
+  }
+
+  /* Free Trial Modal */
+  #fitora-trial-modal > div {
+    padding: 24px 18px !important;
+    max-height: 92vh !important;
+    overflow-y: auto !important;
+    margin: 10px !important;
+    border-radius: 16px !important;
+  }
+
+  #fitora-trial-modal h3 {
+    font-size: 20px !important;
+  }
 }
