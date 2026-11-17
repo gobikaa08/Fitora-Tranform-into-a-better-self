@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FITORA - Athlete & Admin Authentication</title>
+    <link rel="shortcut icon" href="assets/img/favicon.svg">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/fitora-custom.css?v=4.0">
+    <!-- Supabase JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="assets/js/fitora-config.js"></script>
+    <script src="assets/js/fitora-supabase.js"></script>
+    <style>
+        body {
+            background-color: #101210;
+            color: #F5F5F0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .auth-card {
+            background: #181D1A;
+            border: 1px solid rgba(197, 243, 106, 0.2);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 460px;
+            padding: 40px 36px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+        }
+        .auth-logo {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .auth-logo img {
+            width: 150px;
+        }
+        .auth-tabs {
+            display: flex;
+            background: #111312;
+            border-radius: 10px;
+            padding: 4px;
+            margin-bottom: 24px;
+        }
+        .auth-tab-btn {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            border: none;
+            background: transparent;
+            color: #A6AAA6;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 13.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .auth-tab-btn.active {
+            background: #C5F36A;
+            color: #111312;
+        }
+        .form-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #A6AAA6;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .form-control {
+            background: #111312;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #FFFFFF;
+            border-radius: 8px;
+            padding: 12px 14px;
+            font-size: 14.5px;
+        }
+        .form-control:focus {
+            background: #111312;
+            color: #FFFFFF;
+            border-color: #C5F36A;
+            box-shadow: 0 0 0 2px rgba(197, 243, 106, 0.25);
+        }
+        .auth-submit-btn {
+            width: 100%;
+            background: #C5F36A;
+            color: #111312;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 14.5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            margin-top: 10px;
+        }
+        .auth-submit-btn:hover {
+            background: #d4f884;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(197, 243, 106, 0.35);
+        }
+        .demo-bar {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+        }
+        .demo-btn {
+            background: #202522;
+            color: #C5F36A;
+            border: 1px solid rgba(197, 243, 106, 0.3);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 6px;
+            margin: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .demo-btn:hover {
+            background: rgba(197, 243, 106, 0.15);
+        }
+        .alert-box {
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            margin-bottom: 16px;
+            display: none;
+        }
+        .alert-box.error {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid #ef4444;
+            color: #fca5a5;
+            display: block;
+        }
+        .alert-box.success {
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid #22c55e;
+            color: #86efac;
+            display: block;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-link a {
+            color: #A6AAA6;
+            text-decoration: none;
+            font-size: 13.5px;
+            transition: color 0.2s ease;
+        }
+        .back-link a:hover {
+            color: #C5F36A;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-card">
+        <div class="auth-logo">
+            <a href="index.html">
+                <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA Logo">
+            </a>
+            <p class="mt-2 mb-0" style="color: #A6AAA6; font-size: 13.5px;">Premium Fitness & Membership Portal</p>
+        </div>
+
+        <div id="authAlert" class="alert-box"></div>
+
+        <!-- Tab Controls -->
+        <div class="auth-tabs">
+            <button type="button" class="auth-tab-btn active" id="tabLogin" onclick="switchAuthTab('login')">Login</button>
+            <button type="button" class="auth-tab-btn" id="tabRegister" onclick="switchAuthTab('register')">Register</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+            <div class="mb-3">
+                <label class="form-label" for="loginEmail">Email Address</label>
+                <input type="email" class="form-control" id="loginEmail" required placeholder="athlete@fitora.com">
+            </div>
+            <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <label class="form-label" for="loginPassword">Password</label>
+                    <a href="javascript:void(0)" onclick="showForgotPassword()" style="color: #C5F36A; font-size: 12px; text-decoration: none;">Forgot?</a>
+                </div>
+                <input type="password" class="form-control" id="loginPassword" required placeholder="••••••••">
+            </div>
+            <button type="submit" class="auth-submit-btn" id="loginBtn">Sign In</button>
+        </form>
+
+        <!-- Register Form -->
+        <form id="registerForm" onsubmit="handleRegisterSubmit(event)" style="display: none;">
+            <div class="mb-3">
+                <label class="form-label" for="regFullName">Full Name</label>
+                <input type="text" class="form-control" id="regFullName" required placeholder="Alexander Vance">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="regEmail">Email Address</label>
+                <input type="email" class="form-control" id="regEmail" required placeholder="athlete@fitora.com">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="regPhone">Phone Number</label>
+                <input type="tel" class="form-control" id="regPhone" placeholder="+1 (555) 234-5678">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="regPassword">Password</label>
+                <input type="password" class="form-control" id="regPassword" required placeholder="Minimum 6 characters" minlength="6">
+            </div>
+            <button type="submit" class="auth-submit-btn" id="regBtn">Create Athlete Account</button>
+        </form>
+
+        <!-- Forgot Password Modal/View -->
+        <div id="forgotPasswordView" style="display: none;">
+            <h5 class="mb-2" style="font-size: 16px; font-weight: 700; color: #FFFFFF;">Reset Password</h5>
+            <p style="font-size: 13px; color: #A6AAA6;">Enter your registered email address to receive password recovery instructions.</p>
+            <div class="mb-3">
+                <label class="form-label" for="resetEmail">Email Address</label>
+                <input type="email" class="form-control" id="resetEmail" placeholder="your-email@fitora.com">
+            </div>
+            <button type="button" class="auth-submit-btn" onclick="handleResetPassword()">Send Reset Link</button>
+            <div class="text-center mt-3">
+                <a href="javascript:void(0)" onclick="switchAuthTab('login')" style="color: #A6AAA6; font-size: 13px; text-decoration: none;">Back to Login</a>
+            </div>
+        </div>
+
+        <!-- Demo Quick Access -->
+        <div class="demo-bar">
+            <span style="font-size: 12px; color: #A6AAA6; display: block; margin-bottom: 8px;">Quick Testing Profiles:</span>
+            <button type="button" class="demo-btn" onclick="fillDemo('admin')"><i class="fas fa-shield-halved me-1"></i> Admin Portal</button>
+            <button type="button" class="demo-btn" onclick="fillDemo('member')"><i class="fas fa-dumbbell me-1"></i> Athlete Member</button>
+        </div>
+    </div>
+
+    <div class="back-link">
+        <a href="index.html"><i class="fas fa-arrow-left me-1"></i> Back to FITORA Home</a>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirectParam = urlParams.get('redirect') || '';
+        const planParam = urlParams.get('plan') || '';
+
+        // Auto switch tab if ?tab=register
+        if (urlParams.get('tab') === 'register') {
+            switchAuthTab('register');
+        }
+
+        function switchAuthTab(tab) {
+            const loginForm = document.getElementById('loginForm');
+            const regForm = document.getElementById('registerForm');
+            const forgotView = document.getElementById('forgotPasswordView');
+            const tabLogin = document.getElementById('tabLogin');
+            const tabReg = document.getElementById('tabRegister');
+            const alertBox = document.getElementById('authAlert');
+
+            alertBox.className = 'alert-box';
+            alertBox.style.display = 'none';
+            forgotView.style.display = 'none';
+
+            if (tab === 'login') {
+                loginForm.style.display = 'block';
+                regForm.style.display = 'none';
+                tabLogin.classList.add('active');
+                tabReg.classList.remove('active');
+            } else {
+                loginForm.style.display = 'none';
+                regForm.style.display = 'block';
+                tabLogin.classList.remove('active');
+                tabReg.classList.add('active');
+            }
+        }
+
+        function showForgotPassword() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('forgotPasswordView').style.display = 'block';
+            document.getElementById('tabLogin').classList.remove('active');
+            document.getElementById('tabRegister').classList.remove('active');
+        }
+
+        function showAlert(msg, type = 'error') {
+            const box = document.getElementById('authAlert');
+            box.textContent = msg;
+            box.className = `alert-box ${type}`;
+            box.style.display = 'block';
+        }
+
+        async function handleLoginSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const btn = document.getElementById('loginBtn');
+
+            btn.disabled = true;
+            btn.textContent = 'Verifying...';
+
+            try {
+                const session = await FitoraService.signIn(email, password);
+                showAlert('Login successful! Redirecting...', 'success');
+
+                const user = session.user;
+                const role = user.profile ? user.profile.role : (user.role || 'member');
+
+                setTimeout(() => {
+                    if (redirectParam === 'membership' || redirectParam === 'plans') {
+                        window.location.href = planParam ? `dashboard.html?action=subscribe&plan=${encodeURIComponent(planParam)}` : 'dashboard.html#membership';
+                    } else if (role === 'admin') {
+                        window.location.href = 'admin.html';
+                    } else {
+                        window.location.href = 'dashboard.html';
+                    }
+                }, 700);
+            } catch (err) {
+                showAlert(err.message || 'Login failed. Please check your credentials.', 'error');
+                btn.disabled = false;
+                btn.textContent = 'Sign In';
+            }
+        }
+
+        async function handleRegisterSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('regFullName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const phone = document.getElementById('regPhone').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const btn = document.getElementById('regBtn');
+
+            btn.disabled = true;
+            btn.textContent = 'Creating Account...';
+
+            try {
+                await FitoraService.signUp(email, password, name, phone);
+                showAlert('Account created successfully! Redirecting to your dashboard...', 'success');
+
+                setTimeout(() => {
+                    if (redirectParam === 'membership' || redirectParam === 'plans') {
+                        window.location.href = planParam ? `dashboard.html?action=subscribe&plan=${encodeURIComponent(planParam)}` : 'dashboard.html#membership';
+                    } else {
+                        window.location.href = 'dashboard.html';
+                    }
+                }, 800);
+            } catch (err) {
+                showAlert(err.message || 'Registration failed. Please try again.', 'error');
+                btn.disabled = false;
+                btn.textContent = 'Create Athlete Account';
+            }
+        }
+
+        function handleResetPassword() {
+            const email = document.getElementById('resetEmail').value.trim();
+            if (!email) {
+                showAlert('Please enter your email address.', 'error');
+                return;
+            }
+            showAlert(`Password reset instructions have been dispatched to ${email}.`, 'success');
+            setTimeout(() => {
+                switchAuthTab('login');
+            }, 2500);
+        }
+
+        function fillDemo(type) {
+            if (type === 'admin') {
+                document.getElementById('loginEmail').value = 'admin@fitora.com';
+                document.getElementById('loginPassword').value = 'admin123';
+                switchAuthTab('login');
+                showAlert('Demo Admin credentials filled! Click Sign In to open the Admin Portal.', 'success');
+            } else {
+                // Ensure a demo member exists
+                const demoEmail = 'alex.vance@fitora.com';
+                const demoPass = 'athlete123';
+                document.getElementById('loginEmail').value = demoEmail;
+                document.getElementById('loginPassword').value = demoPass;
+                switchAuthTab('login');
+
+                // Pre-seed demo member if not present
+                (async () => {
+                    try {
+                        await FitoraService.signUp(demoEmail, demoPass, 'Alex Vance', '+1 (555) 019-2834');
+                    } catch(e) {}
+                })();
+
+                showAlert('Demo Member credentials filled! Click Sign In to open Member Dashboard.', 'success');
+            }
+        }
+    </script>
+</body>
+</html>

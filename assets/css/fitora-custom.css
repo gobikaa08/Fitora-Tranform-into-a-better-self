@@ -2581,3 +2581,241 @@ html.fitora-menu-open {
     font-size: 20px !important;
   }
 }
+
+
+/* ==============================================================
+   FITORA MINIMAL SAAS HOMEPAGE & MEMBERSHIP PLATFORM DESIGN
+   ============================================================== */
+.fitora-minimal-header {
+  background: rgba(16, 18, 16, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(197, 243, 106, 0.15);
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.fitora-minimal-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fitora-minimal-nav li a {
+  color: #F5F5F0;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 13.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.fitora-minimal-nav li a:hover,
+.fitora-minimal-nav li a.active {
+  color: #C5F36A;
+}
+
+.btn-fitora-subscribe {
+  background: #C5F36A;
+  color: #111312 !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: 2px solid #C5F36A;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-fitora-subscribe:hover {
+  background: transparent;
+  color: #C5F36A !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(197, 243, 106, 0.3);
+}
+
+.btn-fitora-outline {
+  background: transparent;
+  color: #F5F5F0 !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.25s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-fitora-outline:hover {
+  border-color: #C5F36A;
+  color: #C5F36A !important;
+  background: rgba(197, 243, 106, 0.08);
+}
+
+/* Minimal Hero */
+.fitora-hero-minimal {
+  background: linear-gradient(180deg, rgba(16, 18, 16, 0.82) 0%, rgba(16, 18, 16, 0.96) 100%),
+              url('../img/hero/fitness-1.jpg') center/cover no-repeat;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 80px 0;
+}
+
+.fitora-hero-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(34px, 5.5vw, 64px);
+  font-weight: 900;
+  line-height: 1.1;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin-bottom: 22px;
+}
+
+.fitora-hero-subtext {
+  font-size: clamp(15px, 2vw, 18px);
+  line-height: 1.7;
+  color: #A6AAA6;
+  max-width: 620px;
+  margin-bottom: 34px;
+}
+
+/* Minimal Pricing Cards */
+.fitora-plan-card {
+  background: #181D1A;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 38px 30px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
+}
+
+.fitora-plan-card:hover {
+  transform: translateY(-6px);
+  border-color: #C5F36A;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+}
+
+.fitora-plan-card.featured {
+  border: 2px solid #C5F36A;
+  background: linear-gradient(180deg, #1C231E 0%, #151916 100%);
+  box-shadow: 0 12px 30px rgba(197, 243, 106, 0.15);
+}
+
+.fitora-plan-badge {
+  position: absolute;
+  top: -12px;
+  right: 24px;
+  background: #C5F36A;
+  color: #111312;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.fitora-plan-price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  color: #C5F36A;
+  line-height: 1;
+  margin: 20px 0 6px;
+}
+
+.fitora-plan-duration {
+  color: #A6AAA6;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.fitora-plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+}
+
+.fitora-plan-features li {
+  font-size: 14px;
+  color: #E2E6E2;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fitora-plan-features li i {
+  color: #C5F36A;
+  font-size: 13px;
+}
+
+/* Minimal Benefits */
+.fitora-benefit-card {
+  background: #181D1A;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 28px 24px;
+  transition: all 0.25s ease;
+  height: 100%;
+}
+
+.fitora-benefit-card:hover {
+  border-color: rgba(197, 243, 106, 0.35);
+  transform: translateY(-4px);
+}
+
+.fitora-benefit-icon {
+  width: 50px;
+  height: 50px;
+  background: rgba(197, 243, 106, 0.12);
+  border: 1px solid rgba(197, 243, 106, 0.3);
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #C5F36A;
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+
+/* Minimal Final CTA */
+.fitora-cta-banner {
+  background: linear-gradient(135deg, #1C231E 0%, #121513 100%);
+  border: 1px solid rgba(197, 243, 106, 0.25);
+  border-radius: 20px;
+  padding: 60px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}

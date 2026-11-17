@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FITORA - Member Athlete Portal</title>
+    <link rel="shortcut icon" href="assets/img/favicon.svg">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/fitora-custom.css?v=4.0">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="assets/js/fitora-config.js"></script>
+    <script src="assets/js/fitora-supabase.js"></script>
+    <style>
+        body {
+            background-color: #101210;
+            color: #F5F5F0;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+        .dashboard-header {
+            background: #141715;
+            border-bottom: 1px solid rgba(197, 243, 106, 0.15);
+            padding: 16px 28px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-link-btn {
+            color: #A6AAA6;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-link-btn:hover, .nav-link-btn.active {
+            color: #C5F36A;
+            background: rgba(197, 243, 106, 0.1);
+        }
+        .dash-card {
+            background: #181D1A;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        .dash-card.hero-status {
+            border: 2px solid rgba(197, 243, 106, 0.4);
+            background: linear-gradient(135deg, #1C231E 0%, #131714 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .dash-card.hero-status::after {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle, rgba(197, 243, 106, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .stat-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            color: #C5F36A;
+            line-height: 1.1;
+        }
+        .stat-label {
+            color: #A6AAA6;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+        .badge-status {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .badge-active { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid #22c55e; }
+        .badge-expiring_soon { background: rgba(234, 179, 8, 0.2); color: #facc15; border: 1px solid #eab308; }
+        .badge-payment_pending { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid #3b82f6; }
+        .badge-expired { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
+        .badge-no_membership { background: rgba(156, 163, 175, 0.2); color: #d1d5db; border: 1px solid #9ca3af; }
+
+        .btn-lime {
+            background: #C5F36A;
+            color: #111312;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 13.5px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 10px 22px;
+            border-radius: 8px;
+            border: none;
+            transition: all 0.25s ease;
+        }
+        .btn-lime:hover {
+            background: #d4f884;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(197, 243, 106, 0.3);
+            color: #111312;
+        }
+        .btn-outline-lime {
+            background: transparent;
+            color: #C5F36A;
+            border: 1.5px solid #C5F36A;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 13.5px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 9px 20px;
+            border-radius: 8px;
+            transition: all 0.25s ease;
+        }
+        .btn-outline-lime:hover {
+            background: rgba(197, 243, 106, 0.15);
+            color: #C5F36A;
+        }
+        .table-dark-custom {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 8px;
+        }
+        .table-dark-custom th {
+            color: #A6AAA6;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 10px 16px;
+            border: none;
+        }
+        .table-dark-custom td {
+            background: #141715;
+            padding: 14px 16px;
+            font-size: 13.5px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .table-dark-custom tr td:first-child { border-left: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px 0 0 8px; }
+        .table-dark-custom tr td:last-child { border-right: 1px solid rgba(255, 255, 255, 0.05); border-radius: 0 8px 8px 0; }
+
+        .notif-item {
+            padding: 14px;
+            background: #141715;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 3px solid #C5F36A;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .notif-item.read {
+            border-left-color: rgba(255, 255, 255, 0.2);
+            opacity: 0.75;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="dashboard-header d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-4">
+            <a href="index.html">
+                <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA" style="width: 130px;">
+            </a>
+            <nav class="d-none d-md-flex align-items-center gap-2">
+                <a href="#overview" class="nav-link-btn active" onclick="switchSection('overview')">Dashboard</a>
+                <a href="#membership" class="nav-link-btn" onclick="switchSection('membership')">My Membership</a>
+                <a href="#attendance" class="nav-link-btn" onclick="switchSection('attendance')">Attendance</a>
+                <a href="#payments" class="nav-link-btn" onclick="switchSection('payments')">Payments</a>
+            </nav>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <span id="memberIdTag" class="badge-status badge-active" style="background: rgba(197, 243, 106, 0.15); color: #C5F36A; border-color: rgba(197, 243, 106, 0.3);">
+                FIT-ATHLETE
+            </span>
+            <button class="btn btn-sm btn-outline-lime" onclick="FitoraService.signOut()">
+                <i class="fas fa-sign-out-alt me-1"></i> Logout
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container my-4">
+        <!-- Athlete Welcome Bar -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+            <div>
+                <h2 id="welcomeGreeting" class="mb-1" style="font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 28px;">Welcome, Athlete</h2>
+                <p id="welcomeSubtext" class="text-muted mb-0" style="font-size: 14px;">Here is your real-time fitness membership status and gym records.</p>
+            </div>
+            <div class="mt-3 mt-md-0">
+                <button class="btn-lime" onclick="openSubscriptionModal()">
+                    <i class="fas fa-bolt me-1"></i> Subscribe / Renew
+                </button>
+            </div>
+        </div>
+
+        <!-- 1. Hero Membership Expiry Card -->
+        <div class="dash-card hero-status" id="heroCard">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="d-flex align-items-center gap-3 mb-2">
+                        <span id="heroStatusBadge" class="badge-status badge-active">Active</span>
+                        <span id="heroPlanTitle" style="font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 800; color: #FFFFFF;">Pro Quarterly Membership</span>
+                    </div>
+                    <p id="heroPlanDesc" style="color: #A6AAA6; font-size: 14px; max-width: 600px; margin-bottom: 16px;">
+                        Full gym floor access, specialized workout programs, sauna & steam, plus 1 free consultation.
+                    </p>
+                    <div class="d-flex flex-wrap gap-4 text-muted" style="font-size: 13.5px;">
+                        <div><i class="fas fa-calendar-check me-2" style="color: #C5F36A;"></i> Start: <strong id="heroStartDate" class="text-white">--</strong></div>
+                        <div><i class="fas fa-hourglass-end me-2" style="color: #C5F36A;"></i> Valid Until: <strong id="heroExpiryDate" class="text-white">--</strong></div>
+                        <div><i class="fas fa-id-card me-2" style="color: #C5F36A;"></i> Member ID: <strong id="heroMemberId" class="text-white">--</strong></div>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                    <div class="stat-value" id="heroDaysLeft">--</div>
+                    <div class="stat-label">Days Remaining</div>
+                    <div class="mt-3">
+                        <button class="btn-outline-lime btn-sm" onclick="openSubscriptionModal()">Extend Membership</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="dash-card h-100">
+                    <div class="stat-value" id="statTotalAttendance">0</div>
+                    <div class="stat-label">Total Gym Check-Ins</div>
+                    <p class="text-muted mt-2 mb-0" style="font-size: 13px;">Lifetime recorded floor sessions.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="dash-card h-100">
+                    <div class="stat-value" id="statMonthAttendance">0</div>
+                    <div class="stat-label">This Month's Workouts</div>
+                    <p class="text-muted mt-2 mb-0" style="font-size: 13px;">Consistent attendance this calendar month.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="dash-card h-100">
+                    <div class="stat-value" id="statLastCheckIn" style="font-size: 24px; color: #FFFFFF;">--</div>
+                    <div class="stat-label">Last Checked In</div>
+                    <p class="text-muted mt-2 mb-0" style="font-size: 13px;">Timestamp of your latest gym workout.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Attendance & Payments Sections -->
+        <div class="row g-4">
+            <!-- Attendance History -->
+            <div class="col-lg-7">
+                <div class="dash-card h-100" id="attendanceSection">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #FFFFFF; margin: 0;">
+                            <i class="fas fa-clipboard-user me-2" style="color: #C5F36A;"></i> Attendance Log
+                        </h4>
+                        <span class="text-muted" style="font-size: 12.5px;">Auto-recorded upon gym entry</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table-dark-custom">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Check-In</th>
+                                    <th>Check-Out</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attendanceTableBody">
+                                <tr><td colspan="4" class="text-center text-muted">Loading attendance records...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications & In-App Alerts -->
+            <div class="col-lg-5">
+                <div class="dash-card h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #FFFFFF; margin: 0;">
+                            <i class="fas fa-bell me-2" style="color: #C5F36A;"></i> Alerts & Notices
+                        </h4>
+                        <span id="unreadCountBadge" class="badge-status badge-active" style="font-size: 11px; padding: 3px 8px;">0 Unread</span>
+                    </div>
+                    <div id="notificationsContainer" style="max-height: 380px; overflow-y: auto;">
+                        <p class="text-muted text-center py-4" style="font-size: 13.5px;">No unread notifications.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payments Section -->
+        <div class="dash-card mt-4" id="paymentsSection">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #FFFFFF; margin: 0;">
+                    <i class="fas fa-receipt me-2" style="color: #C5F36A;"></i> Payment History & Receipts
+                </h4>
+                <button class="btn btn-sm btn-outline-lime" onclick="openSubscriptionModal()">New Payment</button>
+            </div>
+            <div class="table-responsive">
+                <table class="table-dark-custom">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Reference</th>
+                            <th>Method</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Receipt</th>
+                        </tr>
+                    </thead>
+                    <tbody id="paymentsTableBody">
+                        <tr><td colspan="6" class="text-center text-muted">No recorded transactions.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Subscription & Renewal Modal -->
+    <div class="modal fade" id="subscriptionModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background: #181D1A; border: 1px solid #C5F36A; color: #FFFFFF; border-radius: 14px;">
+                <div class="modal-header" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <h5 class="modal-title" style="font-family: 'Montserrat', sans-serif; font-weight: 800;">
+                        <i class="fas fa-shield-heart me-2" style="color: #C5F36A;"></i> Select Membership Plan
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="subForm" onsubmit="handleSubscriptionSubmit(event)">
+                        <div class="mb-3">
+                            <label class="form-label text-muted" style="font-size: 12px; font-weight: 700; text-transform: uppercase;">Choose Plan</label>
+                            <select class="form-select" id="planSelect" style="background: #111312; border: 1px solid rgba(255,255,255,0.15); color: #FFF; padding: 12px;" required>
+                                <option value="">Loading active plans...</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-muted" style="font-size: 12px; font-weight: 700; text-transform: uppercase;">Payment Method</label>
+                            <select class="form-select" id="paymentMethodSelect" style="background: #111312; border: 1px solid rgba(255,255,255,0.15); color: #FFF; padding: 12px;" required>
+                                <option value="upi">UPI / Google Pay / PhonePe</option>
+                                <option value="card">Credit / Debit Card</option>
+                                <option value="cash">Cash at Gym Front Desk</option>
+                                <option value="bank_transfer">Bank Wire / Transfer</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-muted" style="font-size: 12px; font-weight: 700; text-transform: uppercase;">Transaction Note / Reference (Optional)</label>
+                            <input type="text" class="form-control" id="txnRefInput" placeholder="e.g. UPI Ref 3098192849" style="background: #111312; border: 1px solid rgba(255,255,255,0.15); color: #FFF; padding: 12px;">
+                        </div>
+                        <p class="text-muted" style="font-size: 12.5px;">
+                            <i class="fas fa-info-circle me-1" style="color: #C5F36A;"></i> Upon submission, membership status will be set to <strong>Payment Pending</strong> and activated once confirmed by gym admin.
+                        </p>
+                        <button type="submit" class="btn-lime w-100 py-3" id="subSubmitBtn">Confirm & Submit Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Receipt Modal -->
+    <div class="modal fade" id="receiptModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background: #181D1A; border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; border-radius: 14px;">
+                <div class="modal-header" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <h5 class="modal-title" style="font-family: 'Montserrat', sans-serif; font-weight: 800;">
+                        <i class="fas fa-receipt me-2" style="color: #C5F36A;"></i> Payment Receipt
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4 text-center" id="receiptContent">
+                    <!-- Populated dynamically -->
+                </div>
+                <div class="modal-footer" style="border-top: 1px solid rgba(255,255,255,0.1);">
+                    <button type="button" class="btn btn-outline-light btn-sm" onclick="window.print()">
+                        <i class="fas fa-print me-1"></i> Print Receipt
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let currentAthlete = null;
+        let subModalInstance = null;
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            subModalInstance = new bootstrap.Modal(document.getElementById('subscriptionModal'));
+            await loadAthletePortal();
+        });
+
+        async function loadAthletePortal() {
+            currentAthlete = await FitoraService.getCurrentUser();
+            if (!currentAthlete) {
+                window.location.href = 'auth.html?redirect=dashboard';
+                return;
+            }
+
+            const profile = currentAthlete.profile || currentAthlete;
+            document.getElementById('welcomeGreeting').textContent = `Welcome, ${profile.full_name || 'Athlete'}`;
+            document.getElementById('memberIdTag').textContent = profile.membership_id || 'MEMBER';
+            document.getElementById('heroMemberId').textContent = profile.membership_id || 'MEMBER';
+
+            // Check if redirect has action=subscribe
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('action') === 'subscribe') {
+                openSubscriptionModal(urlParams.get('plan'));
+            }
+
+            await Promise.all([
+                loadMembershipState(profile.id),
+                loadAttendanceState(profile.id),
+                loadPaymentsState(profile.id),
+                loadNotificationsState(profile.id)
+            ]);
+        }
+
+        async function loadMembershipState(memberId) {
+            const mem = await FitoraService.getMemberActiveMembership(memberId);
+            const badge = document.getElementById('heroStatusBadge');
+            const title = document.getElementById('heroPlanTitle');
+            const desc = document.getElementById('heroPlanDesc');
+            const start = document.getElementById('heroStartDate');
+            const expiry = document.getElementById('heroExpiryDate');
+            const days = document.getElementById('heroDaysLeft');
+
+            if (!mem || mem.statusInfo.status === 'no_membership') {
+                badge.className = 'badge-status badge-no_membership';
+                badge.textContent = 'No Active Membership';
+                title.textContent = 'Ready to Elevate Your Strength?';
+                desc.textContent = 'You currently do not have an active gym membership. Select a plan below to activate full gym privileges.';
+                start.textContent = 'N/A';
+                expiry.textContent = 'N/A';
+                days.textContent = '0';
+            } else {
+                const s = mem.statusInfo;
+                badge.className = `badge-status badge-${s.status}`;
+                badge.textContent = s.status.replace('_', ' ').toUpperCase();
+                title.textContent = mem.membership_plans ? mem.membership_plans.plan_name : 'FITORA Membership';
+                desc.textContent = mem.membership_plans ? mem.membership_plans.description : 'Standard gym membership privileges.';
+                start.textContent = mem.start_date || 'N/A';
+                expiry.textContent = mem.expiry_date || 'N/A';
+                days.textContent = s.daysRemaining;
+            }
+        }
+
+        async function loadAttendanceState(memberId) {
+            const list = await FitoraService.getMemberAttendance(memberId);
+            const tbody = document.getElementById('attendanceTableBody');
+            document.getElementById('statTotalAttendance').textContent = list.length;
+
+            const thisMonth = new Date().getMonth();
+            const monthCount = list.filter(a => new Date(a.check_in).getMonth() === thisMonth).length;
+            document.getElementById('statMonthAttendance').textContent = monthCount;
+
+            if (list.length > 0) {
+                const latest = new Date(list[0].check_in);
+                document.getElementById('statLastCheckIn').textContent = latest.toLocaleDateString([], { month: 'short', day: 'numeric' });
+
+                tbody.innerHTML = list.slice(0, 8).map(a => `
+                    <tr>
+                        <td><strong>${a.attendance_date}</strong></td>
+                        <td>${new Date(a.check_in).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
+                        <td>${a.check_out ? new Date(a.check_out).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '<span class="text-success"><i class="fas fa-circle-dot me-1"></i>Active</span>'}</td>
+                        <td><span class="badge-status badge-active" style="font-size: 10px;">Recorded</span></td>
+                    </tr>
+                `).join('');
+            } else {
+                document.getElementById('statLastCheckIn').textContent = 'None yet';
+                tbody.innerHTML = `<tr><td colspan="4" class="text-center text-muted py-3">No attendance recorded yet. Check in with gym front desk.</td></tr>`;
+            }
+        }
+
+        async function loadPaymentsState(memberId) {
+            const payments = await FitoraService.getMemberPayments(memberId);
+            const tbody = document.getElementById('paymentsTableBody');
+
+            if (payments.length > 0) {
+                tbody.innerHTML = payments.map(p => `
+                    <tr>
+                        <td>${new Date(p.payment_date).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })}</td>
+                        <td><code>${p.transaction_reference || 'N/A'}</code></td>
+                        <td><span class="text-uppercase">${p.payment_method}</span></td>
+                        <td><strong style="color: #C5F36A;">$${Number(p.amount).toFixed(2)}</strong></td>
+                        <td><span class="badge-status badge-${p.payment_status === 'confirmed' ? 'active' : 'payment_pending'}">${p.payment_status}</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-light" onclick='viewReceipt(${JSON.stringify(p)})'>
+                                <i class="fas fa-file-invoice"></i> Receipt
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+            } else {
+                tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted py-3">No payment records found.</td></tr>`;
+            }
+        }
+
+        async function loadNotificationsState(userId) {
+            const notifs = await FitoraService.getUserNotifications(userId);
+            const container = document.getElementById('notificationsContainer');
+            const unreadCount = notifs.filter(n => !n.is_read).length;
+
+            document.getElementById('unreadCountBadge').textContent = `${unreadCount} Unread`;
+
+            if (notifs.length > 0) {
+                container.innerHTML = notifs.map(n => `
+                    <div class="notif-item ${n.is_read ? 'read' : ''}" onclick="markNotifRead('${n.id}')">
+                        <div>
+                            <div style="font-weight: 700; font-size: 13.5px; color: ${n.is_read ? '#A6AAA6' : '#FFFFFF'};">${n.title}</div>
+                            <div style="font-size: 12.5px; color: #A6AAA6;">${n.message}</div>
+                            <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">${new Date(n.created_at).toLocaleDateString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</div>
+                        </div>
+                        ${!n.is_read ? '<span class="badge-status badge-active" style="font-size: 9px;">NEW</span>' : ''}
+                    </div>
+                `).join('');
+            } else {
+                container.innerHTML = `<p class="text-muted text-center py-4" style="font-size: 13.5px;">No notifications yet.</p>`;
+            }
+        }
+
+        async function markNotifRead(id) {
+            await FitoraService.markNotificationRead(id);
+            if (currentAthlete) loadNotificationsState(currentAthlete.id);
+        }
+
+        async function openSubscriptionModal(preselectPlanId = '') {
+            const plans = await FitoraService.getPlans(true);
+            const select = document.getElementById('planSelect');
+
+            select.innerHTML = plans.map(p => `
+                <option value="${p.id}" ${p.id === preselectPlanId ? 'selected' : ''}>
+                    ${p.plan_name} - $${p.price} (${p.duration_days} Days)
+                </option>
+            `).join('');
+
+            subModalInstance.show();
+        }
+
+        async function handleSubscriptionSubmit(e) {
+            e.preventDefault();
+            const planId = document.getElementById('planSelect').value;
+            const method = document.getElementById('paymentMethodSelect').value;
+            const ref = document.getElementById('txnRefInput').value;
+            const btn = document.getElementById('subSubmitBtn');
+
+            btn.disabled = true;
+            btn.textContent = 'Submitting Request...';
+
+            try {
+                await FitoraService.requestSubscription(currentAthlete.id, planId, method, ref);
+                subModalInstance.hide();
+                alert('Membership request submitted successfully! Pending admin payment verification.');
+                await loadAthletePortal();
+            } catch (err) {
+                alert(err.message || 'Failed to submit request.');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Confirm & Submit Request';
+            }
+        }
+
+        function viewReceipt(payment) {
+            const content = document.getElementById('receiptContent');
+            content.innerHTML = `
+                <div style="border: 2px dashed rgba(197, 243, 106, 0.4); padding: 24px; border-radius: 12px; background: #111312;">
+                    <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA" style="width: 120px; margin-bottom: 16px;">
+                    <h4 style="font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; color: #C5F36A; margin-bottom: 4px;">OFFICIAL RECEIPT</h4>
+                    <p class="text-muted" style="font-size: 12px;">FITORA Fitness & Wellness Platform</p>
+                    <hr style="border-color: rgba(255,255,255,0.1);">
+                    <div class="text-start" style="font-size: 13.5px; line-height: 1.8;">
+                        <div class="d-flex justify-content-between"><span>Receipt Reference:</span> <strong>${payment.transaction_reference || 'N/A'}</strong></div>
+                        <div class="d-flex justify-content-between"><span>Date:</span> <strong>${new Date(payment.payment_date).toLocaleString()}</strong></div>
+                        <div class="d-flex justify-content-between"><span>Payment Method:</span> <strong class="text-uppercase">${payment.payment_method}</strong></div>
+                        <div class="d-flex justify-content-between"><span>Status:</span> <strong style="color: #4ade80;">${payment.payment_status.toUpperCase()}</strong></div>
+                        <hr style="border-color: rgba(255,255,255,0.1);">
+                        <div class="d-flex justify-content-between" style="font-size: 18px;">
+                            <span>Total Paid:</span>
+                            <strong style="color: #C5F36A;">$${Number(payment.amount).toFixed(2)}</strong>
+                        </div>
+                    </div>
+                </div>
+            `;
+            const modal = new bootstrap.Modal(document.getElementById('receiptModal'));
+            modal.show();
+        }
+
+        function switchSection(sec) {
+            const el = document.getElementById(sec + 'Section');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

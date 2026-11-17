@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FITORA - Gym Management & Admin Portal</title>
+    <link rel="shortcut icon" href="assets/img/favicon.svg">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/fitora-custom.css?v=4.0">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="assets/js/fitora-config.js"></script>
+    <script src="assets/js/fitora-supabase.js"></script>
+    <style>
+        body {
+            background-color: #0E100F;
+            color: #F5F5F0;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+        .admin-header {
+            background: #141715;
+            border-bottom: 1px solid rgba(197, 243, 106, 0.2);
+            padding: 16px 28px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .admin-tab-btn {
+            color: #A6AAA6;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .admin-tab-btn:hover, .admin-tab-btn.active {
+            color: #C5F36A;
+            background: rgba(197, 243, 106, 0.12);
+        }
+        .dash-card {
+            background: #181D1A;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        .stat-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: #C5F36A;
+            line-height: 1.1;
+        }
+        .stat-label {
+            color: #A6AAA6;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 6px;
+        }
+        .badge-status {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .badge-active { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid #22c55e; }
+        .badge-expiring_soon { background: rgba(234, 179, 8, 0.2); color: #facc15; border: 1px solid #eab308; }
+        .badge-payment_pending { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid #3b82f6; }
+        .badge-expired { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
+
+        .btn-lime {
+            background: #C5F36A;
+            color: #111312;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 8px 18px;
+            border-radius: 8px;
+            border: none;
+            transition: all 0.2s ease;
+        }
+        .btn-lime:hover {
+            background: #d4f884;
+            color: #111312;
+        }
+        .btn-outline-lime {
+            background: transparent;
+            color: #C5F36A;
+            border: 1.5px solid #C5F36A;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            padding: 7px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .btn-outline-lime:hover {
+            background: rgba(197, 243, 106, 0.15);
+            color: #C5F36A;
+        }
+        .table-dark-custom {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 8px;
+        }
+        .table-dark-custom th {
+            color: #A6AAA6;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 10px 14px;
+            border: none;
+        }
+        .table-dark-custom td {
+            background: #141715;
+            padding: 12px 14px;
+            font-size: 13.5px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .table-dark-custom tr td:first-child { border-left: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px 0 0 8px; }
+        .table-dark-custom tr td:last-child { border-right: 1px solid rgba(255, 255, 255, 0.05); border-radius: 0 8px 8px 0; }
+        .form-control-dark {
+            background: #111312;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #FFFFFF;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 13.5px;
+        }
+        .form-control-dark:focus {
+            background: #111312;
+            color: #FFFFFF;
+            border-color: #C5F36A;
+            box-shadow: 0 0 0 2px rgba(197, 243, 106, 0.25);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Admin Header -->
+    <header class="admin-header d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-4">
+            <a href="index.html">
+                <img src="assets/img/logo/fitora-logo-white.svg" alt="FITORA" style="width: 130px;">
+            </a>
+            <span class="badge-status badge-active" style="background: rgba(197, 243, 106, 0.15); color: #C5F36A;">
+                <i class="fas fa-shield-halved me-1"></i> ADMIN CONSOLE
+            </span>
+            <nav class="d-none d-lg-flex align-items-center gap-1">
+                <button type="button" class="admin-tab-btn active" onclick="switchAdminTab('overview')">Overview</button>
+                <button type="button" class="admin-tab-btn" onclick="switchAdminTab('members')">Members</button>
+                <button type="button" class="admin-tab-btn" onclick="switchAdminTab('subscriptions')">Subscriptions</button>
+                <button type="button" class="admin-tab-btn" onclick="switchAdminTab('attendance')">Attendance</button>
+                <button type="button" class="admin-tab-btn" onclick="switchAdminTab('payments')">Payments</button>
+                <button type="button" class="admin-tab-btn" onclick="switchAdminTab('plans')">Plans</button>
+            </nav>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <button class="btn btn-sm btn-outline-lime" onclick="runManualExpiryCheck()">
+                <i class="fas fa-rotate me-1"></i> Check Expiries
+            </button>
+            <button class="btn btn-sm btn-outline-danger text-danger border-danger" onclick="FitoraService.signOut()">
+                <i class="fas fa-sign-out-alt me-1"></i> Logout
+            </button>
+        </div>
+    </header>
+
+    <main class="container-fluid px-4 py-4">
+
+        <!-- Metrics Overview Grid -->
+        <div class="row g-3 mb-4">
+            <div class="col-6 col-lg-3 col-xl">
+                <div class="dash-card py-3">
+                    <div class="stat-value" id="metricTotalMembers">0</div>
+                    <div class="stat-label">Total Registered</div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3 col-xl">
+                <div class="dash-card py-3">
+                    <div class="stat-value text-success" id="metricActiveMembers">0</div>
+                    <div class="stat-label">Active Subscriptions</div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3 col-xl">
+                <div class="dash-card py-3">
+                    <div class="stat-value text-warning" id="metricExpiringMembers">0</div>
+                    <div class="stat-label">Expiring Soon (≤7d)</div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3 col-xl">
+                <div class="dash-card py-3">
+                    <div class="stat-value text-danger" id="metricExpiredMembers">0</div>
+                    <div class="stat-label">Expired Memberships</div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3 col-xl">
+                <div class="dash-card py-3">
+                    <div class="stat-value text-info" id="metricPendingPayments">0</div>
+                    <div class="stat-label">Pending Payments</div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3 col-xl">
+                <div class="dash-card py-3">
+                    <div class="stat-value" id="metricTotalRevenue">$0</div>
+                    <div class="stat-label">Recorded Revenue</div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3 col-xl">
+                <div class="dash-card py-3">
+                    <div class="stat-value text-white" id="metricTodayAttendance">0</div>
+                    <div class="stat-label">Today's Check-Ins</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1. TAB: OVERVIEW / QUICK DESK -->
+        <div id="tabContent_overview" class="admin-tab-pane">
+            <div class="row g-4">
+                <!-- Quick Attendance Check-In Bar -->
+                <div class="col-lg-6">
+                    <div class="dash-card">
+                        <h4 style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #FFFFFF; margin-bottom: 14px;">
+                            <i class="fas fa-barcode me-2" style="color: #C5F36A;"></i> Front Desk Member Check-In
+                        </h4>
+                        <p class="text-muted" style="font-size: 13px;">Enter Member ID, Email, or Name to verify active membership and log gym floor access.</p>
+                        <form onsubmit="handleQuickCheckIn(event)" class="d-flex gap-2">
+                            <input type="text" id="checkInInput" class="form-control-dark flex-grow-1" placeholder="e.g. FIT-2026-1049 or athlete@fitora.com" required>
+                            <button type="submit" class="btn-lime">Check In</button>
+                        </form>
+                        <div id="checkInFeedback" class="mt-3" style="display: none;"></div>
+                    </div>
+
+                    <!-- Pending Payments Requiring Confirmation -->
+                    <div class="dash-card">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #FFFFFF; margin: 0;">
+                                <i class="fas fa-clock me-2" style="color: #60a5fa;"></i> Pending Payment Confirmations
+                            </h4>
+                            <span class="badge-status badge-payment_pending" id="pendingPayBadge">0 Pending</span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table-dark-custom">
+                                <thead>
+                                    <tr>
+                                        <th>Athlete</th>
+                                        <th>Amount</th>
+                                        <th>Method</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="overviewPendingPayTable">
+                                    <tr><td colspan="4" class="text-center text-muted">No pending payments.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expiring Within 7 Days Alerts -->
+                <div class="col-lg-6">
+                    <div class="dash-card">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #FFFFFF; margin: 0;">
+                                <i class="fas fa-triangle-exclamation me-2" style="color: #facc15;"></i> Members Expiring Soon
+                            </h4>
+                            <button class="btn btn-sm btn-outline-lime" onclick="runManualExpiryCheck()">Notify All</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table-dark-custom">
+                                <thead>
+                                    <tr>
+                                        <th>Athlete</th>
+                                        <th>Plan</th>
+                                        <th>Expiry Date</th>
+                                        <th>Days Left</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="overviewExpiringTable">
+                                    <tr><td colspan="4" class="text-center text-muted">No upcoming expiries.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. TAB: MEMBERS -->
+        <div id="tabContent_members" class="admin-tab-pane" style="display: none;">
+            <div class="dash-card">
+                <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+                    <h4 style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #FFFFFF; margin: 0;">
+                        <i class="fas fa-users me-2" style="color: #C5F36A;"></i> All Registered Members
+                    </h4>
+                    <input type="text" id="memberSearchInput" oninput="filterMembersTable()" class="form-control-dark" style="width: 280px;" placeholder="Search name, email, or ID...">
+                </div>
+                <div class="table-responsive">
+                    <table class="table-dark-custom">
+                        <thead>
+                            <tr>
+                                <th>Member ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Role</th>
+                                <th>Registered</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allMembersTableBody">
+                            <tr><td colspan="6" class="text-center text-muted">Loading members...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. TAB: SUBSCRIPTIONS -->
+        <div id="tabContent_subscriptions" class="admin-tab-pane" style="display: none;">
+            <div class="dash-card">
+                <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+                    <h4 style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #FFFFFF; margin: 0;">
+                        <i class="fas fa-id-card-clip me-2" style="color: #C5F36A;"></i> All Membership Subscriptions
+                    </h4>
+                    <div class="d-flex gap-2">
+                        <select id="subStatusFilter" onchange="filterSubscriptionsTable()" class="form-control-dark" style="width: 180px;">
+                            <option value="all">All Statuses</option>
+                            <option value="active">Active</option>
+                            <option value="expiring_soon">Expiring Soon</option>
+                            <option value="payment_pending">Payment Pending</option>
+                            <option value="expired">Expired</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table-dark-custom">
+                        <thead>
+                            <tr>
+                                <th>Athlete</th>
+                                <th>Plan</th>
+                                <th>Start Date</th>
+                                <th>Expiry Date</th>
+                                <th>Days Left</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allSubscriptionsTableBody">
+                            <tr><td colspan="7" class="text-center text-muted">Loading subscriptions...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. TAB: ATTENDANCE -->
+        <div id="tabContent_attendance" class="admin-tab-pane" style="display: none;">
+            <div class="dash-card">
+                <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+                    <h4 style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #FFFFFF; margin: 0;">
+                        <i class="fas fa-clipboard-user me-2" style="color: #C5F36A;"></i> Gym Attendance Logs
+                    </h4>
+                    <div class="d-flex gap-2">
+                        <input type="date" id="attendanceDateFilter" onchange="loadAdminAttendance()" class="form-control-dark">
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table-dark-custom">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Athlete</th>
+                                <th>Member ID</th>
+                                <th>Check-In</th>
+                                <th>Check-Out</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allAttendanceTableBody">
+                            <tr><td colspan="6" class="text-center text-muted">Loading attendance...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. TAB: PAYMENTS -->
+        <div id="tabContent_payments" class="admin-tab-pane" style="display: none;">
+            <div class="dash-card">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #FFFFFF; margin: 0;">
+                        <i class="fas fa-receipt me-2" style="color: #C5F36A;"></i> Recorded Payments & Revenue
+                    </h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table-dark-custom">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Athlete</th>
+                                <th>Reference</th>
+                                <th>Method</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allPaymentsTableBody">
+                            <tr><td colspan="7" class="text-center text-muted">Loading payments...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. TAB: PLANS -->
+        <div id="tabContent_plans" class="admin-tab-pane" style="display: none;">
+            <div class="dash-card">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #FFFFFF; margin: 0;">
+                        <i class="fas fa-tags me-2" style="color: #C5F36A;"></i> Manage Membership Plans
+                    </h4>
+                    <button class="btn-lime btn-sm" onclick="openCreatePlanModal()">+ Create New Plan</button>
+                </div>
+                <div class="row g-4" id="adminPlansGrid">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Create / Edit Plan Modal -->
+    <div class="modal fade" id="planModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background: #181D1A; border: 1px solid #C5F36A; color: #FFF; border-radius: 14px;">
+                <div class="modal-header" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <h5 class="modal-title" style="font-family: 'Montserrat', sans-serif; font-weight: 800;">Create / Edit Membership Plan</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="planForm" onsubmit="handlePlanSubmit(event)">
+                        <div class="mb-3">
+                            <label class="form-label text-muted" style="font-size: 12px; font-weight: 700;">Plan Name</label>
+                            <input type="text" id="planNameInput" class="form-control-dark w-100" placeholder="e.g. Semi-Annual VIP" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-muted" style="font-size: 12px; font-weight: 700;">Duration (Days)</label>
+                            <input type="number" id="planDurationInput" class="form-control-dark w-100" placeholder="e.g. 180" min="1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-muted" style="font-size: 12px; font-weight: 700;">Price (USD)</label>
+                            <input type="number" id="planPriceInput" class="form-control-dark w-100" placeholder="e.g. 249.00" step="0.01" min="0" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-muted" style="font-size: 12px; font-weight: 700;">Plan Description</label>
+                            <textarea id="planDescInput" class="form-control-dark w-100" rows="3" placeholder="Access details and perks..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-lime w-100 py-2">Save Plan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let currentAdmin = null;
+        let cachedMembers = [];
+        let cachedSubscriptions = [];
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            currentAdmin = await FitoraService.getCurrentUser();
+            if (!currentAdmin) {
+                window.location.href = 'auth.html?redirect=admin';
+                return;
+            }
+
+            const profile = currentAdmin.profile || currentAdmin;
+            if (profile.role !== 'admin') {
+                alert('Access restricted. Only authorized FITORA administrators can access this portal.');
+                window.location.href = 'dashboard.html';
+                return;
+            }
+
+            await loadAdminData();
+        });
+
+        async function loadAdminData() {
+            await Promise.all([
+                loadAdminMetrics(),
+                loadAdminMembers(),
+                loadAdminSubscriptions(),
+                loadAdminAttendance(),
+                loadAdminPayments(),
+                loadAdminPlans()
+            ]);
+        }
+
+        async function loadAdminMetrics() {
+            const [members, subs, att, payments] = await Promise.all([
+                FitoraService.getProfile ? getStoredMembers() : [],
+                FitoraService.getAllMemberships(),
+                FitoraService.getAllAttendance(new Date().toISOString().split('T')[0]),
+                FitoraService.getAllPayments()
+            ]);
+
+            document.getElementById('metricTotalMembers').textContent = members.length;
+            
+            const activeCount = subs.filter(s => s.statusInfo.status === 'active').length;
+            const expiringCount = subs.filter(s => s.statusInfo.status === 'expiring_soon').length;
+            const expiredCount = subs.filter(s => s.statusInfo.status === 'expired').length;
+            const pendingCount = payments.filter(p => p.payment_status === 'pending').length;
+
+            document.getElementById('metricActiveMembers').textContent = activeCount;
+            document.getElementById('metricExpiringMembers').textContent = expiringCount;
+            document.getElementById('metricExpiredMembers').textContent = expiredCount;
+            document.getElementById('metricPendingPayments').textContent = pendingCount;
+            document.getElementById('pendingPayBadge').textContent = `${pendingCount} Pending`;
+
+            const totalRev = payments
+                .filter(p => p.payment_status === 'confirmed')
+                .reduce((sum, p) => sum + Number(p.amount), 0);
+            document.getElementById('metricTotalRevenue').textContent = `$${totalRev.toLocaleString()}`;
+
+            document.getElementById('metricTodayAttendance').textContent = att.length;
+
+            // Overview Pending Payments
+            const pendingList = payments.filter(p => p.payment_status === 'pending');
+            const tbodyPay = document.getElementById('overviewPendingPayTable');
+            if (pendingList.length > 0) {
+                tbodyPay.innerHTML = pendingList.map(p => `
+                    <tr>
+                        <td><strong>${p.profiles ? p.profiles.full_name : 'Athlete'}</strong></td>
+                        <td>$${Number(p.amount).toFixed(2)}</td>
+                        <td><span class="text-uppercase">${p.payment_method}</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-lime py-1 px-2" onclick="confirmAdminPayment('${p.id}')">
+                                <i class="fas fa-check me-1"></i> Confirm
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+            } else {
+                tbodyPay.innerHTML = `<tr><td colspan="4" class="text-center text-muted">No pending payments.</td></tr>`;
+            }
+
+            // Overview Expiring Soon Table
+            const expiringList = subs.filter(s => s.statusInfo.status === 'expiring_soon' || s.statusInfo.daysRemaining <= 7);
+            const tbodyExp = document.getElementById('overviewExpiringTable');
+            if (expiringList.length > 0) {
+                tbodyExp.innerHTML = expiringList.map(s => `
+                    <tr>
+                        <td><strong>${s.profiles ? s.profiles.full_name : 'Athlete'}</strong></td>
+                        <td>${s.membership_plans ? s.membership_plans.plan_name : 'Plan'}</td>
+                        <td>${s.expiry_date}</td>
+                        <td><strong class="text-warning">${s.statusInfo.daysRemaining}d</strong></td>
+                    </tr>
+                `).join('');
+            } else {
+                tbodyExp.innerHTML = `<tr><td colspan="4" class="text-center text-muted">No members expiring within 7 days.</td></tr>`;
+            }
+        }
+
+        function getStoredMembers() {
+            try {
+                return JSON.parse(localStorage.getItem('fitora_db_profiles') || '[]');
+            } catch(e) { return []; }
+        }
+
+        async function loadAdminMembers() {
+            cachedMembers = getStoredMembers();
+            renderMembersTable(cachedMembers);
+        }
+
+        function renderMembersTable(list) {
+            const tbody = document.getElementById('allMembersTableBody');
+            if (list.length > 0) {
+                tbody.innerHTML = list.map(m => `
+                    <tr>
+                        <td><code>${m.membership_id || 'N/A'}</code></td>
+                        <td><strong>${m.full_name}</strong></td>
+                        <td>${m.email}</td>
+                        <td>${m.phone || 'N/A'}</td>
+                        <td><span class="badge-status ${m.role === 'admin' ? 'badge-expiring_soon' : 'badge-active'}">${m.role}</span></td>
+                        <td>${new Date(m.created_at).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })}</td>
+                    </tr>
+                `).join('');
+            } else {
+                tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted">No members found.</td></tr>`;
+            }
+        }
+
+        function filterMembersTable() {
+            const q = document.getElementById('memberSearchInput').value.toLowerCase();
+            const filtered = cachedMembers.filter(m => 
+                (m.full_name && m.full_name.toLowerCase().includes(q)) ||
+                (m.email && m.email.toLowerCase().includes(q)) ||
+                (m.membership_id && m.membership_id.toLowerCase().includes(q))
+            );
+            renderMembersTable(filtered);
+        }
+
+        async function loadAdminSubscriptions() {
+            cachedSubscriptions = await FitoraService.getAllMemberships();
+            renderSubscriptionsTable(cachedSubscriptions);
+        }
+
+        function renderSubscriptionsTable(list) {
+            const tbody = document.getElementById('allSubscriptionsTableBody');
+            if (list.length > 0) {
+                tbody.innerHTML = list.map(s => `
+                    <tr>
+                        <td>
+                            <strong>${s.profiles ? s.profiles.full_name : 'Athlete'}</strong>
+                            <div style="font-size: 11px; color: #A6AAA6;">${s.profiles ? s.profiles.membership_id : ''}</div>
+                        </td>
+                        <td>${s.membership_plans ? s.membership_plans.plan_name : 'Plan'}</td>
+                        <td>${s.start_date}</td>
+                        <td>${s.expiry_date}</td>
+                        <td><strong>${s.statusInfo.daysRemaining} days</strong></td>
+                        <td><span class="badge-status badge-${s.statusInfo.status}">${s.statusInfo.status.replace('_', ' ')}</span></td>
+                        <td>
+                            ${s.status !== 'active' ? `
+                                <button class="btn btn-sm btn-lime py-1 px-2" onclick="activateAdminMembership('${s.id}')">
+                                    Activate
+                                </button>
+                            ` : `<span class="text-muted" style="font-size: 12px;">Active</span>`}
+                        </td>
+                    </tr>
+                `).join('');
+            } else {
+                tbody.innerHTML = `<tr><td colspan="7" class="text-center text-muted">No subscriptions recorded.</td></tr>`;
+            }
+        }
+
+        function filterSubscriptionsTable() {
+            const filter = document.getElementById('subStatusFilter').value;
+            const filtered = filter === 'all' ? cachedSubscriptions : cachedSubscriptions.filter(s => s.statusInfo.status === filter);
+            renderSubscriptionsTable(filtered);
+        }
+
+        async function loadAdminAttendance() {
+            const dateVal = document.getElementById('attendanceDateFilter').value || null;
+            const list = await FitoraService.getAllAttendance(dateVal);
+            const tbody = document.getElementById('allAttendanceTableBody');
+
+            if (list.length > 0) {
+                tbody.innerHTML = list.map(a => `
+                    <tr>
+                        <td><strong>${a.attendance_date}</strong></td>
+                        <td>${a.profiles ? a.profiles.full_name : 'Athlete'}</td>
+                        <td><code>${a.profiles ? a.profiles.membership_id : 'N/A'}</code></td>
+                        <td>${new Date(a.check_in).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
+                        <td>${a.check_out ? new Date(a.check_out).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '<span class="text-success">In Gym</span>'}</td>
+                        <td>
+                            ${!a.check_out ? `
+                                <button class="btn btn-sm btn-outline-lime py-1 px-2" onclick="checkOutAdminAttendance('${a.id}')">
+                                    Check Out
+                                </button>
+                            ` : '<span class="text-muted" style="font-size: 12px;">Completed</span>'}
+                        </td>
+                    </tr>
+                `).join('');
+            } else {
+                tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted">No attendance logs found for selected date.</td></tr>`;
+            }
+        }
+
+        async function loadAdminPayments() {
+            const payments = await FitoraService.getAllPayments();
+            const tbody = document.getElementById('allPaymentsTableBody');
+
+            if (payments.length > 0) {
+                tbody.innerHTML = payments.map(p => `
+                    <tr>
+                        <td>${new Date(p.payment_date).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })}</td>
+                        <td><strong>${p.profiles ? p.profiles.full_name : 'Athlete'}</strong></td>
+                        <td><code>${p.transaction_reference || 'N/A'}</code></td>
+                        <td><span class="text-uppercase">${p.payment_method}</span></td>
+                        <td><strong style="color: #C5F36A;">$${Number(p.amount).toFixed(2)}</strong></td>
+                        <td><span class="badge-status badge-${p.payment_status === 'confirmed' ? 'active' : 'payment_pending'}">${p.payment_status}</span></td>
+                        <td>
+                            ${p.payment_status !== 'confirmed' ? `
+                                <button class="btn btn-sm btn-lime py-1 px-2" onclick="confirmAdminPayment('${p.id}')">
+                                    Confirm
+                                </button>
+                            ` : '<span class="text-muted" style="font-size: 12px;">Verified</span>'}
+                        </td>
+                    </tr>
+                `).join('');
+            } else {
+                tbody.innerHTML = `<tr><td colspan="7" class="text-center text-muted">No payments found.</td></tr>`;
+            }
+        }
+
+        async function loadAdminPlans() {
+            const plans = await FitoraService.getPlans(false);
+            const grid = document.getElementById('adminPlansGrid');
+
+            grid.innerHTML = plans.map(p => `
+                <div class="col-md-4">
+                    <div class="dash-card h-100 d-flex flex-column justify-content-between" style="border: 1px solid rgba(197, 243, 106, 0.3);">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 style="font-family: 'Montserrat', sans-serif; font-weight: 800; color: #FFF; margin: 0;">${p.plan_name}</h5>
+                                <span class="badge-status ${p.is_active ? 'badge-active' : 'badge-expired'}">${p.is_active ? 'Active' : 'Disabled'}</span>
+                            </div>
+                            <div class="stat-value my-2">$${p.price}</div>
+                            <div class="text-muted mb-3" style="font-size: 13px;">Duration: <strong>${p.duration_days} Days</strong></div>
+                            <p style="color: #A6AAA6; font-size: 13.5px;">${p.description}</p>
+                        </div>
+                        <div class="d-flex gap-2 mt-3 pt-3" style="border-top: 1px solid rgba(255,255,255,0.08);">
+                            <button class="btn btn-sm btn-outline-danger w-100" onclick="deleteAdminPlan('${p.id}')">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function handleQuickCheckIn(e) {
+            e.preventDefault();
+            const input = document.getElementById('checkInInput');
+            const feedback = document.getElementById('checkInFeedback');
+            const val = input.value.trim();
+
+            try {
+                const res = await FitoraService.checkInMember(val);
+                feedback.className = 'alert alert-success';
+                feedback.textContent = `Success! Checked in ${res.profiles ? res.profiles.full_name : 'Member'} at ${new Date(res.check_in).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}.`;
+                feedback.style.display = 'block';
+                input.value = '';
+                await loadAdminData();
+            } catch (err) {
+                feedback.className = 'alert alert-danger';
+                feedback.textContent = err.message || 'Check-in failed.';
+                feedback.style.display = 'block';
+            }
+        }
+
+        async function checkOutAdminAttendance(id) {
+            await FitoraService.checkOutMember(id);
+            await loadAdminAttendance();
+        }
+
+        async function confirmAdminPayment(id) {
+            await FitoraService.confirmPayment(id);
+            alert('Payment confirmed & membership activated!');
+            await loadAdminData();
+        }
+
+        async function activateAdminMembership(id) {
+            await FitoraService.activateMembership(id);
+            alert('Membership activated successfully!');
+            await loadAdminData();
+        }
+
+        async function runManualExpiryCheck() {
+            const res = await FitoraService.runAutomatedExpiryChecks();
+            alert(`Expiry check complete! Triggered ${res.alertsTriggered} automated notifications.`);
+            await loadAdminData();
+        }
+
+        function openCreatePlanModal() {
+            const modal = new bootstrap.Modal(document.getElementById('planModal'));
+            modal.show();
+        }
+
+        async function handlePlanSubmit(e) {
+            e.preventDefault();
+            const plan = {
+                plan_name: document.getElementById('planNameInput').value.trim(),
+                duration_days: Number(document.getElementById('planDurationInput').value),
+                price: Number(document.getElementById('planPriceInput').value),
+                description: document.getElementById('planDescInput').value.trim(),
+                is_active: true
+            };
+
+            await FitoraService.createPlan(plan);
+            bootstrap.Modal.getInstance(document.getElementById('planModal')).hide();
+            await loadAdminPlans();
+        }
+
+        async function deleteAdminPlan(id) {
+            if (confirm('Are you sure you want to delete this membership plan?')) {
+                await FitoraService.deletePlan(id);
+                await loadAdminPlans();
+            }
+        }
+
+        function switchAdminTab(tabName) {
+            document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.admin-tab-pane').forEach(p => p.style.display = 'none');
+
+            const targetPane = document.getElementById('tabContent_' + tabName);
+            if (targetPane) targetPane.style.display = 'block';
+
+            const activeBtn = Array.from(document.querySelectorAll('.admin-tab-btn')).find(b => b.textContent.toLowerCase() === tabName.toLowerCase());
+            if (activeBtn) activeBtn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
